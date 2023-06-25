@@ -11,14 +11,14 @@ title: Max Chumley
 # Description of the Site
 description: Mechanical Engineering PhD. Student
 # URL of Image of the Site
-site-image: /assets/images/basin_new.png
+site-image: ./assets/images/basin_new.png
 # Keywords of the Site
 site-keywords: Site, Template, Theme
 # URL for the Image of custom Favicon
-favicon-url: /assets/images/basin_new.png
+favicon-url: ./assets/images/basin_new.png
 
 # URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
-heroimage: /assets/images/basin_new.png
+heroimage: ./assets/images/basin_new.png
 
 # Social Media and Contact
 # If you don't want to use any icon, you can leave them blank.
