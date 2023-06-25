@@ -40,7 +40,7 @@ disqus-shortname: ""
 # Name of the Author
 author-name: Max Chumley
 # URL for the Image of the Author
-author-image: /assets/images/max_portrait.png
+author-image: ./assets/images/max_portrait.png
 # 60 Words About the Author
 author-about: I am a second year mechanical engineering Ph.D. student at Michigan State University. My research focuses on nonlinear dynamical systems and timeseries analysis using topological data analysis.
 # URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
