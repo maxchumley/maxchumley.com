@@ -57,6 +57,12 @@
                 {% unless site.spotify_username ==  %}
                 <a href="http://open.spotify.com/user/{{site.spotify_username}}" target="_blank" class="has-text-black"><i class="fab fa-spotify"></i></a>
                 {% endunless %}
+                {% unless site.gscholar ==  %}
+                <a href="https://scholar.google.com/citations?user={{site.gscholar}}=en" target="_blank" class="has-text-black"><i class="fab fa-google"></i></a>
+                {% endunless %}
+                {% unless site.orcid ==  %}
+                <a href="https://orcid.org/{{site.orcid}}" target="_blank" class="has-text-black"><i class="fab fa-orcid"></i></a>
+                {% endunless %}
             </div>
         </div>
     </div>
