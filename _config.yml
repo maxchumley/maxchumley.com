@@ -11,14 +11,14 @@ title: Max Chumley
 # Description of the Site
 description: Mechanical Engineering PhD. Student
 # URL of Image of the Site
-site-image: ./assets/images/basin_new.png
+site-image: /assets/images/basin_new.png
 # Keywords of the Site
 site-keywords: Site, Template, Theme
 # URL for the Image of custom Favicon
-favicon-url: ./assets/images/basin_new.png
+favicon-url: /assets/images/basin_new.png
 
 # URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
-heroimage: ./assets/images/basin_new.png
+heroimage: /assets/images/basin_new.png
 
 # Social Media and Contact
 # If you don't want to use any icon, you can leave them blank.
@@ -40,7 +40,7 @@ disqus-shortname: ""
 # Name of the Author
 author-name: Max Chumley
 # URL for the Image of the Author
-author-image: ./assets/images/max_portrait.png
+author-image: /assets/images/max_portrait.png
 # 60 Words About the Author
 author-about: I am a second year mechanical engineering Ph.D. student at Michigan State University. My research focuses on nonlinear dynamical systems and timeseries analysis using topological data analysis.
 # URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
