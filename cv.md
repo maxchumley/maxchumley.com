@@ -5,4 +5,4 @@ layout: page
 
 <!-- <embed src="./assets/pdfs/Chumley-CV.pdf" type="application/pdf" width="100%" height="600px" /> -->
 
-<iframe src="./assets/pdfs/Chumley-CV.pdf" width="80%" height="600px"></iframe>
+<iframe src="./assets/pdfs/Chumley-CV.pdf" width="100%" height="600px"></iframe>
