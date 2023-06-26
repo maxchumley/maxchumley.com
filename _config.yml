@@ -1,3 +1,6 @@
+# bundle exec jekyll serve --livereload -w -o
+# jekyll build
+
 # WhatATheme
 markdown: kramdown
 
