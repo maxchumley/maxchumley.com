@@ -15,8 +15,8 @@ tags:
 
 *Chumley, Max M., et al. "Pattern characterization using topological data analysis: Application to piezo vibration striking treatment." Precision Engineering 83 (2023): 42-57.*
 
-[Published Version](https://www.sciencedirect.com/science/article/abs/pii/S0141635923000922)\\
-[arXiv Version](https://doi.org/10.48550/arXiv.2210.06333)
+[Published Version](https://www.sciencedirect.com/science/article/abs/pii/S0141635923000922){:target="_blank"}\\
+[arXiv Version](https://doi.org/10.48550/arXiv.2210.06333){:target="_blank"}
 
 
 ---
@@ -27,8 +27,8 @@ Melih C Yesilli, **Max M. Chumley**, Jisheng Chen, Firas A Khasawneh, Yang Guo
 
 *Proceedings of the ASME 2022 17th International Manufacturing Science and Engineering Conference. Volume 2: Manufacturing Processes; Manufacturing Systems*
 
-[Published Version](https://doi.org/10.1115/MSEC2022-86659)\\
-[arXiv Version](https://doi.org/10.48550/arXiv.2209.05531)
+[Published Version](https://doi.org/10.1115/MSEC2022-86659){:target="_blank"}\\
+[arXiv Version](https://doi.org/10.48550/arXiv.2209.05531){:target="_blank"}
 
 
 
