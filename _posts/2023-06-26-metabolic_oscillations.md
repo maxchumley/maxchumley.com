@@ -11,13 +11,10 @@ tags:
 
 ## <u>A Nonlinear Delay Model for Metabolic Oscillations in Yeast Cells</u>
 
-**Max M. Chumley**, Firas A Khasawneh, Andreas Otto, Tomas Gedeon
+**Max M. Chumley**, Firas A Khasawneh, Andreas Otto, and Tomas Gedeon
 
-
-[arXiv](https://arxiv.org/abs/2305.07643){:target="_blank"}
-
+[arXiv](https://doi.org/10.48550/arXiv.2305.07643){:target="_blank"}\\
 [SIAM-DS 2023 Presentation Slides](/assets/html/siam-ds_2023_metabolic_oscillations.html){:target="_blank"}
-
 
 
 
