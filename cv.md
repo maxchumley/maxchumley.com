@@ -7,7 +7,4 @@ layout: page
 
 <!-- <iframe src="./assets/pdfs/Chumley-CV.pdf" width="100%" height="600px"></iframe> -->
 
-<object data="./assets/pdfs/Chumley-CV.pdf" width="100%" height="600px">
-    <p>Oops! Your browser doesn't support PDFs!</p>
-    <p><a href="./assets/pdfs/Chumley-CV.pdf">Download Instead</a></p>
-</object>
+<iframe src="https://drive.google.com/file/d/1wqRcgD1XU0vTYTbNhA1krQSKAIt8TYVE/preview" width="80%" height="600" allow="autoplay"></iframe>
