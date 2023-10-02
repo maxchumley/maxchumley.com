@@ -15,6 +15,5 @@ tags:
 
 [arXiv](https://doi.org/10.48550/arXiv.2305.07643){:target="_blank"}\\
 [SIAM-DS 2023 Presentation Slides](/assets/html/siam-ds_2023_metabolic_oscillations.html){:target="_blank"}
-[test](/assets/html/xaringan_template/xaringan/slides/xaringan_template.html){:target="_blank"}
 
 
