@@ -1,0 +1,718 @@
+---
+title: "Persistent Homology of Coarse-Grained State Space Networks"
+author: "**Max Chumley** <br> &mdash; <br> Mechanical Engineering<br> &mdash;<br> Michigan State University <br> &mdash;"
+date: "`r Sys.Date()`"
+#"`#r Sys.Date()`" (Delete both #)
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    seal: true
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      titleSlideClass: [top, left, inverse]
+    self_contained: false # true for embedding on website
+---
+
+background-image: url("../../people/people.png")
+background-size: 800px
+background-position: 95% 50%
+
+```{r setup, include=FALSE}
+library(knitr)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)-->
+
+# Acknowledgements 
+.left-column[
+<div style="height: 25px;"></div>
+<p style="font-size:9px">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</p>
+
+<!-- Funding agency logo and grant number -->
+```{r, out.width=500, fig.align='center'}
+    knitr::include_graphics(c("../../logos/AFRL.png"))
+```
+<p style="text-align: left; font-size:20px">This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550- 30 22-1-0007</p>
+
+<p style="font-size:9px">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</p>
+]
+
+<!-----------------
+  Script: 
+  I would like to start by thanking the air force office of  scientific research for funding this project. I would also like to thank my collaborators Audun Myers, Firas Khasawneh, and Elizabeth Munch.
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# Pipeline
+
+<img src="/assets/html/SIAM-GL_CGSSN_2023/xaringan/figs/pipeline/pipeline1.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+
+--
+
+<img src="../Figs/pipeline/pipeline2.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+
+--
+
+<img src="../Figs/pipeline/pipeline3.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+--
+
+<img src="../Figs/pipeline/pipeline4.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+
+--
+
+<img src="../Figs/pipeline/pipeline5.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+<!-----------------
+  Script: 
+  
+----------------->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# Motivation - Ordinal Partition Networks (OPN)
+
+<img src="../Figs/opn_basic_sliding.gif"
+     width="70%" 
+     style="position:absolute; left:15%; top:30%;">
+
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+---
+
+# Motivation - OPN Lorenz System 
+
+- Lorenz System:
+
+ $\frac{dx}{dt}  = \sigma (y-x), \\ \frac{dy}{dt}  = x(\rho-z), \\ \frac{dz}{dt}  = xy-\beta z$
+- Timeseries: $x(t)$
+
+--
+
+- <font color=blue>Periodic:</font> $\sigma=10.0,~\beta=\frac{8}{3},~\rho=100$
+<img src="../Figs/lorenz_1.png"
+     width="40%" 
+     style="position:absolute; left:55%; top:25%;">
+
+--
+
+- <font color=red>Chaotic:</font> $\sigma=10.0,~\beta=\frac{8}{3},~\rho=105$
+<img src="../Figs/lorenz_2.png"
+     width="40%" 
+     style="position:absolute; left:55%; top:25%;">
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# Motivation - OPN with Noise 
+- Periodic Rossler System
+
+ $\frac{dx}{dt}  = -y -z, \\ \frac{dy}{dt}  = x + ay, \\ \frac{dz}{dt}  = b + z(x-c)$
+
+- $a=0.1,~b=0.2,~c=14$
+
+- Timeseries: $z(t)$
+--
+
+<img src="../Figs/rossler_1.png"
+     width="50%" 
+     style="position:absolute; right:5%; top:25%;">
+
+
+--
+
+<img src="../Figs/rossler_2.png"
+     width="50%" 
+     style="position:absolute; right:5%; top:25%;">
+
+--
+
+<img src="../Figs/rossler_3.png"
+     width="50%" 
+     style="position:absolute; right:5%; top:25%;">
+
+--
+
+<img src="../Figs/rossler_4.png"
+     width="50%" 
+     style="position:absolute; right:5%; top:25%;">
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+---
+# Motivation - Undesired Transitions
+
+
+<img src="../Figs/undesired_transitions.png"
+     width="60%" 
+     style="position:absolute; left:225px; top:150px;">
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+---
+
+# Coarse-grained State Space Networks (CGSSN)
+<img src="../Figs/CGSSN_2d_example_cycle.gif"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+---
+
+# Network Formulation
+
+<img src="../Figs/network/network_1.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;">
+
+--
+<img src="../Figs/network/network_2.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;">
+
+--
+<img src="../Figs/network/network_3.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;">
+
+--
+<img src="../Figs/network/network_4.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;">
+
+--
+<img src="../Figs/network/network_5.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;">
+
+--
+<img src="../Figs/network/network_6.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;">
+
+--
+<img src="../Figs/network/network_7.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;">
+
+--
+<img src="../Figs/network/network_8.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;">
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# CGSSN with Noise 
+- Periodic Rossler System
+
+ $\frac{dx}{dt}  = -y -z, \\ \frac{dy}{dt}  = x + ay, \\ \frac{dz}{dt}  = b + z(x-c)$
+
+- $a=0.1$
+- $b=0.2$
+- $c=14$
+
+- Timeseries: $z(t)$
+--
+<img src="../Figs/rossler_5.png"
+     width="65%" 
+     style="position:absolute; right:2%; top:20%;">
+
+--
+<img src="../Figs/rossler_6.png"
+     width="65%" 
+     style="position:absolute; right:2%; top:20%;">
+
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+---
+
+# Distance Matrix
+
+<img src="../Figs/pipeline/pipeline6.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+
+<!-----------------
+  Script: 
+  
+  Persistent homology requires a distance matrix to describe the distances between points or vertices. Before we can apply persistence, we need to define measures of dissimilarity for the graphs.
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+---
+
+# Graph Dissimilarity Measures - Shortest Path
+
+
+- Shortest Path: $C(P)=\sum_{e\in P}w(e)$
+
+--
+
+$$D(a,b)=\min_{P}C(P)$$
+
+--
+
+- Unweighted: $w(e)=1~\forall~e\in P$
+
+--
+
+<img src="../Figs/dissimilarity/sp_1.png"
+     width="42%" 
+     style="position:absolute; left:27%; bottom:2%;">
+
+--
+
+<img src="../Figs/dissimilarity/sp_2.png"
+     width="42%" 
+     style="position:absolute; left:27%; bottom:2%;">
+
+
+--
+
+<img src="../Figs/dissimilarity/sp_3.png"
+     width="42%" 
+     style="position:absolute; left:27%; bottom:2%;">
+
+
+---
+# Graph Dissimilarity Measures - Weighted Shortest Path
+- Weighted Shortest Path: $C'(P)=\sum_{e\in P}\frac{1}{w(e)}$
+
+--
+
+$$D(a,b)=\sum_{e\in P}w(e)$$
+
+- Shortest Weighted Path: $D(a,b)=|\min_P C'(P)|$
+--
+<img src="../Figs/dissimilarity/wsp_1.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:5%;">
+
+--
+<img src="../Figs/dissimilarity/wsp_2.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:5%;">
+
+--
+<img src="../Figs/dissimilarity/wsp_3.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:5%;">
+
+--
+<img src="../Figs/dissimilarity/wsp_4.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:5%;">
+
+
+
+<!-----------------
+  Script: 
+  In order to compute persistence on an object, we need to know the distances between points in the object. This is done by computing a distance matrix for the network. First we need to define how distances are computed on the network. We have 4 methods for doing this and the first is shown here. This method is called the shortest path distance where we minimize the cost function c(p) as the sum of the weights. so we are looking for the path in the network with minimal weights.
+  
+  If the network is unweighted we set all w(e) to be 1 and the shortest path becomes the path with the fewest edges.
+
+  The second distance is called the weighted shortest path. Here the cost function is now the sum of reciprocal weights and we take the distance as the sum of the weights along the path that minimizes the cost. Including weight information in the distance encodes information about the frequency of traversal of a path.
+
+  The third distance is called the shortest weighted path. This is similar to the weighted shortest path but we take the distance to be the number of edges in the path that minimized the cost function instead of the sum of the weights. This method gives priority to well traveled paths.
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+---
+
+# Graph Dissimilarity Measures - Diffusion Distance
+
+
+
+- Diffusion Distance: $P(i,j)=\frac{A(i,j)}{\sum_{k=1}^{|V|}A(i,k)}$
+
+  - $A$: Adjacency matrix with no self loops
+  - $P$: Probability of transitioning from $i$ to $j$
+
+--
+
+- $t$-random walk: $P^t(a,b)$
+
+--
+
+- Lazy Transition Probability: $\widetilde{\mathbf{P}} = \frac{1}{2}\left[\mathbf{P}(a, b) + \mathbf{I}\right]$
+
+--
+
+$$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{\mathbf{P}}^t (a,c) - \widetilde{\mathbf{P}}^t (b,c) \right] }^2 }$$
+
+--
+<img src="../Figs/clear_slide.png"
+     width="80%" 
+     style="position:absolute; left:5%; top:15%;">
+
+<img src="../Figs/dissimilarity/diff_1.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;">
+
+
+--
+<img src="../Figs/dissimilarity/diff_2.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;">
+
+
+--
+<img src="../Figs/dissimilarity/diff_3.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;">
+
+
+--
+<img src="../Figs/dissimilarity/diff_4.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;">
+
+
+--
+<img src="../Figs/dissimilarity/diff_5.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;">
+
+<!-----------------
+  Script: 
+
+  The final method is called the diffusion distance where we study the probability of transitioning between nodes. We also account for the lazy transition probability where a walk may remain at the current vertex.
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+---
+
+# Persistent Homology
+
+<img src="../Figs/pipeline/pipeline7.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+<!-----------------
+  Script: 
+  
+  Persistent homology requires a distance matrix to describe the distances between points or vertices. Before we can apply persistence, we need to define measures of dissimilarity for the graphs.
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# Persistence of Networks
+<img src="../Figs/pd/pd_0.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+
+--
+<img src="../Figs/pd/pd_1.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+<img src="../Figs/pd/swp_eqn.png"
+     width="40%" 
+     style="position:absolute; right:5%; top:5%;">
+--
+<img src="../Figs/pd/pd_2.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+
+--
+<img src="../Figs/pd/pd_3.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+
+--
+<img src="../Figs/pd/pd_4.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+
+--
+<img src="../Figs/pd/pd_5.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+
+--
+<img src="../Figs/pd/pd_6.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+
+--
+<img src="../Figs/pd/pd_7.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+
+<!-----------------
+  Script: 
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# Simple Example
+<img src="../Figs/pd_example.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;">
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# State Identification
+
+<img src="../Figs/pipeline/pipeline8.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;">
+
+<!-----------------
+  Script: 
+  
+  Persistent homology requires a distance matrix to describe the distances between points or vertices. Before we can apply persistence, we need to define measures of dissimilarity for the graphs.
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+# Empirical Testing of 23 Dynamical Systems
+
+
+<img src="../Figs/procedure_1.png"
+     width="80%" 
+     style="position:absolute; left:10%; bottom:5%;">
+
+--
+<img src="../Figs/procedure_2.png"
+     width="80%" 
+     style="position:absolute; left:10%; bottom:5%;">
+
+--
+<img src="../Figs/procedure_3.png"
+     width="80%" 
+     style="position:absolute; left:10%; bottom:5%;">
+
+--
+<img src="../Figs/procedure_4.png"
+     width="80%" 
+     style="position:absolute; left:10%; bottom:5%;">
+
+--
+
+<img src="../Figs/mds_1.png"
+     width="54%" 
+     style="position:absolute; right:23%; top:20%;">
+
+--
+<img src="../Figs/mds_2.png"
+     width="54%" 
+     style="position:absolute; right:23%; top:20%;">
+
+<!-----------------
+  Script: 
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# Dynamic State Identification Results
+
+<img src="../Figs/all_mds.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:25%;">
+
+<!-- <body>
+    <table border="0" align="center">
+        <tr>
+            <th>Network</th>
+            <th>Distance</th>
+            <th>Avg. Sep. Accuracy</th>
+            <th>Uncertainty</th>
+        </tr>
+        <tr>
+            <td>OPN</td>
+            <td>Shortest Unweighted</td>
+            <td>80.7%</td>
+            <td>1.5%</td>
+        </tr>
+        <tr>
+            <td>OPN</td>
+            <td>Shortest Weighted</td>
+            <td>88.9%</td>
+            <td>0.0%</td>
+        </tr>
+        <tr>
+            <td>OPN</td>
+            <td>Weighted Shortest</td>
+            <td>88.9%</td>
+            <td>0.0%</td>
+        </tr>
+        <tr>
+            <td><font color=red>OPN</font></td>
+            <td><font color=red>Lazy Diffusion</font></td>
+            <td><font color=red>95.0%</font></td>
+            <td><font color=red>0.9%</font></td>
+        </tr>
+        <tr>
+            <td>CGSSN</td>
+            <td>Shortest Unweighted</td>
+            <td>98.1%</td>
+            <td>0.9%</td>
+        </tr>
+        <tr>
+            <td>CGSSN</td>
+            <td>Shortest Weighted</td>
+            <td>100.0%</td>
+            <td>0.0%</td>
+        </tr>
+        <tr>
+            <td>CGSSN</td>
+            <td>Weighted Shortest</td>
+            <td>98.1%</td>
+            <td>0.9%</td>
+        </tr>
+        <tr>
+            <td><font color=green>CGSSN</font></td>
+            <td><font color=green>Lazy Diffusion</font></td>
+            <td><font color=green>100%</font></td>
+            <td><font color=green>0.0%</font></td>
+        </tr>
+    </table>
+</body> -->
+
+
+<!-----------------
+  Script: 
+  
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+# Thank you! 
+# Any questions?
+
+<img src="../Figs/pipeline/pipeline5.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:40%;">
+
+<img src="../Figs/teaspoon.png"
+     width="55%" 
+     style="position:absolute; right:5%; top:5%;">
+</br></br></br></br></br></br></br></br></br></br></br></br></br>
+Myers, A. D., **Chumley, M. M.**, Khasawneh, F. A., & Munch, E. (2023). Persistent homology of coarse-grained state-space networks. Physical Review E, 107(3), 034303.
+
+<!-----------------
+  Script: 
+  Thank you for your time, are there any questions?
+----------------->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+---
+
+# Experimental Results - Periodic
+
+<!-- <img src="../Figs/periodic_vid.mp4"
+     width="25%" 
+     style="position:absolute; left:10%; top:20%;"> -->
+
+
+<img src="../Figs/periodic_ts.png"
+     width="30%" 
+     style="position:absolute; left:5%; bottom:15%;">
+
+
+<img src="../Figs/magnetic_pendulum_periodic.png"
+     width="60%" 
+     style="position:absolute; right:2%; top:25%;">
+
+<!-----------------
+     Script:
+----------------->
+
+---
+
+# Experimental Results - Chaotic
+
+<!-- <img src="../Figs/chaotic_vid.mp4"
+     width="25%" 
+     style="position:absolute; left:10%; top:20%;"> -->
+
+<img src="../Figs/chaotic_ts.png"
+     width="30%" 
+     style="position:absolute; left:5%; bottom:15%;">
+
+<img src="../Figs/magnetic_pendulum_chaotic.png"
+     width="60%" 
+     style="position:absolute; right:2%; top:25%;">
+
+<!-----------------
+     Script:
+----------------->
