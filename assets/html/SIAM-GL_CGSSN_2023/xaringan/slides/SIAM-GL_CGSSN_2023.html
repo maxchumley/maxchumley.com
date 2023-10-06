@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Persistent Homology of Coarse-Grained State Space Networks</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Max Chumley   —   Mechanical Engineering  —  Michigan State University   —" />
+    <meta name="date" content="2023-10-05" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: top, left, inverse, title-slide
+
+.title[
+# Persistent Homology of Coarse-Grained State Space Networks
+]
+.author[
+### <strong>Max Chumley</strong> <br> — <br> Mechanical Engineering<br> —<br> Michigan State University <br> —
+]
+.date[
+### 2023-10-05
+]
+
+---
+
+
+background-image: url("../../people/people.png")
+background-size: 800px
+background-position: 95% 50%
+
+
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+&lt;!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)--&gt;
+
+# Acknowledgements 
+.left-column[
+&lt;div style="height: 25px;"&gt;&lt;/div&gt;
+&lt;p style="font-size:9px"&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/p&gt;
+
+&lt;!-- Funding agency logo and grant number --&gt;
+&lt;img src="../../logos/AFRL.png" width="500" style="display: block; margin: auto;" /&gt;
+&lt;p style="text-align: left; font-size:20px"&gt;This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550- 30 22-1-0007&lt;/p&gt;
+
+&lt;p style="font-size:9px"&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/p&gt;
+]
+
+&lt;!-----------------
+  Script: 
+  I would like to start by thanking the air force office of  scientific research for funding this project. I would also like to thank my collaborators Audun Myers, Firas Khasawneh, and Elizabeth Munch.
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# Pipeline
+
+&lt;img src="/figs/pipeline/pipeline1.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+
+--
+
+&lt;img src="../Figs/pipeline/pipeline2.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+
+--
+
+&lt;img src="../Figs/pipeline/pipeline3.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+--
+
+&lt;img src="../Figs/pipeline/pipeline4.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+
+--
+
+&lt;img src="../Figs/pipeline/pipeline5.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# Motivation - Ordinal Partition Networks (OPN)
+
+&lt;img src="../Figs/opn_basic_sliding.gif"
+     width="70%" 
+     style="position:absolute; left:15%; top:30%;"&gt;
+
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+
+# Motivation - OPN Lorenz System 
+
+- Lorenz System:
+
+ `\(\frac{dx}{dt}  = \sigma (y-x), \\ \frac{dy}{dt}  = x(\rho-z), \\ \frac{dz}{dt}  = xy-\beta z\)`
+- Timeseries: `\(x(t)\)`
+
+--
+
+- &lt;font color=blue&gt;Periodic:&lt;/font&gt; `\(\sigma=10.0,~\beta=\frac{8}{3},~\rho=100\)`
+&lt;img src="../Figs/lorenz_1.png"
+     width="40%" 
+     style="position:absolute; left:55%; top:25%;"&gt;
+
+--
+
+- &lt;font color=red&gt;Chaotic:&lt;/font&gt; `\(\sigma=10.0,~\beta=\frac{8}{3},~\rho=105\)`
+&lt;img src="../Figs/lorenz_2.png"
+     width="40%" 
+     style="position:absolute; left:55%; top:25%;"&gt;
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# Motivation - OPN with Noise 
+- Periodic Rossler System
+
+ `\(\frac{dx}{dt}  = -y -z, \\ \frac{dy}{dt}  = x + ay, \\ \frac{dz}{dt}  = b + z(x-c)\)`
+
+- `\(a=0.1,~b=0.2,~c=14\)`
+
+- Timeseries: `\(z(t)\)`
+--
+
+&lt;img src="../Figs/rossler_1.png"
+     width="50%" 
+     style="position:absolute; right:5%; top:25%;"&gt;
+
+
+--
+
+&lt;img src="../Figs/rossler_2.png"
+     width="50%" 
+     style="position:absolute; right:5%; top:25%;"&gt;
+
+--
+
+&lt;img src="../Figs/rossler_3.png"
+     width="50%" 
+     style="position:absolute; right:5%; top:25%;"&gt;
+
+--
+
+&lt;img src="../Figs/rossler_4.png"
+     width="50%" 
+     style="position:absolute; right:5%; top:25%;"&gt;
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+# Motivation - Undesired Transitions
+
+
+&lt;img src="../Figs/undesired_transitions.png"
+     width="60%" 
+     style="position:absolute; left:225px; top:150px;"&gt;
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+
+# Coarse-grained State Space Networks (CGSSN)
+&lt;img src="../Figs/CGSSN_2d_example_cycle.gif"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+
+# Network Formulation
+
+&lt;img src="../Figs/network/network_1.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/network/network_2.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/network/network_3.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/network/network_4.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/network/network_5.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/network/network_6.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/network/network_7.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/network/network_8.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# CGSSN with Noise 
+- Periodic Rossler System
+
+ `\(\frac{dx}{dt}  = -y -z, \\ \frac{dy}{dt}  = x + ay, \\ \frac{dz}{dt}  = b + z(x-c)\)`
+
+- `\(a=0.1\)`
+- `\(b=0.2\)`
+- `\(c=14\)`
+
+- Timeseries: `\(z(t)\)`
+--
+&lt;img src="../Figs/rossler_5.png"
+     width="65%" 
+     style="position:absolute; right:2%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/rossler_6.png"
+     width="65%" 
+     style="position:absolute; right:2%; top:20%;"&gt;
+
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+
+# Distance Matrix
+
+&lt;img src="../Figs/pipeline/pipeline6.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+
+&lt;!-----------------
+  Script: 
+  
+  Persistent homology requires a distance matrix to describe the distances between points or vertices. Before we can apply persistence, we need to define measures of dissimilarity for the graphs.
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+
+# Graph Dissimilarity Measures - Shortest Path
+
+
+- Shortest Path: `\(C(P)=\sum_{e\in P}w(e)\)`
+
+--
+
+`$$D(a,b)=\min_{P}C(P)$$`
+
+--
+
+- Unweighted: `\(w(e)=1~\forall~e\in P\)`
+
+--
+
+&lt;img src="../Figs/dissimilarity/sp_1.png"
+     width="42%" 
+     style="position:absolute; left:27%; bottom:2%;"&gt;
+
+--
+
+&lt;img src="../Figs/dissimilarity/sp_2.png"
+     width="42%" 
+     style="position:absolute; left:27%; bottom:2%;"&gt;
+
+
+--
+
+&lt;img src="../Figs/dissimilarity/sp_3.png"
+     width="42%" 
+     style="position:absolute; left:27%; bottom:2%;"&gt;
+
+
+---
+# Graph Dissimilarity Measures - Weighted Shortest Path
+- Weighted Shortest Path: `\(C'(P)=\sum_{e\in P}\frac{1}{w(e)}\)`
+
+--
+
+`$$D(a,b)=\sum_{e\in P}w(e)$$`
+
+- Shortest Weighted Path: `\(D(a,b)=|\min_P C'(P)|\)`
+--
+&lt;img src="../Figs/dissimilarity/wsp_1.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:5%;"&gt;
+
+--
+&lt;img src="../Figs/dissimilarity/wsp_2.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:5%;"&gt;
+
+--
+&lt;img src="../Figs/dissimilarity/wsp_3.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:5%;"&gt;
+
+--
+&lt;img src="../Figs/dissimilarity/wsp_4.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:5%;"&gt;
+
+
+
+&lt;!-----------------
+  Script: 
+  In order to compute persistence on an object, we need to know the distances between points in the object. This is done by computing a distance matrix for the network. First we need to define how distances are computed on the network. We have 4 methods for doing this and the first is shown here. This method is called the shortest path distance where we minimize the cost function c(p) as the sum of the weights. so we are looking for the path in the network with minimal weights.
+  
+  If the network is unweighted we set all w(e) to be 1 and the shortest path becomes the path with the fewest edges.
+
+  The second distance is called the weighted shortest path. Here the cost function is now the sum of reciprocal weights and we take the distance as the sum of the weights along the path that minimizes the cost. Including weight information in the distance encodes information about the frequency of traversal of a path.
+
+  The third distance is called the shortest weighted path. This is similar to the weighted shortest path but we take the distance to be the number of edges in the path that minimized the cost function instead of the sum of the weights. This method gives priority to well traveled paths.
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+
+# Graph Dissimilarity Measures - Diffusion Distance
+
+
+
+- Diffusion Distance: `\(P(i,j)=\frac{A(i,j)}{\sum_{k=1}^{|V|}A(i,k)}\)`
+
+  - `\(A\)`: Adjacency matrix with no self loops
+  - `\(P\)`: Probability of transitioning from `\(i\)` to `\(j\)`
+
+--
+
+- `\(t\)`-random walk: `\(P^t(a,b)\)`
+
+--
+
+- Lazy Transition Probability: `\(\widetilde{\mathbf{P}} = \frac{1}{2}\left[\mathbf{P}(a, b) + \mathbf{I}\right]\)`
+
+--
+
+`$$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{\mathbf{P}}^t (a,c) - \widetilde{\mathbf{P}}^t (b,c) \right] }^2 }$$`
+
+--
+&lt;img src="../Figs/clear_slide.png"
+     width="80%" 
+     style="position:absolute; left:5%; top:15%;"&gt;
+
+&lt;img src="../Figs/dissimilarity/diff_1.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;"&gt;
+
+
+--
+&lt;img src="../Figs/dissimilarity/diff_2.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;"&gt;
+
+
+--
+&lt;img src="../Figs/dissimilarity/diff_3.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;"&gt;
+
+
+--
+&lt;img src="../Figs/dissimilarity/diff_4.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;"&gt;
+
+
+--
+&lt;img src="../Figs/dissimilarity/diff_5.png"
+     width="80%" 
+     style="position:absolute; right:10%; top:25%;"&gt;
+
+&lt;!-----------------
+  Script: 
+
+  The final method is called the diffusion distance where we study the probability of transitioning between nodes. We also account for the lazy transition probability where a walk may remain at the current vertex.
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+
+# Persistent Homology
+
+&lt;img src="../Figs/pipeline/pipeline7.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+&lt;!-----------------
+  Script: 
+  
+  Persistent homology requires a distance matrix to describe the distances between points or vertices. Before we can apply persistence, we need to define measures of dissimilarity for the graphs.
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# Persistence of Networks
+&lt;img src="../Figs/pd/pd_0.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/pd/pd_1.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+&lt;img src="../Figs/pd/swp_eqn.png"
+     width="40%" 
+     style="position:absolute; right:5%; top:5%;"&gt;
+--
+&lt;img src="../Figs/pd/pd_2.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/pd/pd_3.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/pd/pd_4.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/pd/pd_5.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/pd/pd_6.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/pd/pd_7.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# Simple Example
+&lt;img src="../Figs/pd_example.png"
+     width="70%" 
+     style="position:absolute; left:15%; top:20%;"&gt;
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# State Identification
+
+&lt;img src="../Figs/pipeline/pipeline8.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+&lt;!-----------------
+  Script: 
+  
+  Persistent homology requires a distance matrix to describe the distances between points or vertices. Before we can apply persistence, we need to define measures of dissimilarity for the graphs.
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+# Empirical Testing of 23 Dynamical Systems
+
+
+&lt;img src="../Figs/procedure_1.png"
+     width="80%" 
+     style="position:absolute; left:10%; bottom:5%;"&gt;
+
+--
+&lt;img src="../Figs/procedure_2.png"
+     width="80%" 
+     style="position:absolute; left:10%; bottom:5%;"&gt;
+
+--
+&lt;img src="../Figs/procedure_3.png"
+     width="80%" 
+     style="position:absolute; left:10%; bottom:5%;"&gt;
+
+--
+&lt;img src="../Figs/procedure_4.png"
+     width="80%" 
+     style="position:absolute; left:10%; bottom:5%;"&gt;
+
+--
+
+&lt;img src="../Figs/mds_1.png"
+     width="54%" 
+     style="position:absolute; right:23%; top:20%;"&gt;
+
+--
+&lt;img src="../Figs/mds_2.png"
+     width="54%" 
+     style="position:absolute; right:23%; top:20%;"&gt;
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# Dynamic State Identification Results
+
+&lt;img src="../Figs/all_mds.png"
+     width="80%" 
+     style="position:absolute; left:10%; top:25%;"&gt;
+
+&lt;!-- &lt;body&gt;
+    &lt;table border="0" align="center"&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Network&lt;/th&gt;
+            &lt;th&gt;Distance&lt;/th&gt;
+            &lt;th&gt;Avg. Sep. Accuracy&lt;/th&gt;
+            &lt;th&gt;Uncertainty&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;OPN&lt;/td&gt;
+            &lt;td&gt;Shortest Unweighted&lt;/td&gt;
+            &lt;td&gt;80.7%&lt;/td&gt;
+            &lt;td&gt;1.5%&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;OPN&lt;/td&gt;
+            &lt;td&gt;Shortest Weighted&lt;/td&gt;
+            &lt;td&gt;88.9%&lt;/td&gt;
+            &lt;td&gt;0.0%&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;OPN&lt;/td&gt;
+            &lt;td&gt;Weighted Shortest&lt;/td&gt;
+            &lt;td&gt;88.9%&lt;/td&gt;
+            &lt;td&gt;0.0%&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;font color=red&gt;OPN&lt;/font&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;font color=red&gt;Lazy Diffusion&lt;/font&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;font color=red&gt;95.0%&lt;/font&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;font color=red&gt;0.9%&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;CGSSN&lt;/td&gt;
+            &lt;td&gt;Shortest Unweighted&lt;/td&gt;
+            &lt;td&gt;98.1%&lt;/td&gt;
+            &lt;td&gt;0.9%&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;CGSSN&lt;/td&gt;
+            &lt;td&gt;Shortest Weighted&lt;/td&gt;
+            &lt;td&gt;100.0%&lt;/td&gt;
+            &lt;td&gt;0.0%&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;CGSSN&lt;/td&gt;
+            &lt;td&gt;Weighted Shortest&lt;/td&gt;
+            &lt;td&gt;98.1%&lt;/td&gt;
+            &lt;td&gt;0.9%&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;font color=green&gt;CGSSN&lt;/font&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;font color=green&gt;Lazy Diffusion&lt;/font&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;font color=green&gt;100%&lt;/font&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;font color=green&gt;0.0%&lt;/font&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt; --&gt;
+
+
+&lt;!-----------------
+  Script: 
+  
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+---
+
+# Thank you! 
+# Any questions?
+
+&lt;img src="../Figs/pipeline/pipeline5.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:40%;"&gt;
+
+&lt;img src="../Figs/teaspoon.png"
+     width="55%" 
+     style="position:absolute; right:5%; top:5%;"&gt;
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+Myers, A. D., **Chumley, M. M.**, Khasawneh, F. A., &amp; Munch, E. (2023). Persistent homology of coarse-grained state-space networks. Physical Review E, 107(3), 034303.
+
+&lt;!-----------------
+  Script: 
+  Thank you for your time, are there any questions?
+-----------------&gt;
+&lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+
+
+---
+
+# Experimental Results - Periodic
+
+&lt;!-- &lt;img src="../Figs/periodic_vid.mp4"
+     width="25%" 
+     style="position:absolute; left:10%; top:20%;"&gt; --&gt;
+
+
+&lt;img src="../Figs/periodic_ts.png"
+     width="30%" 
+     style="position:absolute; left:5%; bottom:15%;"&gt;
+
+
+&lt;img src="../Figs/magnetic_pendulum_periodic.png"
+     width="60%" 
+     style="position:absolute; right:2%; top:25%;"&gt;
+
+&lt;!-----------------
+     Script:
+-----------------&gt;
+
+---
+
+# Experimental Results - Chaotic
+
+&lt;!-- &lt;img src="../Figs/chaotic_vid.mp4"
+     width="25%" 
+     style="position:absolute; left:10%; top:20%;"&gt; --&gt;
+
+&lt;img src="../Figs/chaotic_ts.png"
+     width="30%" 
+     style="position:absolute; left:5%; bottom:15%;"&gt;
+
+&lt;img src="../Figs/magnetic_pendulum_chaotic.png"
+     width="60%" 
+     style="position:absolute; right:2%; top:25%;"&gt;
+
+&lt;!-----------------
+     Script:
+-----------------&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
