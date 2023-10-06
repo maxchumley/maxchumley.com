@@ -55,7 +55,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 # Pipeline
 
-<img src="../../figs/pipeline/pipeline1.png"
+<img src="/assets/figs/pipeline/pipeline1.png"
      width="90%" 
      style="position:absolute; left:5%; top:30%;">
 
