@@ -97,7 +97,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 # Motivation - Ordinal Partition Networks (OPN)
 
-<img src="../Figs/opn_basic_sliding.gif"
+<img src="./assets/SIAM-GL_CGSSN_2023/opn_basic_sliding.gif"
      width="70%" 
      style="position:absolute; left:15%; top:30%;">
 
@@ -121,14 +121,14 @@ knitr::opts_chunk$set(fig.align = 'center')
 --
 
 - <font color=blue>Periodic:</font> $\sigma=10.0,~\beta=\frac{8}{3},~\rho=100$
-<img src="../Figs/lorenz_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/lorenz_1.png"
      width="40%" 
      style="position:absolute; left:55%; top:25%;">
 
 --
 
 - <font color=red>Chaotic:</font> $\sigma=10.0,~\beta=\frac{8}{3},~\rho=105$
-<img src="../Figs/lorenz_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/lorenz_2.png"
      width="40%" 
      style="position:absolute; left:55%; top:25%;">
 
@@ -151,26 +151,26 @@ knitr::opts_chunk$set(fig.align = 'center')
 - Timeseries: $z(t)$
 --
 
-<img src="../Figs/rossler_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/rossler_1.png"
      width="50%" 
      style="position:absolute; right:5%; top:25%;">
 
 
 --
 
-<img src="../Figs/rossler_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/rossler_2.png"
      width="50%" 
      style="position:absolute; right:5%; top:25%;">
 
 --
 
-<img src="../Figs/rossler_3.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/rossler_3.png"
      width="50%" 
      style="position:absolute; right:5%; top:25%;">
 
 --
 
-<img src="../Figs/rossler_4.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/rossler_4.png"
      width="50%" 
      style="position:absolute; right:5%; top:25%;">
 
@@ -185,7 +185,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 # Motivation - Undesired Transitions
 
 
-<img src="../Figs/undesired_transitions.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/undesired_transitions.png"
      width="60%" 
      style="position:absolute; left:225px; top:150px;">
 
@@ -199,7 +199,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 ---
 
 # Coarse-grained State Space Networks (CGSSN)
-<img src="../Figs/CGSSN_2d_example_cycle.gif"
+<img src="./assets/SIAM-GL_CGSSN_2023/CGSSN_2d_example_cycle.gif"
      width="90%" 
      style="position:absolute; left:5%; top:30%;">
 
@@ -213,42 +213,42 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 # Network Formulation
 
-<img src="../Figs/network/network_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/network/network_1.png"
      width="80%" 
      style="position:absolute; left:10%; top:20%;">
 
 --
-<img src="../Figs/network/network_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/network/network_2.png"
      width="80%" 
      style="position:absolute; left:10%; top:20%;">
 
 --
-<img src="../Figs/network/network_3.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/network/network_3.png"
      width="80%" 
      style="position:absolute; left:10%; top:20%;">
 
 --
-<img src="../Figs/network/network_4.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/network/network_4.png"
      width="80%" 
      style="position:absolute; left:10%; top:20%;">
 
 --
-<img src="../Figs/network/network_5.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/network/network_5.png"
      width="80%" 
      style="position:absolute; left:10%; top:20%;">
 
 --
-<img src="../Figs/network/network_6.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/network/network_6.png"
      width="80%" 
      style="position:absolute; left:10%; top:20%;">
 
 --
-<img src="../Figs/network/network_7.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/network/network_7.png"
      width="80%" 
      style="position:absolute; left:10%; top:20%;">
 
 --
-<img src="../Figs/network/network_8.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/network/network_8.png"
      width="80%" 
      style="position:absolute; left:10%; top:20%;">
 
@@ -272,12 +272,12 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 - Timeseries: $z(t)$
 --
-<img src="../Figs/rossler_5.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/rossler_5.png"
      width="65%" 
      style="position:absolute; right:2%; top:20%;">
 
 --
-<img src="../Figs/rossler_6.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/rossler_6.png"
      width="65%" 
      style="position:absolute; right:2%; top:20%;">
 
@@ -293,7 +293,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 # Distance Matrix
 
-<img src="../Figs/pipeline/pipeline6.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pipeline/pipeline6.png"
      width="90%" 
      style="position:absolute; left:5%; top:30%;">
 
@@ -321,20 +321,20 @@ $$D(a,b)=\min_{P}C(P)$$
 
 --
 
-<img src="../Figs/dissimilarity/sp_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/sp_1.png"
      width="42%" 
      style="position:absolute; left:27%; bottom:2%;">
 
 --
 
-<img src="../Figs/dissimilarity/sp_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/sp_2.png"
      width="42%" 
      style="position:absolute; left:27%; bottom:2%;">
 
 
 --
 
-<img src="../Figs/dissimilarity/sp_3.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/sp_3.png"
      width="42%" 
      style="position:absolute; left:27%; bottom:2%;">
 
@@ -349,22 +349,22 @@ $$D(a,b)=\sum_{e\in P}w(e)$$
 
 - Shortest Weighted Path: $D(a,b)=|\min_P C'(P)|$
 --
-<img src="../Figs/dissimilarity/wsp_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/wsp_1.png"
      width="60%" 
      style="position:absolute; left:20%; bottom:5%;">
 
 --
-<img src="../Figs/dissimilarity/wsp_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/wsp_2.png"
      width="60%" 
      style="position:absolute; left:20%; bottom:5%;">
 
 --
-<img src="../Figs/dissimilarity/wsp_3.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/wsp_3.png"
      width="60%" 
      style="position:absolute; left:20%; bottom:5%;">
 
 --
-<img src="../Figs/dissimilarity/wsp_4.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/wsp_4.png"
      width="60%" 
      style="position:absolute; left:20%; bottom:5%;">
 
@@ -406,35 +406,35 @@ $$D(a,b)=\sum_{e\in P}w(e)$$
 $$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{\mathbf{P}}^t (a,c) - \widetilde{\mathbf{P}}^t (b,c) \right] }^2 }$$
 
 --
-<img src="../Figs/clear_slide.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/clear_slide.png"
      width="80%" 
      style="position:absolute; left:5%; top:15%;">
 
-<img src="../Figs/dissimilarity/diff_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/diff_1.png"
      width="80%" 
      style="position:absolute; right:10%; top:25%;">
 
 
 --
-<img src="../Figs/dissimilarity/diff_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/diff_2.png"
      width="80%" 
      style="position:absolute; right:10%; top:25%;">
 
 
 --
-<img src="../Figs/dissimilarity/diff_3.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/diff_3.png"
      width="80%" 
      style="position:absolute; right:10%; top:25%;">
 
 
 --
-<img src="../Figs/dissimilarity/diff_4.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/diff_4.png"
      width="80%" 
      style="position:absolute; right:10%; top:25%;">
 
 
 --
-<img src="../Figs/dissimilarity/diff_5.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/diff_5.png"
      width="80%" 
      style="position:absolute; right:10%; top:25%;">
 
@@ -449,7 +449,7 @@ $$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{
 
 # Persistent Homology
 
-<img src="../Figs/pipeline/pipeline7.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pipeline/pipeline7.png"
      width="90%" 
      style="position:absolute; left:5%; top:30%;">
 
@@ -463,44 +463,44 @@ $$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{
 ---
 
 # Persistence of Networks
-<img src="../Figs/pd/pd_0.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/pd_0.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
 
 --
-<img src="../Figs/pd/pd_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/pd_1.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
-<img src="../Figs/pd/swp_eqn.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/swp_eqn.png"
      width="40%" 
      style="position:absolute; right:5%; top:5%;">
 --
-<img src="../Figs/pd/pd_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/pd_2.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
 
 --
-<img src="../Figs/pd/pd_3.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/pd_3.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
 
 --
-<img src="../Figs/pd/pd_4.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/pd_4.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
 
 --
-<img src="../Figs/pd/pd_5.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/pd_5.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
 
 --
-<img src="../Figs/pd/pd_6.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/pd_6.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
 
 --
-<img src="../Figs/pd/pd_7.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd/pd_7.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
 
@@ -513,7 +513,7 @@ $$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{
 ---
 
 # Simple Example
-<img src="../Figs/pd_example.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pd_example.png"
      width="70%" 
      style="position:absolute; left:15%; top:20%;">
 
@@ -528,7 +528,7 @@ $$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{
 
 # State Identification
 
-<img src="../Figs/pipeline/pipeline8.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pipeline/pipeline8.png"
      width="90%" 
      style="position:absolute; left:5%; top:30%;">
 
@@ -543,33 +543,33 @@ $$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{
 # Empirical Testing of 23 Dynamical Systems
 
 
-<img src="../Figs/procedure_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/procedure_1.png"
      width="80%" 
      style="position:absolute; left:10%; bottom:5%;">
 
 --
-<img src="../Figs/procedure_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/procedure_2.png"
      width="80%" 
      style="position:absolute; left:10%; bottom:5%;">
 
 --
-<img src="../Figs/procedure_3.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/procedure_3.png"
      width="80%" 
      style="position:absolute; left:10%; bottom:5%;">
 
 --
-<img src="../Figs/procedure_4.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/procedure_4.png"
      width="80%" 
      style="position:absolute; left:10%; bottom:5%;">
 
 --
 
-<img src="../Figs/mds_1.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/mds_1.png"
      width="54%" 
      style="position:absolute; right:23%; top:20%;">
 
 --
-<img src="../Figs/mds_2.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/mds_2.png"
      width="54%" 
      style="position:absolute; right:23%; top:20%;">
 
@@ -583,7 +583,7 @@ $$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{
 
 # Dynamic State Identification Results
 
-<img src="../Figs/all_mds.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/all_mds.png"
      width="80%" 
      style="position:absolute; left:10%; top:25%;">
 
@@ -658,11 +658,11 @@ $$d_t(a,b) = \sqrt{ \sum_{c \in V}  \frac{1}{\mathbf{d}(c)} { \left[ \widetilde{
 # Thank you! 
 # Any questions?
 
-<img src="../Figs/pipeline/pipeline5.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/pipeline/pipeline5.png"
      width="90%" 
      style="position:absolute; left:5%; top:40%;">
 
-<img src="../Figs/teaspoon.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/teaspoon.png"
      width="55%" 
      style="position:absolute; right:5%; top:5%;">
 </br></br></br></br></br></br></br></br></br></br></br></br></br>
@@ -679,17 +679,17 @@ Myers, A. D., **Chumley, M. M.**, Khasawneh, F. A., & Munch, E. (2023). Persiste
 
 # Experimental Results - Periodic
 
-<!-- <img src="../Figs/periodic_vid.mp4"
+<img src="./assets/SIAM-GL_CGSSN_2023/periodic_vid.mp4"
      width="25%" 
-     style="position:absolute; left:10%; top:20%;"> -->
+     style="position:absolute; left:10%; top:20%;">
 
 
-<img src="../Figs/periodic_ts.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/periodic_ts.png"
      width="30%" 
      style="position:absolute; left:5%; bottom:15%;">
 
 
-<img src="../Figs/magnetic_pendulum_periodic.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/magnetic_pendulum_periodic.png"
      width="60%" 
      style="position:absolute; right:2%; top:25%;">
 
@@ -701,15 +701,15 @@ Myers, A. D., **Chumley, M. M.**, Khasawneh, F. A., & Munch, E. (2023). Persiste
 
 # Experimental Results - Chaotic
 
-<!-- <img src="../Figs/chaotic_vid.mp4"
+<img src="./assets/SIAM-GL_CGSSN_2023/chaotic_vid.mp4"
      width="25%" 
-     style="position:absolute; left:10%; top:20%;"> -->
+     style="position:absolute; left:10%; top:20%;">
 
-<img src="../Figs/chaotic_ts.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/chaotic_ts.png"
      width="30%" 
      style="position:absolute; left:5%; bottom:15%;">
 
-<img src="../Figs/magnetic_pendulum_chaotic.png"
+<img src="./assets/SIAM-GL_CGSSN_2023/magnetic_pendulum_chaotic.png"
      width="60%" 
      style="position:absolute; right:2%; top:25%;">
 
