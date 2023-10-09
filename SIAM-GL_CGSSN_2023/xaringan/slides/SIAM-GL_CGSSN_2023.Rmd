@@ -679,7 +679,7 @@ Myers, A. D., **Chumley, M. M.**, Khasawneh, F. A., & Munch, E. (2023). Persiste
 
 # Experimental Results - Periodic
 
-<img src="./assets/SIAM-GL_CGSSN_2023/periodic_vid.mp4"
+<img src="./assets/SIAM-GL_CGSSN_2023/periodic_vid.mov"
      width="25%" 
      style="position:absolute; left:10%; top:20%;">
 
@@ -701,7 +701,7 @@ Myers, A. D., **Chumley, M. M.**, Khasawneh, F. A., & Munch, E. (2023). Persiste
 
 # Experimental Results - Chaotic
 
-<img src="./assets/SIAM-GL_CGSSN_2023/chaotic_vid.mp4"
+<img src="./assets/SIAM-GL_CGSSN_2023/chaotic_vid.mov"
      width="25%" 
      style="position:absolute; left:10%; top:20%;">
 
