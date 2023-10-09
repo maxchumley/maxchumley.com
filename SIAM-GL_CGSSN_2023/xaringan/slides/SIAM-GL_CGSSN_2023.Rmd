@@ -103,7 +103,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 # Motivation - Ordinal Partition Networks (OPN)
 
-<img src="./assets/SIAM-GL_CGSSN_2023/opn_basic_sliding.gif"
+<img src="./assets/SIAM-GL_CGSSN_2023/opn_sliding.gif"
      width="70%" 
      style="position:absolute; left:15%; top:30%;">
 
