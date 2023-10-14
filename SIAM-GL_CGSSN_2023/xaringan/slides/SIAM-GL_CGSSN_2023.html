@@ -4,7 +4,7 @@
     <title>Persistent Homology of Coarse-Grained State Space Networks</title>
     <meta charset="utf-8" />
     <meta name="author" content="Max Chumley   —   Mechanical Engineering  —  Michigan State University   —" />
-    <meta name="date" content="2023-10-09" />
+    <meta name="date" content="2023-10-14" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
@@ -21,7 +21,7 @@ class: top, left, inverse, title-slide
 ### <strong>Max Chumley</strong> <br> — <br> Mechanical Engineering<br> —<br> Michigan State University <br> —
 ]
 .date[
-### 2023-10-09
+### 10/14/23
 ]
 
 ---
@@ -49,7 +49,7 @@ background-position: 95% 50%
 
 &lt;!-----------------
   Script: 
-  I would like to start by thanking the air force office of  scientific research for funding this project. I would also like to thank my collaborators Audun Myers, Firas Khasawneh, and Elizabeth Munch.
+  I would like to start by thanking the air force office of scientific research for funding this project. I would also like to thank my collaborators Audun Myers, Firas Khasawneh, and Elizabeth Munch.
 -----------------&gt;
 &lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
 
@@ -93,9 +93,9 @@ background-position: 95% 50%
 
   When analyzing a timeseries, many times it is easy for a human to distinguish a periodic signal from a chaotic one. However, characterizing these states automatically can be computationally expensive. A common approach for improving the efficiency of this process is to represent the timeseries as a network.  
   
-  In our pipeline we have three methods for doing this and today I will be discussing the third method based on coarse graining of the state space and this will require some understanding of ordinal patterns as well. 
+  In our pipeline we have three methods for doing this, using a takens embedding to reconstruct the attractor, sequences of ordinal patterns and coarse graining of the state space which I will be discussing today. Using these approaches we get a network representation of the signal. 
   
-  Once the timeseries is represented as a network, we would like to study the topology of the network for state identification and we do this by computing a distance matrix for the network and then using persistent homology to obtain a persistence diagram. The persistent diagram is then used to determine the dynamic state of the signal.  
+  Once we have the network, we would like to study its topology for state identification and we do this by obtaining a distance matrix for the network and then using persistent homology to from topological data analysis to obtain a persistence diagram. The persistent diagram then allows for determining the dynamic state of the signal.  
 -----------------&gt;
 
 &lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
@@ -104,7 +104,7 @@ background-position: 95% 50%
 
 # Motivation - Ordinal Partition Networks (OPN)
 
-&lt;img src="./assets/SIAM-GL_CGSSN_2023/opn_sliding.gif"
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/opn_basic_sliding.gif"
      width="70%" 
      style="position:absolute; left:15%; top:30%;"&gt;
 
@@ -283,11 +283,11 @@ background-position: 95% 50%
 &lt;!-----------------
   Script: 
   
-  Mathematically, we start with our timeseries signal and choose a permutation dimension and delay to slide across the signal.
+  Mathematically speaking, to formulate these networks we start with our timeseries signal and choose a permutation delay using the multiscale permutation entropy method and dimension using the false nearest neighbors method to slide across the signal.
 
   For ordinal partition networks we study the relative ordering of the permutation nodes to determine the state. In this case the ordering is 1 2 0 so this corresponds to group pi_5 and we set the state identifier s_i to be 5. 
 
-  With CGSSNs, we use the same permutation group and bin the output of the signal. We found that using 8 bins worked best for most signals. The heights of the permutation nodes are then mapped into these bins to determine the state vector and the state identifier is then computed by digitizing the state vector. In this case we are in state 172. 
+  With CGSSNs, we use the same permutation group and bin the output of the signal. The heights of the permutation nodes are then mapped into these bins to determine the state vector and the state identifier is then computed by digitizing the state vector. In this case we are in state 172. 
 -----------------&gt;
 &lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
 
@@ -381,7 +381,10 @@ background-position: 95% 50%
 
 `$$D(a,b)=\sum_{e\in P}w(e)$$`
 
+--
+
 - Shortest Weighted Path: `\(D(a,b)=|\min_P C'(P)|\)`
+
 --
 &lt;img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/wsp_1.png"
      width="60%" 
@@ -484,6 +487,7 @@ background-position: 95% 50%
      width="80%" 
      style="position:absolute; right:10%; top:25%;"&gt;
 
+
 &lt;!-----------------
   Script: 
 
@@ -503,6 +507,22 @@ background-position: 95% 50%
   
 -----------------&gt;
 &lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
+---
+# Network Distances Summary 
+
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/clear_slide.png"
+     width="85%" 
+     height="80%"
+     style="position:absolute; left:5%; top:15%;"&gt;
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/dissimilarity/distance_summary.png"
+     width="95%" 
+     style="position:absolute; right:2.5%; top:25%;"&gt;
+
+&lt;!-----------------
+  Script: 
+  
+  Here is a summary of the four distance methods we covered. So using the same network we got four different distances between vertices b and c.
+-----------------&gt;
 ---
 
 # Persistent Homology
@@ -567,7 +587,7 @@ background-position: 95% 50%
   
   Persistent homology works by studying a changing simplicial complex or generalized graph by computing its homology. Homology measures d-dimensional features of the simplicial complex such as connected components or loops. 
 
-  This concept is best illustrated through an example. Using the shortest weighted path distance we reciprocate all of the weights on this network and get the distance matrix. 
+  This concept is best illustrated through an example. Using the weighted shortest path distance we reciprocate all of the weights on this network and get the distance matrix. 
 
   For persistent homology we imagine balls of increasing radius centered at each vertex. As the radius or connectivity parameter increases we add edges when any of the balls intersect and faces when three balls intersect. The birth and death of homology classes are then tracked in the persistence diagram. 
 
@@ -738,6 +758,60 @@ background-position: 95% 50%
 &lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
 
 ---
+count: true
+# Experimental Results - Periodic
+
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/periodic_vid.gif"
+     width="25%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+--
+
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/periodic_ts.png"
+     width="30%" 
+     style="position:absolute; left:5%; bottom:15%;"&gt;
+--
+
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/magnetic_pendulum_periodic.png"
+     width="60%"  
+     style="position:absolute; right:2%; top:25%;"&gt;
+
+.footnote[Myers, Audun, and Firas A. Khasawneh. "Dynamic State Analysis of a Driven Magnetic Pendulum Using Ordinal Partition Networks and Topological Data Analysis." ]
+
+&lt;!-----------------
+     Script:
+
+     We also generated CGSSN results using experimental data from a magnetic pendulum. In the periodic case we see the resulting network gives a single loop and the persistence diagrams reflect the large loop. 
+-----------------&gt;
+
+---
+count: true
+# Experimental Results - Chaotic
+
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/chaotic_vid.gif"
+     width="25%" 
+     style="position:absolute; left:10%; top:20%;"&gt;
+
+--
+
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/chaotic_ts.png"
+     width="30%" 
+     style="position:absolute; left:5%; bottom:15%;"&gt;
+
+--
+
+&lt;img src="./assets/SIAM-GL_CGSSN_2023/magnetic_pendulum_chaotic.png"
+     width="60%" 
+     style="position:absolute; right:2%; top:25%;"&gt;
+
+.footnote[Myers, Audun, and Firas A. Khasawneh. "Dynamic State Analysis of a Driven Magnetic Pendulum Using Ordinal Partition Networks and Topological Data Analysis." ]
+
+&lt;!-----------------
+     Script:
+
+     Conversely for the chaotic signal, the network is much more tangled and the persistence diagrams contain many loops indicating that the signal is likely chaotic. 
+-----------------&gt;
+
+---
 
 # Thank you! 
 # Any questions?
@@ -761,51 +835,7 @@ Myers, A. D., **Chumley, M. M.**, Khasawneh, F. A., &amp; Munch, E. (2023). Pers
 &lt;!-- ----------------------------------------------------------------------------------------------------------------------------------------------- --&gt;
 
 
----
 
-# Experimental Results - Periodic
-
-&lt;img src="./assets/SIAM-GL_CGSSN_2023/periodic_vid.gif"
-     width="25%" 
-     style="position:absolute; left:10%; top:20%;"&gt;
-
-
-&lt;img src="./assets/SIAM-GL_CGSSN_2023/periodic_ts.png"
-     width="30%" 
-     style="position:absolute; left:5%; bottom:15%;"&gt;
-
-
-&lt;img src="./assets/SIAM-GL_CGSSN_2023/magnetic_pendulum_periodic.png"
-     width="60%" 
-     style="position:absolute; right:2%; top:25%;"&gt;
-
-&lt;!-----------------
-     Script:
-
-     We also generated CGSSN results using experimental data from a magnetic pendulum. In the periodic case we see the resulting network gives a single loop and the persistence diagrams reflect the large loop. 
------------------&gt;
-
----
-
-# Experimental Results - Chaotic
-
-&lt;img src="./assets/SIAM-GL_CGSSN_2023/chaotic_vid.gif"
-     width="25%" 
-     style="position:absolute; left:10%; top:20%;"&gt;
-
-&lt;img src="./assets/SIAM-GL_CGSSN_2023/chaotic_ts.png"
-     width="30%" 
-     style="position:absolute; left:5%; bottom:15%;"&gt;
-
-&lt;img src="./assets/SIAM-GL_CGSSN_2023/magnetic_pendulum_chaotic.png"
-     width="60%" 
-     style="position:absolute; right:2%; top:25%;"&gt;
-
-&lt;!-----------------
-     Script:
-
-     Conversely for the chaotic signal, the network is much more tangled and the persistence diagrams contain many loops indicating that the signal is likely chaotic. 
------------------&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="../../js/remark-latest.min.js"></script>
