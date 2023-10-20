@@ -7,6 +7,4 @@ layout: page
 
 <!-- <iframe src="./assets/pdfs/Chumley-CV.pdf" width="100%" height="600px"></iframe> -->
 
-<iframe src="https://drive.google.com/file/d/1xM10BDmHwAuKLyj9lusNvTkDBuHl7-Lf/preview" width="100%" height="600" allow="autoplay"></iframe>
-
-<!-- <iframe src="https://drive.google.com/file/d/1wqRcgD1XU0vTYTbNhA1krQSKAIt8TYVE/preview" width="100%" height="600" allow="autoplay"></iframe> -->
+<iframe src="https://drive.google.com/file/d/1qumkrasZbfLF5itC1BGRD_8zWmQLvh9H/preview" width="100%" height="600" allow="autoplay"></iframe>
