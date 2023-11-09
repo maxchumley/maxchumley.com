@@ -13,6 +13,11 @@ tags:
 
 **Max M. Chumley**, Firas A Khasawneh, Andreas Otto, and Tomas Gedeon
 
-[arXiv](https://doi.org/10.48550/arXiv.2305.07643){:target="_blank"}\\
-[SIAM-DS 2023 Presentation Slides](/assets/html/siam-ds_2023_metabolic_oscillations.html){:target="_blank"}
+- [Published](https://link.springer.com/article/10.1007/s11538-023-01227-3){:target="_blank"}\\
+- [arXiv](https://doi.org/10.48550/arXiv.2305.07643){:target="_blank"}\\
+
+
+- [DISC 2023 Slides](/DISC_2023/xaringan/slides/disc_lightning_talk.html){:target="_blank"}\\
+- [Extended Slides](/DISC_2023/xaringan/slides/disc_lightning_talk.html){:target="_blank"}
+- [SIAM-DS 2023 Slides](/assets/html/siam-ds_2023_metabolic_oscillations.html){:target="_blank"}\\
 

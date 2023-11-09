@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>A Nonlinear Delay Model for Metabolic Oscillations in Yeast Cells</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Max Chumley   —   Mechanical Engineering  —  Michigan State University   —" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: top, left, inverse, title-slide
+
+.title[
+# A Nonlinear Delay Model for Metabolic Oscillations in Yeast Cells
+]
+.author[
+### <strong>Max Chumley</strong> <br> — <br> Mechanical Engineering<br> —<br> Michigan State University <br> —
+]
+.date[
+### 11-10-23
+]
+
+---
+
+background-image: url("../../people/people.png")
+background-size: 800px
+background-position: 95% 50%
+&lt;!-- ------------------------------------------------------- --&gt;
+&lt;!-- DO NOT REMOVE --&gt;
+
+&lt;!-- ------------------------------------------------------- --&gt;
+&lt;!-- Adjust collaborator image size and position (DO NOT INSERT ANY CODE ABOVE THIS)--&gt;
+
+# Acknowledgements 
+.left-column[
+&lt;div style="height: 25px;"&gt;&lt;/div&gt;
+&lt;p style="font-size:9px"&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/p&gt;
+
+&lt;!-- Funding agency logo and grant number --&gt;
+&lt;img src="../../logos/AFRL.png" width="500" style="display: block; margin: auto;" /&gt;
+&lt;p style="text-align: left; font-size:20px"&gt;This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550- 30 22-1-0007&lt;/p&gt;
+
+&lt;p style="font-size:9px"&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/p&gt;
+]
+
+&lt;!-----------------
+  Script: 
+  I would like to start by thanking the air force office of  scientific research for funding this project. I would also like to thank my collaborators Firas Khasawneh, Andreas Otto and Tomas Gedeon.
+-----------------&gt;
+---
+
+# Protein Synthesis
+
+&lt;img src="../Figs/no_signals.gif"
+     width="85%" 
+     style="position:absolute; right:5%; top:15%;"&gt;
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+
+  An essential component in living cells is the ability to make proteins for the organism. This mainly occurs through protein synthesis in the cell where a pool of ribosomes utilize resources in the cell and traverse the messenger ribonucleic acid or mRNA strands. These strands contain the necessary code for synthesizing a protein and the ribosomes read this code to make the protein as the mRNA is traversed. 
+  
+  It has been observed in experimental settings that when the cell is starved of resources it will exhibit metabolic cycling where the protein production rates oscillate. 
+
+  We aimed to model this process as a time delay system due to the metabolic cycling process taking approximately 40 minutes in experiments. 
+  
+  This animation demonstrates ribosomes traversing the mRNA for three proteins and when they reach the end the protein is produced.
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+---
+# Outline
+![](../Figs/1ptn_outline.png)
+---
+# Outline
+
+![](../Figs/3ptn_outline.png)
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+
+  Here is an outline for this portion of the talk. I will show how we obtained a single protein model and show the three methods that we used for searching for limit cycles in this system.
+
+  I will then show how we extended the model to include three coupled proteins with a shared resource pool and apply the same methods for analysis.
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+class: left
+# 1-Protein Model
+
+
+- Ribosome Initiation: `\(\mu(t)=f(p(t))R(t)\)`
+
+--
+
+background-image: url("../figs/hill.png")
+background-size: 400px
+background-position: 95% 35%
+
+- Hill Function: `\(f(x)=\frac{x^n}{\kappa^n+x^n}\)`
+
+--
+
+- `\(\dot{p}(t) = B\mu(t-\tau) - Dp(t)\)`
+
+--
+
+- `\(R(t) = R_T - A\int_{t-\tau}^t\mu(s)ds\)` `\(^1\)`
+  &lt;!-- - (Mier-y-Teran-Romero et al.) --&gt;
+.footnote[1.L. M. y Ter ́an-Romero, M. Silber, and V. Hatzimanikatis, “The origins of time-delay in template biopolymeriza-
+tion processes,” PLoS Computational Biology, vol. 6, p. e1000726, apr 2010]
+--
+
+- `\(\dot{R}(t) = A(f(p(t-\tau))R(t-\tau) - f(p(t))R(t))\)`
+
+--
+
+Single Protein System:
+`\begin{align}
+  \dot{p}(t) &amp;= Bf(p(t-\tau))R(t-\tau) - Dp(t),\\
+  \dot{R}(t) &amp;= A(f(p(t-\tau))R(t-\tau) - f(p(t))R(t))
+\end{align}`
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+
+We will now discuss how we obtained our model for this system. 
+The rate of ribosome initiation is the product of the activator the f(p(t)) term and the processing  molecule or resource R(t). The activator is a hill function where if the input is sufficiently large its value approaches one and it is close to zero if the input is close to zero. The hill function parameters change the rate of initiation for the activation.  
+
+The rate of protein production is then proportional to the initiation at some time tau seconds in the past where the delay is the required time for protein synthesis. The parameter B is the growth rate and we also include the decay term here with decay rate D.
+
+The total resource equation has been suggested as this equation where the resource at any time t is given by the total resource minus the integral of the initiation over the production time tau. 
+
+Differentiating this expression and using the initiation definition gives the second equation in our model and we write the single protein system as these two equations.
+
+Note that when we differentiate this equation we limit the delays to constant delays and if state or time dependent delays are used this step is invalid.
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+---
+
+background-image: url("../figs/single_protein_system.png")
+background-size: 450px
+background-position: 95% 5%
+
+# 1-Protein Equilibrium Conditions
+
+--
+
+`\begin{equation*}
+	(1+A \tau){p^*}^{n+1}-\frac{BR_T}{D}{p^*}^{n}+\kappa^n{p^*}=0
+\end{equation*}`
+
+--
+
+`\begin{equation*}
+        R^*=\frac{R_T}{1+A\tau f(p^*)} ~~~~~~~~\left(R(t) = R_T - A\int_{t-\tau}^t\mu(s)ds\right)
+\end{equation*}`
+
+--
+
+- Trivial Equilibrium: `\((p^*, R^*) = (0, R_T)\)`
+
+--
+
+- *At least* 1 real solution `\(\forall n \in \mathbb{Z}\)`
+
+--
+- *At most* 3 real solutions `\(\forall n \in \mathbb{Z}\)`
+--
+
+  - Descartes' rule of signs
+  - Assuming all positive parameters
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+
+The next step was to compute equilibrium conditions for this model. We do this by setting the derivative terms to zero in the model. We obtain this polynomial expression in terms of p from the first equation, and the second condition is obtained from the total resource equation. 
+
+We see that these equations have a trivial solution at 0 production rate and the total resource. Further, by analyzing the coefficients of the polynomial, we see that this system will have at most 3 positive real solutions for all n and at least one solution at the trivial equilibrium.
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+---
+# 1-Protein Equilibrium Conditions
+
+- For `\(n=2\)`:
+
+&lt;font color=blue&gt;Trivial&lt;/font&gt;
+
+`\((p^*, R^*)=(0,R_T)\)`,
+
+--
+
+&lt;font color=red&gt;Middle&lt;/font&gt;
+`\((p^*, R^*)=\left(\frac{B R_T-\sqrt{B^2 R_T^2-4 D^2 \kappa ^2 (A \tau +1)}}{2 D(A  \tau +1)}, \frac{B R_T \sqrt{B^2 R_T^2-4 D^2 \kappa ^2 (A \tau +1)}-2 A D^2 \kappa ^2 \tau  (A \tau +1)-B^2 R_T^2}{B (A \tau +1) \left(\sqrt{B^2 R_T^2-4 D^2 \kappa ^2 (A \tau +1)}-B R_T\right)}\right)\)`
+
+--
+
+&lt;font color=green&gt;Top&lt;/font&gt;
+`\((p^*, R^*)=\left(\frac{B R_T+\sqrt{B^2 R_T^2-4 D^2 \kappa ^2 (A \tau +1)}}{2 D(A  \tau +1)}, \frac{B R_T \sqrt{B^2 R_T^2-4 D^2 \kappa ^2 (A \tau +1)}+2 A D^2 \kappa ^2 \tau  (A \tau +1)+B^2 R_T^2}{B (A \tau +1) \left(\sqrt{B^2 R_T^2-4 D^2 \kappa ^2 (A \tau +1)}+B R_T\right)}\right)\)`
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  Script: 
+  For analysis simplicity, we set n to be 2. Doing this allowed for analytically solving the equilibrium equations. The first equilibrium point is the trivial point. The second equilibrium point is referred to as the middle equilibrium and the third point is referred to as the top equilibrium because its protein production rate is the largest. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+
+# 1-Protein Linearization
+
+
+`$$\dot{\vec{y}}\approx\begin{bmatrix}
+      -D &amp; 0\\
+      -A f'(p^*)R^* &amp; -A f(p^*)
+    \end{bmatrix} \vec{y}+\begin{bmatrix}
+      B f'(p^*)R^* &amp; B f(p^*)\\
+      Af'(p^*)R^* &amp; Af(p^*)
+    \end{bmatrix}\vec{y}_\tau$$`
+
+`$$\vec{y} = \begin{bmatrix}p(t)-p^*\\ R(t)-R^*\end{bmatrix},~~~
+        \vec{y}_\tau = \begin{bmatrix}p(t-\tau)-p^*\\ R(t-\tau)-R^*\end{bmatrix}$$`
+
+--
+
+- Trivial Equilibrium `\((0,R_T)\)`:
+
+`$$\dot{\vec{y}}\approx\begin{bmatrix}
+		-D &amp; 0\\
+		0 &amp; 0
+	\end{bmatrix} \vec{y}$$`
+
+&lt;font color=red&gt;Nonhyperbolic Equilibrium&lt;/font&gt;
+--
+
+- `\(R(t) = R_T - A\int_{t-\tau}^t\mu(s)ds \to (0,R_T)~\)` &lt;font color=green&gt;Stable&lt;/font&gt; `\(~~\forall~D&gt;0\)`
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  We then linearized this system about its equilibria. We do this by computing the jacobians for the system at both the current and delayed states to get the linearization here. Due to the simplicity of the trivial equilibrium point, it can be easily plugged into the linearization. We see that this point resulted in an ordinary differential equation system with two eigenvalues at -D and 0. The infinitely many other eigenvalues for the system all approach negative infinity as we approach the trivial equilibrium point.  
+  
+  Because one of the eigenvalues is zero, it means that this equilibrium point is considered nonhyperbolic. A nonhyperbolic equilibrium point means that the linearized system will not necessarily behave like its nonlinear counterpart. 
+
+  The zero eigenvalue corresponds to perturbations in the R direction which would result in a new total resource value. Changing the total resource invalidates the constraint equation so we can conclude that the trivial equilibrium is stable for all positive decay rates.
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+background-image: url("../figs/eig_stability.png")
+background-size: 350px
+background-position: 80% 60%
+# Linear Stability: Spectral Element Method
+.footnote[Khasawneh, Firas A., and Brian P. Mann. "A spectral element approach for the stability analysis of time-periodic delay equations with multiple delays." 
+Communications in Nonlinear Science and Numerical Simulation 18.8 (2013): 2129-2141.]
+
+- Descretize system
+
+--
+
+- Approximate monodromy operator 
+
+--
+
+- `\(\vec{z}_n = \mathbf{U} \vec{z}_{n-1}\)`
+
+![](../figs/nonlinddeperiodicity.pdf)
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  The third method also utilizes the spectral element method, however here we use the discrete map obtained from the discretization called the monodromy operator and compute its eigenvalues to evaluate the linearized system stability. If the eigenvalues have magnitude larger than 1 the system is unstable and less than 1 the system is stable. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+
+# Linear Stability: 1-Protein Results
+- Fix parameters `\((A=1, B=2, D=10, \kappa=0.5, n=2)\)`
+&lt;img src="../figs/middle_stability.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+--
+
+&lt;img src="../figs/top_stability.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:30%;"&gt;
+
+--
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+- &lt;font color=green&gt;Hopf Bifurcation:&lt;/font&gt; `\(R_T = 2.6449 \tau + 4.6323\)`
+
+- &lt;font color=red&gt;Saddle Node Bifurcation:&lt;/font&gt; `\(R_T=\sqrt{25(1+\tau)}\)`
+
+
+
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  Here I am showing the linear stability diagrams in the tau RT plane for the single protein system for the middle equilibrium. We see that the magnitude of the dominant eigenvalue for this system is always outside of the unit circle so this equilibrium is unstable in this region of the parameter space. 
+  
+  The red curve corresponds to a saddle node bifurcation curve where the top and middle equilibria collide and disappear leaving only the trivial equilibrium point in the white region which we know is stable. 
+
+  Next, we plot the stability of the top equilibrium point and we see that for low delay and sufficient resource this point is stable, but as the protein production time increases this point loses stability before colliding with the middle equilibrium. The green curve where this point changes stability is a sub critical Hopf bifurcation. 
+
+  We located the green curve using these numerical results where the eigenvalues leave the unit circle, and the saddle node curve was located analytically for this system. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+# Single Protein Simulation
+
+- Compute a feature `\(M: \mathbb{R}^n\rightarrow \mathbb{R}\)` on the nonlinear simulations.
+
+--
+
+- Color a 2D projection of the parameter space using the feature.
+
+- Amplitude: `\(M_A=\sum_{i=1}^n \frac{1}{2}\left(\max{(x_i(t))}-\min{(x_i(t))}\right)\)`
+--
+
+&lt;/br&gt;
+
+&lt;img src="../figs/amplitude_feature.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:17%;"&gt;
+
+--
+
+&lt;img src="../figs/amplitude_feature2.png"
+     width="60%" 
+     style="position:absolute; left:20%; bottom:17%;"&gt;
+
+.footnote[Tu, T., Kudlicki, A., Rowicka, M., McKnight, S.: Logic of the yeast metabolic cycle: Temporal
+compartmentalization of cellular processes. Science 310, (2005)]
+
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+The second numerical method involved system simulations. Our goal was to simulate the system over a region of the parameter space and compute a feature for each simulation to detect oscillations. 
+
+We do this by coloring a 2D projection of the parameter space by computing the amplitude of the signal using this equation where we sum the amplitudes for each system state. 
+
+The idea here is that the amplitude feature will be approximately zero if the system is stable at those parameters and positive if the system is oscillating.
+
+To simulate the system, we need to specify its behavior before t=0. We chose a history function that aligns with the experimental results where they starve the cell of all resources prior to the experiment. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+
+---
+# 1-Protein Amplitude Feature
+- Fix remaining parameters `\((A=1, B=2, D=10, \kappa=0.5, n=2)\)`
+- Vary `\(\tau\)` and `\(R_T\)`
+
+--
+
+&lt;img src="../figs/simulations_1.png"
+     width="95%" 
+     style="position:absolute; left:2.5%; top:35%;"&gt;
+
+--
+
+&lt;img src="../figs/simulations_2.png"
+     width="95%" 
+     style="position:absolute; left:2.5%; top:35%;"&gt;
+
+--
+
+&lt;img src="../figs/simulations_3.png"
+     width="95%" 
+     style="position:absolute; left:2.5%; top:35%;"&gt;
+
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  Here we show the featurized stability diagrams for the single protein system where we hold A, B, D, kappa, and n constant in the system and vary the delay and total resource. 
+
+  Due to the constraint equation, we only need to specify one initial condition and the R0 value is then fixed by setting the total resource. We start by computing the amplitude feature for a range of p0 and total resource. A region forms separating the top and trivial steady states where the system oscillates, but we see that for sufficient p0 we do not need to worry about multi stability. We found that p0=10 worked for the remaining simulations.
+
+  Next we fix p0=10 and let tau vary in the parameter space to visualize the oscillation region. To connect this figure with the one on the left, if we add a vertical slice it will cross the oscillation regions at the RT values from the left figure. 
+  
+  We see that a large oscillation region is present and we also observe oscillations prior to the hopf bifurcation curve which suggested that it is a subcritical hopf bifurcation. 
+
+  We also studied horizontal slices of this plot to obtain a more traditional bifurcation diagram and we see that as the delay varies we switch from a stable steady state response to limit cycle oscillations and around tau=10 for this total resource the top equilibrium changes to be unstable. 
+
+  We were unable to compute the unstable connection between the stable branch and limit cycle branch numerically so it is not shown here. 
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+background-image: url("../figs/periodic_sol.png")
+background-size: 550px
+background-position: 90% 60%
+
+# Nonlinear DDE Periodic Solution: Spectral Element Method
+.pull-left[
+`\begin{align}
+    f&amp;=\frac{dx}{dt}-Tg(x(t),x(t-\tau/T))=0\\ 
+    t&amp;\in[0,1]\\
+    x&amp;(s) - x(s+1) = 0~
+    s\in[-\tau/T,0]\\
+    p&amp;(x)=0
+\end{align}`
+
+![](../figs/nonlinddeperiodicity.pdf)
+![](../figs/nonlinddephase.pdf)
+.footnote[Khasawneh, Firas A., David AW Barton, and Brian P. Mann. 
+"Periodic solutions of nonlinear delay differential equations using spectral element method." 
+Nonlinear dynamics 67 (2012): 641-658.]
+]
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  The final method for verifying the presence of limit cycles was using the spectral element method to find periodic solutions to the nonlinear system. In this case we form a boundary value problem from the full nonlinear model and descretize the system using a finite dimensional map to map states forward by one period in time. We use simulation data as the initial point and newton iteration allows for convergence to the true periodic solution. We can also extract an approximation of the true period of the system with this method. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+
+# Periodic Solution Results
+
+&lt;img src="../figs/periodic_sol_1.png"
+     width="60%" 
+     style="position:absolute; left:20%; top:15%;"&gt;
+--
+&lt;img src="../figs/periodic_sol_2.png"
+     width="60%" 
+     style="position:absolute; left:20%; top:15%;"&gt;
+--
+&lt;img src="../figs/periodic_sol_3.png"
+     width="60%" 
+     style="position:absolute; left:20%; top:15%;"&gt;
+--
+&lt;img src="../figs/periodic_sol_4.png"
+     width="60%" 
+     style="position:absolute; left:20%; top:15%;"&gt;
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  To do this, we chose points in interesting regions of the amplitude plot here.
+
+  First we take tau=12 and RT=50 and see that the periodic solution is essentially constant production for the cell but it drops breifly.
+
+  If we decrease the total resource, we see that the solution is spending more of its period at zero production but spikes for some of the period. 
+
+  Moving to a lower total resource we get a solution that is closer to the trivial equilibrium point so this suggests that the oscillation region forms as a transition between the two stable steady states of the system. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+
+# Steady State Solutions
+
+&lt;img src="../figs/steady_sols_1.png"
+     width="95%" 
+     style="position:absolute; left:2.5%; top:30%;"&gt;
+--
+&lt;img src="../figs/steady_sols_2.png"
+     width="95%" 
+     style="position:absolute; left:2.5%; top:30%;"&gt;
+--
+&lt;img src="../figs/steady_sols_3.png"
+     width="95%" 
+     style="position:absolute; left:2.5%; top:30%;"&gt;
+
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  We also considered the steady state regions of this plot.
+
+  For low delay and sufficient resource we get constant protein production and for low resources we get no production at the trivial equilibrium. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+
+background-image: url("../figs/no_signals.gif")
+background-size: 850px
+background-position: 50% 120%
+# 3-Protein Model
+
+`\begin{equation}
+    \begin{split}
+        \dot{p_1}(t)&amp;=B_1 f(p_2(t-\tau_1))f(p_3(t-\tau_1))R(t-\tau_1) - D_1 p_1,\\
+        \dot{p_2}(t)&amp;=B_2 f(p_1(t-\tau_2))R(t-\tau_2) - D_2 p_2,\\
+        \dot{p_3}(t)&amp;=B_3 f(p_1(t-\tau_3))R(t-\tau_3) - D_3 p_3,\\
+        \dot{R}(t)&amp;=A(\mu_1(t-\tau_1)+\mu_2(t-\tau_2)+\mu_2(t-\tau_3)-\mu_1(t)-2\mu_2(t)),
+    \end{split}
+\end{equation}`
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  We also extend the model to include 3 coupled proteins and study how the system behaves under a shared resource pool. The system is now four dimensional and contains many more parameters. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+
+# 3-Protein Results
+
+- `\(\tau_1=\tau_2=\tau_3=\tau\)`, `\(B_1=B_2=B_3=2\)`, `\(A=1\)`
+
+- `\(D_1=D_2=D_3=10\)`, `\(\kappa=0.5\)`, `\(n=2\)`
+
+&lt;img src="../figs/3_middle_stability.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:40%;"&gt;
+
+--
+
+&lt;img src="../figs/3_top_stability.png"
+     width="90%" 
+     style="position:absolute; left:5%; top:40%;"&gt;
+
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  We reduce the size of the parameter space by restricting all of the protein production times to be equal and setting all of the growth and decay rates to be equal. If we do this, we numerically observed that this system only exhibits either 1 or 3 equilibria just as the single protein system did. The trivial equilibrium point is the same as the single protein system and was found to be stable for any set of positive decay rates.
+
+  Here are the stability diagrams for the middle equilibrium point. This point was also found to be unstable for these parameters.
+
+  For the top equilibrium, we observe the same behavior as well where we get observe a loss in stability due to a subcritical hopf bifurcation and the saddle node bifurcation curve is in red. 
+
+
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+---
+
+# 3 Protein Periodic Solution Results
+
+&lt;img src="../figs/3_periodic_sol_1.png"
+     width="60%" 
+     style="position:absolute; left:20%; top:15%;"&gt;
+--
+&lt;img src="../figs/3_periodic_sol_2.png"
+     width="60%" 
+     style="position:absolute; left:20%; top:15%;"&gt;
+--
+&lt;img src="../figs/3_periodic_sol_3.png"
+     width="60%" 
+     style="position:absolute; left:20%; top:15%;"&gt;
+--
+&lt;img src="../figs/3_periodic_sol_4.png"
+     width="60%" 
+     style="position:absolute; left:20%; top:15%;"&gt;
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  We also plotted the amplitude feature for this system and we see that the results are very similar to the single protein system. 
+
+  We will now compute periodic solutions using the spectral element method.
+
+  Starting with tau=5.7 and RT=100, we get the solution shown here that is close to a constant protein production.
+
+  Next we move to tau=25 and RT=50 and get a solution that is moving closer to a zero production case.
+
+  However, for very small resources, we observed a different phenomena in this system where one of the protein production rate peaks shifted with respect to the others. We believe this could suggest a more efficient use of resources for the cell.  
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+---
+background-image: url("../figs/signals.gif")
+background-size: 1200px
+background-position: 50% 50%
+
+# 3-Protein Temporal Shift
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  Here is an animation of the temporal shift that we observe. We see that the production rate for protein one peaks out of phase with two and three. Note that this animation is shown for proteins with different production times but the concept is the same.
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+---
+background-image: url("../figs/3ptn_outline.png")
+background-size: 800px
+background-position: 50% 50%
+# Metabolic Oscillations Summary
+
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+M. M. Chumley, F. A. Khasawneh, A. Otto, and T. Gedeon, “A Nonlinear Delay Model for Metabolic Oscillations in Yeast Cells,” Bulletin of Mathematical Biology 2023. 
+
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+???
+  This concludes the metabolic oscillations portion of the talk today. Our paper is shown at the bottom and was recently accepted. 
+&lt;!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--&gt;
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
