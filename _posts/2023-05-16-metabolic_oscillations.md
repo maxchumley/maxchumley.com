@@ -23,3 +23,5 @@ tags:
 - [DISC 2023 Slides](/DISC_2023/xaringan/slides/disc_2023_lightning_talk.html){:target="_blank"}
 - [SIAM-DS 2023 Slides](/assets/html/siam-ds_2023_metabolic_oscillations.html){:target="_blank"}
 
+### Posters
+- [DISC 2023 Poster](/assets/pdfs/Chumley_DISC2023_Poster.pdf){:target="_blank"}
