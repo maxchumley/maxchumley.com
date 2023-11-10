@@ -14,7 +14,7 @@ tags:
 Firas A Khasawneh, Elizabeth Munch, **Max M. Chumley**, Danielle Barnes, Sunia Tanweer
 
 
-[Mini Tutorial Git Repo](https://github.com/TeaspoonTDA/2023-SIAM-DS-TDA-Minitutorial){:target="_blank"}
+- [Mini Tutorial Git Repo](https://github.com/TeaspoonTDA/2023-SIAM-DS-TDA-Minitutorial){:target="_blank"}
 
 
 
