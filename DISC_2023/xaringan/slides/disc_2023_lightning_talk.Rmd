@@ -166,7 +166,9 @@ $(p^*, R^*) = (p_{\text{top}}, R_{\text{top}})$
 
 <!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
 ???
-  The third method also utilizes the spectral element method, however here we use the discrete map obtained from the discretization called the monodromy operator and compute its eigenvalues to evaluate the linearized system stability. If the eigenvalues have magnitude larger than 1 the system is unstable and less than 1 the system is stable. 
+  The first method utilizes the spectral element method, however here we use the discrete map obtained from the discretization called the monodromy operator to map the states forward in time by one period. We use this finite approximation to compute the eigenvalues and evaluate the linearized system stability. If the eigenvalues have magnitude larger than 1 the system is unstable and less than 1 the system is stable. 
+
+  The system has three equilibria. The trivial equilibrium results in no protein production and this point was found to be stable. We use this method on the nontrivial equilibria to study their stability.
 <!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
 
 
@@ -273,7 +275,7 @@ To simulate the system, we need to specify its behavior before t=0. We chose a h
 
 <!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
 ???
-  Here we show the featurized stability diagrams for the single protein system where we hold A, B, D, kappa, and n constant in the system and vary the delay and total resource. 
+  We hold A, B, D, kappa, and n constant in the system and vary the delay and total resource. 
 
   Due to the constraint equation, we only need to specify one initial condition and the R0 value is then fixed by setting the total resource. We start by computing the amplitude feature for a range of p0 and total resource. A region forms separating the top and trivial steady states where the system oscillates, but we see that for sufficient p0 we do not need to worry about multi stability. We found that p0=10 worked for the remaining simulations.
 
@@ -281,7 +283,7 @@ To simulate the system, we need to specify its behavior before t=0. We chose a h
   
   We see that a large oscillation region is present and we also observe oscillations prior to the hopf bifurcation curve which suggested that it is a subcritical hopf bifurcation. 
 
-  We also studied horizontal slices of this plot to obtain a more traditional bifurcation diagram and we see that as the delay varies we switch from a stable steady state response to limit cycle oscillations and around tau=10 for this total resource the top equilibrium changes to be unstable. 
+  We also studied a horizontal slice of this plot at RT=30 to obtain a more traditional bifurcation diagram and we see that as the delay varies we switch from a stable steady state response to limit cycle oscillations and around tau=10 for this total resource the top equilibrium changes to be unstable. 
 
   We were unable to compute the unstable connection between the stable branch and limit cycle branch numerically so it is not shown here. 
 
@@ -380,7 +382,8 @@ background-position: 50% 50%
 
 <!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
 ???
-  Here is an animation of the temporal shift that we observe. We see that the production rate for protein one peaks out of phase with two and three. Note that this animation is shown for proteins with different production times but the concept is the same.
+
+I do not have time to cover the results from this model, but one of the significant observations occurred for very low total resource in this system where we observed a temporal shift in one of the production rate peaks. We think this could indicate a more efficient use of resources for the cell. Note that this animation is shown for proteins with different production times but the concept is the same.
 <!-- Script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
 
 
