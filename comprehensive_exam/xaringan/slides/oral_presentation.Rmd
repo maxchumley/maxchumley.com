@@ -40,8 +40,8 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 
 <!-- SET TITLE IMAGES HERE -- NOTE: :img takes 3 arguments: (width, left, top) to position the graphic.-->
-![:img 60%, 37.5%, 25%](../figs/white_block.png)
-![:img 55%, 41%, 37%](../figs/title_graphic.gif)
+![:img 60%, 37.5%, 25%](../Figs/white_block.png)
+![:img 55%, 41%, 37%](../Figs/title_graphic.gif)
 
 ???
 Today I will be presenting my proposed work on two novel applications leveraging differentiation of persistence diagrams.
@@ -57,7 +57,7 @@ I would like to start by thanking the air force office of  scientific research a
 ---
 # Road Map
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_1.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_1.png)
 
 ???
 Here is an overview of my talk today. 
@@ -69,12 +69,12 @@ I will start with an overview of the tools I use from topological data analysis 
 First, we will focus on the necessary background on topological data analysis and persistent homology that will be used throughout the talk.  
 
 --
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_2.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_2.png)
 
 ---
 # Simplicial Complex and Homology
 
-![:img 90%, 5%, 30%](../figs/homology1.png)
+![:img 90%, 5%, 30%](../Figs/homology1.png)
 
 ???
 Topological data analysis is a field that is focused on extracting shape or global structure information from data. 
@@ -86,17 +86,17 @@ Once we have a simplicial complex induced on the data, we can say something abou
 It is difficult to choose the connectivity parameter that will result in optimally extracting topological information from the data. To avoid this choice, we instead study a changing simplicial complex or filtration where each successive complex includes the previous. Quantifying how the homology changes with respect to the connectivity parameter is called persistent homology. 
 
 --
-![:img 90%, 5%, 30%](../figs/homology2.png)
+![:img 90%, 5%, 30%](../Figs/homology2.png)
 --
-![:img 90%, 5%, 30%](../figs/homology3.png)
+![:img 90%, 5%, 30%](../Figs/homology3.png)
 
 
 
 ---
 # Persistent Homology - Point Cloud
 
-![:img 80%, 10%, 25%](../figs/point_cloud_pers_0.png)
-![:img 30%, 10%, 25%](../figs/block_D.png)
+![:img 80%, 10%, 25%](../Figs/point_cloud_pers_0.png)
+![:img 30%, 10%, 25%](../Figs/block_D.png)
 
 ???
 We track the birth and death of homology classes in a persistence diagram by plotting the value of the connectivity parameter where that class is born as its x coordinate and the value where it dies as the y coordinate. It is helpful to imagine this process as centering a circle at each point in the point cloud and varying the radius of the circles to generate the persistence diagram. 
@@ -104,18 +104,18 @@ We track the birth and death of homology classes in a persistence diagram by plo
 Here the data has a large loop structure with some noise and we see that as the connectivity parameter increases we have one persistence pair that is far from the diagonal and five other loops that are close to the diagonal meaning their birth and death times are close. The features close to the diagonal are often attributed to noise in the data and points far from the diagonal indicate prominent structures. 
 
 --
-![:img 80%, 10%, 25%](../figs/point_cloud_pers.gif)
-![:img 30%, 10%, 25%](../figs/block_D.png)
+![:img 80%, 10%, 25%](../Figs/point_cloud_pers.gif)
+![:img 30%, 10%, 25%](../Figs/block_D.png)
 --
-![:img 80%, 10%, 25%](../figs/point_cloud_pers_277.png)
-![:img 30%, 10%, 25%](../figs/block_D.png)
+![:img 80%, 10%, 25%](../Figs/point_cloud_pers_277.png)
+![:img 30%, 10%, 25%](../Figs/block_D.png)
 
 
 
 ---
 # Persistent Homology - Sublevel
 
-![:img 90%, 5%, 25%](../figs/sl_pers_img.jpg)
+![:img 90%, 5%, 25%](../Figs/sl_pers_img.jpg)
 
 ???
 We can also apply persistent homology to image data such as the one shown here. The filtration in this case changes from a simplicial complex to a cubical complex where instead of the building blocks being triangules and tetrahedra, we build our structure out of squares (pixels) or cubes (voxels). Then our filter function is a height function on the image instead of the distance between points. This is represented by the 3D surface here. 
@@ -125,18 +125,18 @@ This flavor of persistence is called sublevel persistence where we compute homol
 Here is an animation of the sublevel persistence process. We see that as the height increases, (or as water fills the surface) some of the components connect and we also see the two loops present in the 1D persistence diagram. 
 
 --
-![:img 90%, 5%, 25%](../figs/sl_pers_surf.jpg)
+![:img 90%, 5%, 25%](../Figs/sl_pers_surf.jpg)
 --
-![:img 90%, 5%, 25%](../figs/sl_animation.gif)
+![:img 90%, 5%, 25%](../Figs/sl_animation.gif)
 --
-![:img 90%, 5%, 25%](../figs/sl_pers_200.jpg)
+![:img 90%, 5%, 25%](../Figs/sl_pers_200.jpg)
 
 
 
 ---
 # Persistent Homology - Network
 
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd1.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd1.png)
 
 ???
 The final flavor of persistence we will cover today is when our data is in the form of a weighted network. In the example here our network has two loops and we would like to quantify its topology using persistence. 
@@ -148,21 +148,21 @@ Doing this for all pairs of vertices in the network gives a corresponding distan
 We start with all of the vertices in the network and when the connectivity parameter reaches the shortest path distance between two vertices we add an edge in the simplicial complex. At this point we see the two loops are born. As we increase the connectivity parameter the loops fill in just as was done in point cloud persistence but with the important distinction of the different notion of distance between vertices. Using this process, we compute the persistence diagram of the network using the shortest path distance metric. 
 
 --
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd2.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd2.png)
 --
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd3.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd3.png)
 --
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd4.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd4.png)
 --
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd5.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd5.png)
 --
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd6.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd6.png)
 --
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd7.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd7.png)
 --
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd8.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd8.png)
 --
-![:img 75%, 12.5%, 20%](../figs/network_pers/network_pd9.png)
+![:img 75%, 12.5%, 20%](../Figs/network_pers/network_pd9.png)
 
 
 
@@ -170,7 +170,7 @@ We start with all of the vertices in the network and when the connectivity param
 ---
 # Network Distance Metrics
 
-![:img 95%, 2.5%, 20%](../figs/network_pers/distance_summary.png)
+![:img 95%, 2.5%, 20%](../Figs/network_pers/distance_summary.png)
 
 .footnote[
   <p style="font-size: 13px;">Myers, A. D., Chumley, M. M., Khasawneh, F. A., & Munch, E. (2023). Persistent homology of coarse-grained state-space networks. Physical Review E, 107(3), 034303.</p>
@@ -182,7 +182,7 @@ Other distance metrics can also be used as shown here. These examples show that 
 ---
 # Advantages of Persistence
 
-![:img 70%, 15%, 20%](../figs/pd_advantages1.png)
+![:img 70%, 15%, 20%](../Figs/pd_advantages1.png)
 
 ???
 Computing persistent homology has many advantages. It provides a compressive summary of shape for the data by allowing for representing complex structures as a list of few points. 
@@ -190,25 +190,25 @@ Computing persistent homology has many advantages. It provides a compressive sum
 It has also been proven that persistence is stable under small perturbations, and is robust to noise where structures due to noise show up near the diagonal. Finally, it is conducive to machine learning allowing for topological features of the data to be integrated into an ML pipeline. 
 
 --
-![:img 70%, 15%, 20%](../figs/pd_advantages2.png)
+![:img 70%, 15%, 20%](../Figs/pd_advantages2.png)
 
-![:img 28%, 54%, 28%](../figs/persistence_stability.gif)
+![:img 28%, 54%, 28%](../Figs/persistence_stability.gif)
 
 .footnote[
      <p style="font-size: 13px;">Cohen-Steiner, et al. "Stability of persistence diagrams." Proceedings of the twenty-first annual symposium on computational geometry. 2005.<br></p>
      ]
 
 --
-![:img 70%, 15%, 20%](../figs/pd_advantages3.png)
+![:img 70%, 15%, 20%](../Figs/pd_advantages3.png)
 --
-![:img 70%, 15%, 20%](../figs/pd_advantages4.png)
+![:img 70%, 15%, 20%](../Figs/pd_advantages4.png)
 
 
 ---
 # Some Applications of Persistence
 
 
-![:img 90%, 5%, 15%](../figs/pd_apps1.png)
+![:img 90%, 5%, 15%](../Figs/pd_apps1.png)
 
 ???
 Persistence has been successfully applied across many domains such as damping parameter estimation, bifurcation detection, surface texture analysis, chatter detection in machining, quantifying topology of different weather patterns, and stochastic bifurcation detection in dynamical systems. These are only a few of the many other applications of persistence. 
@@ -216,21 +216,21 @@ Persistence has been successfully applied across many domains such as damping pa
 All of this success has been achieved in the absence of a calculus on the space of persistence diagrams. Recently, a framework for differentiation of persistence diagrams has been introduced that unlocks an entirely new class of problems that can be solved using persistence. 
 
 --
-![:img 90%, 5%, 15%](../figs/pd_apps2.png)
+![:img 90%, 5%, 15%](../Figs/pd_apps2.png)
 --
-![:img 90%, 5%, 15%](../figs/pd_apps3.png)
+![:img 90%, 5%, 15%](../Figs/pd_apps3.png)
 --
-![:img 90%, 5%, 15%](../figs/pd_apps4.png)
+![:img 90%, 5%, 15%](../Figs/pd_apps4.png)
 --
-![:img 90%, 5%, 15%](../figs/pd_apps5.png)
+![:img 90%, 5%, 15%](../Figs/pd_apps5.png)
 --
-![:img 90%, 5%, 15%](../figs/pd_apps6.png)
+![:img 90%, 5%, 15%](../Figs/pd_apps6.png)
 
 
 ---
 # Differentiability of Persistence Diagrams
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_3.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_3.png)
 
 ???
 This leads to my first chapter on persistence optimization. Here I will present the background on how a persistence diagram is differentiated and then propose work for two novel applications of this concept in parameter space navigation for dynamical systems and a new data assimilation framework. 
@@ -239,7 +239,7 @@ This leads to my first chapter on persistence optimization. Here I will present 
 ---
 # Persistence as a Map
 
-![:img 95%, 2.5%, 20%](../figs/pd_map1.png)
+![:img 95%, 2.5%, 20%](../Figs/pd_map1.png)
 
 ???
 To study the idea of differentiability in the space of persistence diagrams it is useful to think of persistence as a map. If we start with a point cloud theta, we map this point cloud to the persistence diagram using the relevant filter function. In this case we have one loop that is born at r=b and dies at r=sqrt(2)b using a vietoris rips filtration.
@@ -247,21 +247,21 @@ To study the idea of differentiability in the space of persistence diagrams it i
 The persistence diagram is then mapped to a real valued feature with the map V. Here I am showing the total persistence feature which quantifies how far points are from the diagonal. Together, the maps B and V can be composed to form a map composition from point cloud to persistence feature. 
 
 --
-![:img 95%, 2.5%, 20%](../figs/pd_map2.png)
+![:img 95%, 2.5%, 20%](../Figs/pd_map2.png)
 
 .footnote[
   <p style="font-size: 13px;">Leygonie, Jacob, Steve Oudot, and Ulrike Tillmann. "A framework for differential calculus on persistence barcodes." Foundations of Computational Mathematics (2021): 1-63.</p>
   ]
 
 --
-![:img 95%, 2.5%, 20%](../figs/pd_map3.png)
+![:img 95%, 2.5%, 20%](../Figs/pd_map3.png)
 --
-![:img 95%, 2.5%, 20%](../figs/pd_map4.png)
+![:img 95%, 2.5%, 20%](../Figs/pd_map4.png)
 
 ---
 # Functions of Persistence
 
-![:img 95%, 2.5%, 18%](../figs/pd_funcs1.png)
+![:img 95%, 2.5%, 18%](../Figs/pd_funcs1.png)
 
 .footnote[
   <p style="font-size: 13px;">Carriere, Mathieu, et al. "Optimizing persistent homology based functions." International conference on machine learning. PMLR, 2021.</p>
@@ -283,22 +283,22 @@ There are also methods for quantifying dissimilarity between two persistence dia
 Lastly, persistent entropy gives a measure of order in the persistence diagram and can be used to essentially control the simplicity of a point cloud and when used in combination with other persistence functions can give a simpler solution to the optimization problem. 
 
 --
-![:img 95%, 2.5%, 18%](../figs/pd_funcs2.png)
+![:img 95%, 2.5%, 18%](../Figs/pd_funcs2.png)
 --
-![:img 95%, 2.5%, 18%](../figs/pd_funcs3.png)
+![:img 95%, 2.5%, 18%](../Figs/pd_funcs3.png)
 --
-![:img 95%, 2.5%, 18%](../figs/pd_funcs4.png)
+![:img 95%, 2.5%, 18%](../Figs/pd_funcs4.png)
 --
-![:img 95%, 2.5%, 18%](../figs/pd_funcs5.png)
+![:img 95%, 2.5%, 18%](../Figs/pd_funcs5.png)
 --
-![:img 95%, 2.5%, 18%](../figs/pd_funcs6.png)
+![:img 95%, 2.5%, 18%](../Figs/pd_funcs6.png)
 
 
 
 ---
 # Differentiability of Persistence Diagrams
 
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_1.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_1.png)
 
 ???
 Here I will show an example of how a persistence diagram can be differentiated. We start with a simple point cloud of 4 points called theta. We see that this point cloud has a single loop structure if we only consider 1D persistence for now. When the connectivity parameter reaches the value where the loop is born, we call this simplicial complex sigma. At this point, we label the edge that results in the birth of the loop and its vertices as shown. Likewise, we consider the simplicial complex where the loop dies and label those vertices and corresponding edge. 
@@ -312,32 +312,32 @@ Thus the derivative of the persistence map B with respect to the perturbation pe
 More generally, using the rips filtration the derivative of the persistence map is computed as a set of vectors (one for each persistence pair) with components consisting of inner products of the distances between vertices at the end points of attaching edges. This can be further generalized to include infinite persistence pairs and for other filter functions, but we will only consider the rips filtration for now. 
 
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_2.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_2.png)
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_3.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_3.png)
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_4.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_4.png)
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_5.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_5.png)
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_6.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_6.png)
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_7.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_7.png)
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_8.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_8.png)
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_9.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_9.png)
 --
-![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_10.png)
+![:img 95%, 2.5%, 25%](../Figs/1d_pd_der/1d_pd_der_10.png)
 --
-![:img 70%, 15%, 78%](../figs/1d_pd_der/pd_deriv_eq.png)
+![:img 70%, 15%, 78%](../Figs/1d_pd_der/pd_deriv_eq.png)
 
 .footnote[Leygonie, Jacob, Steve Oudot, and Ulrike Tillmann. "A framework for differential calculus on persistence barcodes." Foundations of Computational Mathematics (2021): 1-63.]
 
 ---
 # Differentiability Example 1 - 0D Persistence
 
-![:img 50%, 25%, 20%](../figs/0d_pd_diff_ex/0d_ex_1.png)
+![:img 50%, 25%, 20%](../Figs/0d_pd_diff_ex/0d_ex_1.png)
 
 ???
 Here I will show another example of this process using 0D persistence. If we start with the point cloud shown, we see that the persistence diagram consists of a single connected component. If we consider the space of small perturbations of this point cloud or a lift into a higher dimensional space we can map this space of perturbations onto the perturbed persistence diagram. The quotient of this map collapses to the original persistence diagram. 
@@ -345,15 +345,15 @@ Here I will show another example of this process using 0D persistence. If we sta
 For the specific perturbation shown we see that the distance between the points increases so the derivative in this case is a vector in the vertical direction and if we want to maximize the change in the persistence pair, the perturbation vectors should be in opposite directions. In other words the distance vector and perturbation vector should be parallel.
 
 --
-![:img 50%, 25%, 20%](../figs/0d_pd_diff_ex/0d_ex_2.png)
+![:img 50%, 25%, 20%](../Figs/0d_pd_diff_ex/0d_ex_2.png)
 --
-![:img 50%, 25%, 20%](../figs/0d_pd_diff_ex/0d_ex_3.png)
+![:img 50%, 25%, 20%](../Figs/0d_pd_diff_ex/0d_ex_3.png)
 --
-![:img 50%, 25%, 20%](../figs/0d_pd_diff_ex/0d_ex_4.png)
+![:img 50%, 25%, 20%](../Figs/0d_pd_diff_ex/0d_ex_4.png)
 --
-![:img 50%, 25%, 20%](../figs/0d_pd_diff_ex/0d_ex_5.png)
+![:img 50%, 25%, 20%](../Figs/0d_pd_diff_ex/0d_ex_5.png)
 --
-![:img 50%, 25%, 20%](../figs/0d_pd_diff_ex/0d_ex_6.png)
+![:img 50%, 25%, 20%](../Figs/0d_pd_diff_ex/0d_ex_6.png)
 
 
    
@@ -361,7 +361,7 @@ For the specific perturbation shown we see that the distance between the points 
 ---
 # Differentiability Example 2 - 1D Persistence 
 
-![:img 90%, 5%, 20%](../figs/1d_pd_diff_ex1/1d_ex1_1.png)
+![:img 90%, 5%, 20%](../Figs/1d_pd_diff_ex1/1d_ex1_1.png)
 
 ???
 For the last example, we will go through the process again for a 1D persistence case with a square point cloud to demonstrate the restrictions of this method. For this point cloud, the loop is born at r=b and dies at r=sqrt(2)b and this is reflected in the persistence diagram. 
@@ -371,15 +371,15 @@ If we perturb this point cloud by moving all points in the outward direction by 
 Now if we choose a different perturbation by only expanding the point cloud in the horizontal direction, we see that the derivative is equivalent to the other case. This shows that to obtain a specific change in the persistence diagram, the perturbation of the point cloud may not be unique which can cause issues for solving this inverse problem. 
 
 --
-![:img 90%, 5%, 20%](../figs/1d_pd_diff_ex1/1d_ex1_2.png)
+![:img 90%, 5%, 20%](../Figs/1d_pd_diff_ex1/1d_ex1_2.png)
 --
-![:img 90%, 5%, 20%](../figs/1d_pd_diff_ex1/1d_ex1_3.png)
+![:img 90%, 5%, 20%](../Figs/1d_pd_diff_ex1/1d_ex1_3.png)
 --
-![:img 90%, 5%, 20%](../figs/1d_pd_diff_ex1/1d_ex1_4.png)
+![:img 90%, 5%, 20%](../Figs/1d_pd_diff_ex1/1d_ex1_4.png)
 --
-![:img 90%, 5%, 20%](../figs/1d_pd_diff_ex1/1d_ex1_5.png)
+![:img 90%, 5%, 20%](../Figs/1d_pd_diff_ex1/1d_ex1_5.png)
 --
-![:img 90%, 5%, 20%](../figs/1d_pd_diff_ex1/1d_ex1_6.png)
+![:img 90%, 5%, 20%](../Figs/1d_pd_diff_ex1/1d_ex1_6.png)
 
 
 
@@ -388,7 +388,7 @@ Now if we choose a different perturbation by only expanding the point cloud in t
 
 - $\forall i\neq j\in\{1,...,n\},~p_i\neq p_j$
 
-![:img 25%, 20%, 45%](../figs/equal_points.png)
+![:img 25%, 20%, 45%](../Figs/equal_points.png)
 
 .footnote[Leygonie, Jacob, Steve Oudot, and Ulrike Tillmann. "A framework for differential calculus on persistence barcodes." Foundations of Computational Mathematics (2021): 1-63.]
 
@@ -404,13 +404,13 @@ At first this can seem like a very limiting constraint on the method, however al
 
 - $\forall \{i,j\}\neq\{k,l\},~i,j,k,l\in\{1,...,n\},~||p_i-p_j||_2\neq||p_k-p_l||_2$
 
-![:img 25%, 50%, 45%](../figs/equidistant.png)
+![:img 25%, 50%, 45%](../Figs/equidistant.png)
    
 
 ---
 # Persistence Optimization
 
-![:img 60%, 20%, 16%](../figs/1d_pd_der/pd_opt_loss.png)
+![:img 60%, 20%, 16%](../Figs/1d_pd_der/pd_opt_loss.png)
 
 ???
 Now that we have defined what it means to differentiate a persistence diagram, we can define a cost function to promote desired topological properties of a point cloud by controlling features of the persistence diagram. The ability to differentiate functions of persistence enables gradient descent optimization to reach a point cloud that minimizes the cost function. Tensorflow and the gudhi python library can be used to perform this gradient descent operation on persistence diagrams. 
@@ -420,11 +420,11 @@ For the first example I defined a cost function using two terms. The first term 
 If we start with a circular point cloud with some additive noise, performing the optimization results in a point cloud consisting of a large loop and we see that the persistence pair moves in the vertical direction. Based on how the cost function was defined the minimum is clearly nonzero but due to the regularization term it reaches a minimum of approximately -3 after about 2000 gradient descent steps. The minimizer can be reached faster by changing the learning rate scheduler settings, but for now all that matters is that a solution is achieved. 
 
 --
-![:img 50%, 1%, 47%](../figs/1d_pd_der/loss.png)
+![:img 50%, 1%, 47%](../Figs/1d_pd_der/loss.png)
 --
-![:img 60%, 20%, 55%](../figs/1d_pd_der/pd_opt_1.png)
+![:img 60%, 20%, 55%](../Figs/1d_pd_der/pd_opt_1.png)
 --
-![:img 60%, 20%, 55%](../figs/1d_pd_der/pd_opt.gif)
+![:img 60%, 20%, 55%](../Figs/1d_pd_der/pd_opt.gif)
 
 .footnote[Carriere, Mathieu, et al. "Optimizing persistent homology based functions." International conference on machine learning. PMLR, 2021.
 ]
@@ -445,24 +445,24 @@ If we start with a circular point cloud with some additive noise, performing the
 ]
 
 
-![:img 60%, 35%, 20%](../figs/pd_opt_res_grow_1.png)
+![:img 60%, 35%, 20%](../Figs/pd_opt_res_grow_1.png)
 
-![:img 60%, 35%, 55%](../figs/pd_opt_norm_ent_res_grow_1.png)
+![:img 60%, 35%, 55%](../Figs/pd_opt_norm_ent_res_grow_1.png)
 
 ???
 Here are two more examples of persistence optimization where we promote larger loops in the point cloud along with restricting the lifetime of persistence pairs below the blue line. The bottom animation also implements an entropy term to minimize the persistent entropy. We see that the entropy term results in fewer loops in the resulting point cloud.
 
 --
-![:img 60%, 35%, 20%](../figs/pd_opt_res_grow.gif)
+![:img 60%, 35%, 20%](../Figs/pd_opt_res_grow.gif)
 
-![:img 60%, 35%, 55%](../figs/pd_opt_norm_ent_res_grow.gif)
+![:img 60%, 35%, 55%](../Figs/pd_opt_norm_ent_res_grow.gif)
 
  
 
 ---
 # Optimal Parameter Space Paths
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_4.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_4.png)
 
 ???
 Now I will present my first proposed application of persistence optimization by applying this idea to dynamical system parameter space navigation.
@@ -471,7 +471,7 @@ Now I will present my first proposed application of persistence optimization by 
 # Connection with Dynamical Systems
 
 
-![:img 80%, 10%, 30%](../figs/persistence_paths.png)
+![:img 80%, 10%, 30%](../Figs/persistence_paths.png)
 
 ???
 I plan to utilize this persistence differentiability framework in connection with dynamical systems by leveraging the inherent connection between topology and dynamical systems to guide a system to a more desirable behavior by optimally varying system parameters. The example shown here demonstrates this process by showing the change in persistence diagrams would look like when moving from a chaotic to a periodic response in the parameter space.
@@ -480,7 +480,7 @@ I plan to utilize this persistence differentiability framework in connection wit
 ---
 # Persistence Criteria
 
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_1.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_1.png)
 
 ???
 This will be accomplished by creating a dictionary of persistence based cost function terms to allow for a response to be modified by performing persistence optimization. The first example shown here demonstrates limiting the size of a loop in the persistence diagram which would correspond to limiting the amplitude of oscillation. The cost function term in this case could be defined using the maximum persistence feature. 
@@ -492,28 +492,28 @@ The third case will use persistent entropy to encourage the system to move away 
 This leads to my first goal on this project which is to develop a library of these cost function terms that map to specific dynamical system behaviors and allow for intuitive loss function engineering for achieving desired behaviors. 
 
 --
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_2.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_2.png)
 --
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_3.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_3.png)
 --
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_4.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_4.png)
 --
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_5.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_5.png)
 --
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_6.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_6.png)
 --
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_7.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_7.png)
 --
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_8.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_8.png)
 --
-![:img 60%, 10%, 20%](../figs/pd_terms/pd_terms_9.png)
-![:img 25%, 70%, 50%](../figs/cost_func_goal.png)
+![:img 60%, 10%, 20%](../Figs/pd_terms/pd_terms_9.png)
+![:img 25%, 70%, 50%](../Figs/cost_func_goal.png)
 
 
 ---
 # Preliminary Results (Lorenz System)
 
-![:img 80%, 10%, 25%](../figs/lorenz_paths/paths_1.png)
+![:img 80%, 10%, 25%](../Figs/lorenz_paths/paths_1.png)
 
 ???
 I generated preliminary results by precomputing the maximum persistence feature over a region of the parameter space of the lorenz system. 
@@ -529,26 +529,26 @@ We can also look at the persistence diagrams at different points along the path 
 I plan to augment the persistence differentiability map from before to study the differentiability of another map B' that maps the parameter space to time series signals. Numerical algorithms will be developed to numerically approximate the derivative of this map to allow for the full inverse problem to be solved and the optimal path to be obtained in the parameter space.
 
 --
-![:img 80%, 10%, 25%](../figs/lorenz_paths/paths_2.png)
+![:img 80%, 10%, 25%](../Figs/lorenz_paths/paths_2.png)
 --
-![:img 80%, 10%, 25%](../figs/lorenz_paths/paths_3.png)
+![:img 80%, 10%, 25%](../Figs/lorenz_paths/paths_3.png)
 --
-![:img 80%, 10%, 25%](../figs/lorenz_paths/paths_4.png)
+![:img 80%, 10%, 25%](../Figs/lorenz_paths/paths_4.png)
 --
-![:img 80%, 10%, 25%](../figs/lorenz_paths/paths_5.png)
+![:img 80%, 10%, 25%](../Figs/lorenz_paths/paths_5.png)
 --
-![:img 80%, 10%, 25%](../figs/lorenz_paths/paths_6.png)
+![:img 80%, 10%, 25%](../Figs/lorenz_paths/paths_6.png)
 --
-![:img 80%, 10%, 25%](../figs/lorenz_paths/paths_7.png)
+![:img 80%, 10%, 25%](../Figs/lorenz_paths/paths_7.png)
 --
-![:img 30%, 35%, 80%](../figs/ds_diff_eq.png)
+![:img 30%, 35%, 80%](../Figs/ds_diff_eq.png)
 
 
 
 ---
 # Differentiability of $B'$
 
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_1.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_1.png)
 
 ???
 More specifically, if we have a dynamical system parameter space here with 3 parameters a, b and c a point can be chosen in this space which corresponds to a specific point cloud in the state space from simulating the system. For this example the system is two dimensional but in general it can be m dimensional. 
@@ -565,33 +565,33 @@ My goal is to develop a numerical method to approximate the derivative of the ma
 The animation here shows how the persistence pair moves in the persistence diagram for the rossler system trajectory. As the parameter changes, the size of the attractor changes which agrees with the change in the persistence pair. In this case, using the maximum persistence feature would allow for optimally changing the rossler system parameters to reach a state with limited amplitude oscillations.
 
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_2.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_2.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_3.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_3.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_4.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_4.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_5.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_5.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_6.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_6.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_7.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_7.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_8.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_8.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_9.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_9.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_10.png)
-![:img 60%, 20%, 85%](../figs/paths_goal.png)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_10.png)
+![:img 60%, 20%, 85%](../Figs/paths_goal.png)
 --
-![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_white.png)
-![:img 80%, 10%, 20%](../figs/par_diff/morphing_trajectory.gif)
+![:img 95%, 2.5%, 25%](../Figs/par_diff/par_diff_white.png)
+![:img 80%, 10%, 20%](../Figs/par_diff/morphing_trajectory.gif)
 
 
 ---
 # Applications
 
-![:img 80%, 10%, 16%](../figs/path_apps/path_apps_1.png)
+![:img 80%, 10%, 16%](../Figs/path_apps/path_apps_1.png)
 
 ???
 There are many potential applications for optimal parameter space navigation. 
@@ -601,7 +601,7 @@ First, many medical applications such as studying epileptic seizures, electrical
 The main motivating application for this work was on hall effect thrusters so that will be my focus for experimental validation.
 
 --
-![:img 80%, 10%, 16%](../figs/path_apps/path_apps_2.png)
+![:img 80%, 10%, 16%](../Figs/path_apps/path_apps_2.png)
 
 .footnote[1. Nevado-Holgado, et al. Characterising the dynamics of EEG waveforms as the path through parameter space of a neural mass model: Application to epilepsy seizure evolution
 2. Erhardt, André Bifurcation Analysis of a Certain Hodgkin-Huxley Model Depending on Multiple Bifurcation Parameters 2018-06 Mathematics
@@ -609,19 +609,19 @@ The main motivating application for this work was on hall effect thrusters so th
 4. Hassona, Salama et al. Time series classification and creation of 2D bifurcation diagrams in nonlinear dynamical systems using supervised machine learning methods.
 ]
 --
-![:img 80%, 10%, 16%](../figs/path_apps/path_apps_3.png)
+![:img 80%, 10%, 16%](../Figs/path_apps/path_apps_3.png)
 --
-![:img 80%, 10%, 16%](../figs/path_apps/path_apps_4.png)
+![:img 80%, 10%, 16%](../Figs/path_apps/path_apps_4.png)
 --
-![:img 80%, 10%, 16%](../figs/path_apps/path_apps_5.png)
+![:img 80%, 10%, 16%](../Figs/path_apps/path_apps_5.png)
 --
-![:img 80%, 10%, 16%](../figs/path_apps/path_apps_6.png)
+![:img 80%, 10%, 16%](../Figs/path_apps/path_apps_6.png)
 
 
 ---
 # Hall Effect Thrusters
 
-![:img 80%, 10%, 20%](../figs/HET/het_1.png)
+![:img 80%, 10%, 20%](../Figs/HET/het_1.png)
 
 ???
 I will now give an overview of hall effect thrusters or HETs and motivate the need for parameter space navigation. 
@@ -641,26 +641,26 @@ I plan to experimentally validate my parameter space navigation tools on HET dat
 I will be working with AFRL researchers this summer in my internship specifically simulating and learning more about HETs. I am planning to collect data that my tools can be applied to for validation.
 
 --
-![:img 80%, 10%, 20%](../figs/HET/het_2.png)
+![:img 80%, 10%, 20%](../Figs/HET/het_2.png)
 --
-![:img 80%, 10%, 20%](../figs/HET/het_3.png)
+![:img 80%, 10%, 20%](../Figs/HET/het_3.png)
 --
-![:img 80%, 10%, 20%](../figs/HET/het_4.png)
+![:img 80%, 10%, 20%](../Figs/HET/het_4.png)
 --
-![:img 80%, 10%, 20%](../figs/HET/het_5.png)
+![:img 80%, 10%, 20%](../Figs/HET/het_5.png)
 --
-![:img 80%, 10%, 20%](../figs/HET/het_6.png)
+![:img 80%, 10%, 20%](../Figs/HET/het_6.png)
 --
-![:img 80%, 10%, 20%](../figs/HET/het_7.png)
+![:img 80%, 10%, 20%](../Figs/HET/het_7.png)
 --
-![:img 80%, 10%, 20%](../figs/HET/het_8.png)
+![:img 80%, 10%, 20%](../Figs/HET/het_8.png)
 --
-![:img 30%, 35%, 80%](../figs/HET/internship.png)
+![:img 30%, 35%, 80%](../Figs/HET/internship.png)
 
 ---
 # Data Assimilation
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_5.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_5.png)
 
 ???
 I will now present a proposed data assimilation framework through the lens of persistence optimization. 
@@ -668,7 +668,7 @@ I will now present a proposed data assimilation framework through the lens of pe
 ---
 # Classical Time Series Forecasting
 
-![:img 85%, 7.5%, 20%](../figs/fc_methods_1.png)
+![:img 85%, 7.5%, 20%](../Figs/fc_methods_1.png)
 
 ???
 Before we can discuss data assimilation, it is important to understand time series forecasting. There are many methods for doing this and here are some of the classical approaches. 
@@ -680,16 +680,16 @@ The moving average model learns the coefficients theta based on the average of t
 These two methods can be combined using the autoregressive moving average or ARMA model which learns both phi and theta coefficients simultaneously. 
 
 --
-![:img 85%, 7.5%, 20%](../figs/fc_methods_2.png)
+![:img 85%, 7.5%, 20%](../Figs/fc_methods_2.png)
 --
-![:img 85%, 7.5%, 20%](../figs/fc_methods_3.png)
+![:img 85%, 7.5%, 20%](../Figs/fc_methods_3.png)
 
 
 
 ---
 # Random Feature Map Forecasting
 
-![:img 85%, 7.5%, 16%](../figs/raf/raf_1.png)
+![:img 85%, 7.5%, 16%](../Figs/raf/raf_1.png)
 
 .footnote[Rahimi, A., & Recht, B. (2007). Random features for large-scale kernel machines. Advances in neural information processing systems, 20.]
 
@@ -703,26 +703,26 @@ The idea with random feature map forecasting is that we start in a D dimensional
 These feature vectors exist in a Dr dimensional space and the goal is to learn surrogate model coefficients W_LR in this space using linear ridge regression. These model coefficients form a map from the random feature space to the state space of the system and this map is then used to predict future system states. 
 
 --
-![:img 85%, 7.5%, 16%](../figs/raf/raf_2.png)
+![:img 85%, 7.5%, 16%](../Figs/raf/raf_2.png)
 --
-![:img 85%, 7.5%, 16%](../figs/raf/raf_3.png)
+![:img 85%, 7.5%, 16%](../Figs/raf/raf_3.png)
 --
-![:img 85%, 7.5%, 16%](../figs/raf/raf_4.png)
+![:img 85%, 7.5%, 16%](../Figs/raf/raf_4.png)
 --
-![:img 85%, 7.5%, 16%](../figs/raf/raf_5.png)
+![:img 85%, 7.5%, 16%](../Figs/raf/raf_5.png)
 --
-![:img 85%, 7.5%, 16%](../figs/raf/raf_6.png)
+![:img 85%, 7.5%, 16%](../Figs/raf/raf_6.png)
 --
-![:img 85%, 7.5%, 16%](../figs/raf/raf_7.png)
+![:img 85%, 7.5%, 16%](../Figs/raf/raf_7.png)
 --
-![:img 85%, 7.5%, 16%](../figs/raf/raf_8.png)
+![:img 85%, 7.5%, 16%](../Figs/raf/raf_8.png)
 
 
 
 ---
 # Random Feature Map Example
 
-![:img 80%, 10%, 18%](../figs/raf/raf_lorenz1.png)
+![:img 80%, 10%, 18%](../Figs/raf/raf_lorenz1.png)
 
 ???
 Here is an example of using random feature map forecasting on the chaotic lorenz system. I chose chaotic parameters for this example and used a reservoir dimension of 500 and sampled the random features from the uniform distributions shown. In general the forecast horizon will be dependent on these distributions and multiple widths should be tested. 
@@ -732,11 +732,11 @@ If I start the simulation, the forecast will begin when the green vertical line 
 The trajectory follows the true trajectory after the forecast begins but as expected begins to deviate over time. This is in the case where there is zero measurement noise. If there is measurement noise present the forecast ability decreases significantly.  
 
 --
-![:img 80%, 10%, 18%](../figs/raf/raf_lorenz2.png)
+![:img 80%, 10%, 18%](../Figs/raf/raf_lorenz2.png)
 --
-![:img 80%, 10%, 18%](../figs/raf/raf_lorenz3.png)
+![:img 80%, 10%, 18%](../Figs/raf/raf_lorenz3.png)
 --
-![:img 80%, 10%, 18%](../figs/raf/raf_forecasting.gif)
+![:img 80%, 10%, 18%](../Figs/raf/raf_forecasting.gif)
 
 
 
@@ -744,7 +744,7 @@ The trajectory follows the true trajectory after the forecast begins but as expe
 ---
 # Data Assimilation Overview
 
-![:img 65%, 18.5%, 20%](../figs/da/da1.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da1.png)
 
 ???
 To optimize the forecast horizon in the presence of measurement noise, a concept called data assimilation is used. With data assimilation it is assumed that there is a model for the system obtained from forecasting usually, and here is a plot of what the model result may look like. 
@@ -756,21 +756,21 @@ In data assimilation, the forecast results are updated based on the difference b
 To improve the estimation, the model is taken to be the optimal estimation and once a measurement is taken, the model result is updated to be closer to the true system state. As more measurements are taken, the estimation improves and you could imagine that for a high enough sampling rate this would essentially be a continuous curve.
 
 --
-![:img 65%, 18.5%, 20%](../figs/da/da2.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da2.png)
 --
-![:img 65%, 18.5%, 20%](../figs/da/da3.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da3.png)
 --
-![:img 65%, 18.5%, 20%](../figs/da/da4.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da4.png)
 --
-![:img 65%, 18.5%, 20%](../figs/da/da5.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da5.png)
 --
-![:img 65%, 18.5%, 20%](../figs/da/da6.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da6.png)
 --
-![:img 65%, 18.5%, 20%](../figs/da/da7.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da7.png)
 --
-![:img 65%, 18.5%, 20%](../figs/da/da8.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da8.png)
 --
-![:img 65%, 18.5%, 20%](../figs/da/da9.png)
+![:img 65%, 18.5%, 20%](../Figs/da/da9.png)
 
 
 
@@ -778,20 +778,20 @@ To improve the estimation, the model is taken to be the optimal estimation and o
 ---
 # Random Feature Maps and Data Assimilation (RAFDA)
 
-![:img 90%, 5%, 30%](../figs/raf/en_kf_1.png)
+![:img 90%, 5%, 30%](../Figs/raf/en_kf_1.png)
 
 .footnote[Gottwald, G. A., & Reich, S. (2021). Supervised learning from noisy observations: Combining machine-learning techniques with data assimilation. Physica D: Nonlinear Phenomena, 423, 132911.]
 
 --
-![:img 90%, 5%, 30%](../figs/raf/en_kf_2.png)
+![:img 90%, 5%, 30%](../Figs/raf/en_kf_2.png)
 --
-![:img 90%, 5%, 30%](../figs/raf/en_kf_3.png)
+![:img 90%, 5%, 30%](../Figs/raf/en_kf_3.png)
 --
-![:img 90%, 5%, 30%](../figs/raf/en_kf_4.png)
+![:img 90%, 5%, 30%](../Figs/raf/en_kf_4.png)
 --
-![:img 90%, 5%, 30%](../figs/raf/en_kf_5.png)
+![:img 90%, 5%, 30%](../Figs/raf/en_kf_5.png)
 --
-![:img 90%, 5%, 30%](../figs/raf/en_kf_6.png)
+![:img 90%, 5%, 30%](../Figs/raf/en_kf_6.png)
 
 ???
 Data assimilation has been applied to the random feature map forecasting model using an ensemble kalman filter. This method is called RAFDA or random feature maps and data assimilation. The algorithm starts with noisy observations of the system and performs random feature map forecasting to obtain a model. 
@@ -803,7 +803,7 @@ I will again point out that each step requires M samples to approximate noise st
 ---
 # Topological Data Assimilation
 
-![:img 95%, 2.5%, 30%](../figs/td_learning/td_learning_1.png)
+![:img 95%, 2.5%, 30%](../Figs/td_learning/td_learning_1.png)
 
 ???
 Another application of persistence optimization that we are actively working on utilizes the concept of data assimilation to optimally combine measured and model results. We plan to utilize machine learning to obtain models from measurement data and apply persistence optimization to obtain optimal weights for each signal for the next assimilation window. 
@@ -823,21 +823,21 @@ The new forecast makes up the analysis at the which is fed back into the loop to
 Specifically, my goal here is to perform data assimilation using the wasserstein distance between the model and expected persistence diagrams. 
 
 --
-![:img 95%, 2.5%, 30%](../figs/td_learning/td_learning_2.png)
+![:img 95%, 2.5%, 30%](../Figs/td_learning/td_learning_2.png)
 --
-![:img 95%, 2.5%, 30%](../figs/td_learning/td_learning_3.png)
+![:img 95%, 2.5%, 30%](../Figs/td_learning/td_learning_3.png)
 --
-![:img 95%, 2.5%, 30%](../figs/td_learning/td_learning_4.png)
+![:img 95%, 2.5%, 30%](../Figs/td_learning/td_learning_4.png)
 --
-![:img 95%, 2.5%, 30%](../figs/td_learning/td_learning_5.png)
+![:img 95%, 2.5%, 30%](../Figs/td_learning/td_learning_5.png)
 --
-![:img 95%, 2.5%, 30%](../figs/td_learning/td_learning_6.png)
+![:img 95%, 2.5%, 30%](../Figs/td_learning/td_learning_6.png)
 --
-![:img 95%, 2.5%, 30%](../figs/td_learning/td_learning_7.png)
+![:img 95%, 2.5%, 30%](../Figs/td_learning/td_learning_7.png)
 --
-![:img 95%, 2.5%, 30%](../figs/td_learning/td_learning_8.png)
+![:img 95%, 2.5%, 30%](../Figs/td_learning/td_learning_8.png)
 --
-![:img 45%, 27.5%, 80%](../figs/td_learning/td_learning_goal.png)
+![:img 45%, 27.5%, 80%](../Figs/td_learning/td_learning_goal.png)
 
 ---
 # Preliminary Results (Target Persistence Diagrams)
@@ -846,7 +846,7 @@ Specifically, my goal here is to perform data assimilation using the wasserstein
 - $PD_m\equiv$ Measured Persistence Diagram
 - $PD_t\equiv$ Target Persistence Diagram 
 
-![:img 80%, 10%, 40%](../figs/pd_opt_w_dist_0.png)
+![:img 80%, 10%, 40%](../Figs/pd_opt_w_dist_0.png)
 
 ???
 Here I will show an example of using persistence optimization with the wasserstein distance as preliminary results. If we start with this point cloud and imagine that it is the model forecast with the 1D persistence diagram consisting of the red points. 
@@ -862,18 +862,18 @@ While the persistence diagrams do not exactly match here, the optimization still
 This process learns the most significant topological features for the point cloud from the target persistence diagram but avoids overfitting by finding a local minimum in the cost function instead of the global minimum at zero. These results suggest that this method will be successful in a data assimilation framework because the noise will be effectively filtered from the observations. 
 
 --
-![:img 80%, 10%, 40%](../figs/pd_opt_w_dist.gif)
+![:img 80%, 10%, 40%](../Figs/pd_opt_w_dist.gif)
 --
-![:img 80%, 10%, 40%](../figs/pd_opt_w_dist_noise_0.png)
+![:img 80%, 10%, 40%](../Figs/pd_opt_w_dist_noise_0.png)
 --
-![:img 80%, 10%, 40%](../figs/pd_opt_w_dist_noise.gif)
+![:img 80%, 10%, 40%](../Figs/pd_opt_w_dist_noise.gif)
 
 
 
 ---
 # Time Series Representations
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_6.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_6.png)
 
 ???
 In many engineering problems, it is only possible to measure one state of the system. For example only having the ability to directly measure angular frequency of a pendulum. For chapter two of my talk, I will discuss advancements I have contributed to in the area of estimating time series embedding parameters and time series network representations using TDA. 
@@ -896,7 +896,7 @@ Here are my relevant publications for this chapter.
 ---
 # Takens Embedding
 
-![:img 80%, 10%, 20%](../figs/takens3d.gif)
+![:img 80%, 10%, 20%](../Figs/takens3d.gif)
 
 ???
 In the case where only one state of a system can be measured, the standard practice is to apply a Takens delay embedding to attempt to reconstruct the full attractor. The way it works is a delay and dimension are chosen and the delayed states are used to represent the unmeasured states of the system. In this example here the dimension is 3 so we take the signal at time t, t+tau and t+2tau and plot those coordinates in 3D space. 
@@ -908,9 +908,9 @@ If the chosen delay is too small, the reconstructed attractor will not have the 
 ---
 # Classical Embedding Delay Selection
 
-![:img 70%, 15%, 30%](../figs/delay_methods.png)
+![:img 70%, 15%, 30%](../Figs/delay_methods.png)
 <!-- -- -->
-<!-- ![:img 70%, 15%, 55%](../figs/dimension_methods.png) -->
+<!-- ![:img 70%, 15%, 55%](../Figs/dimension_methods.png) -->
 
 ???
 Many methods have been developed to automatically select a delay from a given time series such as the first minimum of the average mutual information. However, these methods are not guaranteed to work and it may be difficult to choose thresholds and hyperparameters to get an optimal delay. 
@@ -918,7 +918,7 @@ Many methods have been developed to automatically select a delay from a given ti
 ---
 # Embedding Parameter Estimation
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_7.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_7.png)
 
 ???
 This leads to my work on embedding delay estimation for attractor reconstruction where I will present two novel approaches for delay estimation using TDA.
@@ -926,7 +926,7 @@ This leads to my work on embedding delay estimation for attractor reconstruction
 ---
 # Sublevel Persistence
 
-![:img 80%, 10%, 20%](../figs/sublevel_1d.gif)
+![:img 80%, 10%, 20%](../Figs/sublevel_1d.gif)
 
 ???
 The methods for this section require using sublevel persistent homology but on a 1 dimensional signal this time. I am showing an animation of how this works in one dimension here for completeness but it is the exact same concept as the image but we can only consider 0D persistence for a 1D signal. 
@@ -934,7 +934,7 @@ The methods for this section require using sublevel persistent homology but on a
 ---
 # Time Domain Approach
 
-![:img 60%, 20%, 20%](../figs/tda_delay_periodic.png)
+![:img 60%, 20%, 20%](../Figs/tda_delay_periodic.png)
 
 ???
 My first approach utilizes the time domain signal where I compute 0D sublevel persistence and obtain the time ordered lifetimes or death minus birth values from the persistence diagram. The times between adjacent lifetimes are labeled as Tbi. 
@@ -944,12 +944,12 @@ The associated frequencies for the system can be computed by the reciprocals of 
 For a chaotic signal it is much more difficult to determine the significant frequencies. To automate the process when the signal is chaotic or if noise is present, the 75% quantile of the frequency distribution is taken to allow for some outliers and the delay is taken to be the reciprocal of that frequency. 
 
 --
-![:img 60%, 20%, 20%](../figs/tda_delay_chaotic.png)
+![:img 60%, 20%, 20%](../Figs/tda_delay_chaotic.png)
 
 ---
 # Results (Rossler)
 
-![:img 90%, 5%, 25%](../figs/periodic_rossler_to_SL_for_delay.png)
+![:img 90%, 5%, 25%](../Figs/periodic_rossler_to_SL_for_delay.png)
 
 ???
 Here are some results from the time domain approach. Using the periodic and chaotic rossler system this method gives a delay of 23 and the suggested delay for this system in the literature is 9. The delay of 23 gives a more optimal attractor reconstruction whereas the smaller delay is skewed along the diagonal. 
@@ -957,7 +957,7 @@ Here are some results from the time domain approach. Using the periodic and chao
 ---
 # Frequency Domain Approach
 
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_1.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_1.png)
 
 ???
 For the second method, I took a frequency domain approach. Starting with a time series the fourier transform is computed along with the 0D sublevel persistence. In order to filter noise here, I use a modified z-score method to filter outliers. 
@@ -971,31 +971,31 @@ Outliers can then be removed from the data by thresholding the modified z-score.
 Once the outliers are filtered using the cutoff z score the maximum significant frquency is taken at this cutoff in the fft and the delay is computed from this frequency. 
 
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_2.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_2.png)
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_3.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_3.png)
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_4.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_4.png)
 
 .footnote[Iglewicz, B., & Hoaglin, D. (1993). Volume 16: how to detect and handle outliers, The ASQC basic references in quality control: statistical techniques, Edward F. Mykytka (Doctoral dissertation, Ph. D., Editor).]
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_5.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_5.png)
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_6.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_6.png)
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_7.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_7.png)
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_8.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_8.png)
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_9.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_9.png)
 --
-![:img 80%, 10%, 20%](../figs/0d_procedure/0d_procedure_10.png)
+![:img 80%, 10%, 20%](../Figs/0d_procedure/0d_procedure_10.png)
 
 
 ---
 # Robustness to Noise and Signal Length
 
-![:img 40%, 5%, 30%](../figs/SNR_sweep_tau_methods_rossler_periodic.png)
+![:img 40%, 5%, 30%](../Figs/SNR_sweep_tau_methods_rossler_periodic.png)
 
 ???
 Here is a plot to demonstrate the noise robustness of these methods compared to mutual information. In practice I found that the frequency domain method tended to underestimate the delay but in general the methods are robust down to a signal to noise ratio of approximately 10 db which is a high level of noise. 
@@ -1003,7 +1003,7 @@ Here is a plot to demonstrate the noise robustness of these methods compared to 
 I also tested the methods with respect to signal length. While the delay using frequency domain method seems to oscillate it follows the mutual information method. The time domain method is highly robust to signal length after about 300 data points.
 
 --
-![:img 40%, 50%, 30%](../figs/L_sweep_tau_methods_rossler_periodic.png)
+![:img 40%, 50%, 30%](../Figs/L_sweep_tau_methods_rossler_periodic.png)
 
 
 
@@ -1011,7 +1011,7 @@ I also tested the methods with respect to signal length. While the delay using f
 ---
 # Coarse-Grained State Space Network
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_8.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_8.png)
 
 ???
 For my final method I will show how I used persistent homology to perform dynamic state detection on network representations of time series signals. 
@@ -1022,15 +1022,15 @@ For my final method I will show how I used persistent homology to perform dynami
 # Pipeline
 
 
-![:img 90%, 5%, 30%](../figs/cg_pipeline/pipeline1.png)
+![:img 90%, 5%, 30%](../Figs/cg_pipeline/pipeline1.png)
 --
-![:img 90%, 5%, 30%](../figs/cg_pipeline/pipeline2.png)
+![:img 90%, 5%, 30%](../Figs/cg_pipeline/pipeline2.png)
 --
-![:img 90%, 5%, 30%](../figs/cg_pipeline/pipeline3.png)
+![:img 90%, 5%, 30%](../Figs/cg_pipeline/pipeline3.png)
 --
-![:img 90%, 5%, 30%](../figs/cg_pipeline/pipeline4.png)
+![:img 90%, 5%, 30%](../Figs/cg_pipeline/pipeline4.png)
 --
-![:img 90%, 5%, 30%](../figs/cg_pipeline/pipeline5.png)
+![:img 90%, 5%, 30%](../Figs/cg_pipeline/pipeline5.png)
 
 ???
 When analyzing a timeseries, many times it is easy for a human to distinguish a periodic signal from a chaotic one. However, characterizing these states automatically can be computationally expensive. A common approach for improving the efficiency of this process is to represent the timeseries as a network.  
@@ -1043,7 +1043,7 @@ My goal was to study the topology of the coarse grained state space network for 
 
 # Motivation - Ordinal Partition Networks (OPN)
 
-![:img 70%, 15%, 30%](../figs/opn_basic_sliding.gif)
+![:img 70%, 15%, 30%](../Figs/opn_basic_sliding.gif)
 
 ???
 I will start by showing the ordinal partition network to motivate the need for the coarse grained state space network. The ordinal partition network or OPN for a timeseries signal is generated by setting a permutation dimension and delay to study the sequence of permutations as the signal is traversed. 
@@ -1053,7 +1053,7 @@ In this case the permutation dimension is 3 so there are 3 factorial or 6 possib
 ---
 # Motivation - Undesired Transitions
 
-![:img 60%, 20%, 22%](../figs/undesired_transitions.png)
+![:img 60%, 20%, 22%](../Figs/undesired_transitions.png)
 
 ???
 Ordinal partition networks can be susceptible to noise. If the signal is close to the hyper diagonal at any point in the trajectory and noise is added to the system there can be undesired state transitions in the permutation sequence that drastically alter the resulting network. 
@@ -1061,7 +1061,7 @@ Ordinal partition networks can be susceptible to noise. If the signal is close t
 ---
 # Coarse-grained State Space Networks (CGSSN)
 
-![:img 90%, 5%, 30%](../figs/CGSSN_2d_example_cycle.gif)
+![:img 90%, 5%, 30%](../Figs/CGSSN_2d_example_cycle.gif)
 
 ???
 The coarse-grained state space or CGSSN method mitigates this issue by binning the state space into hypercubes and taking each hypercube to be a state in the network. 
@@ -1072,7 +1072,7 @@ Here is the coarse grained state space network generation for a simple sine wave
 
 # Network Formulation
 
-![:img 80%, 10%, 20%](../figs/network/network_1.png)
+![:img 80%, 10%, 20%](../Figs/network/network_1.png)
 
 ???
 Mathematically speaking, to formulate these networks I will start with the timeseries signal and choose a permutation delay and dimension using automatic methods from attractor reconstruction. 
@@ -1082,19 +1082,19 @@ For ordinal partition networks the relative ordering of the permutation nodes ar
 For CGSSNs, with the same permutation group and the outputs of the signal at these points are binned. The heights of the permutation nodes are mapped into these bins to determine the state vector and the state identifier is then computed by digitizing the state vector. In this case we are in state 172.
 
 --
-![:img 80%, 10%, 20%](../figs/network/network_2.png)
+![:img 80%, 10%, 20%](../Figs/network/network_2.png)
 --
-![:img 80%, 10%, 20%](../figs/network/network_3.png)
+![:img 80%, 10%, 20%](../Figs/network/network_3.png)
 --
-![:img 80%, 10%, 20%](../figs/network/network_4.png)
+![:img 80%, 10%, 20%](../Figs/network/network_4.png)
 --
-![:img 80%, 10%, 20%](../figs/network/network_5.png)
+![:img 80%, 10%, 20%](../Figs/network/network_5.png)
 --
-![:img 80%, 10%, 20%](../figs/network/network_6.png)
+![:img 80%, 10%, 20%](../Figs/network/network_6.png)
 --
-![:img 80%, 10%, 20%](../figs/network/network_7.png)
+![:img 80%, 10%, 20%](../Figs/network/network_7.png)
 --
-![:img 80%, 10%, 20%](../figs/network/network_8.png)
+![:img 80%, 10%, 20%](../Figs/network/network_8.png)
 
 <!-- the multiscale permutation entropy method and dimension using the false nearest neighbors method to slide across the signal. -->
 
@@ -1122,9 +1122,9 @@ In other words it is more difficult to obtain state transitions that drastically
 
 --
 
-![:img 65%, 35%, 20%](../figs/rossler_5.png)
+![:img 65%, 35%, 20%](../Figs/rossler_5.png)
 --
-![:img 65%, 35%, 20%](../figs/rossler_6.png)
+![:img 65%, 35%, 20%](../Figs/rossler_6.png)
 
 
 
@@ -1134,7 +1134,7 @@ In other words it is more difficult to obtain state transitions that drastically
 
 # Sine Wave Example
 
-![:img 70%, 15%, 20%](../figs/cgssn_pd_example.png)
+![:img 70%, 15%, 20%](../Figs/cgssn_pd_example.png)
 
 ???
 Once the network is obtained, the distance matrix is computed and used for computing persistence. Here is an example of the full pipeline applied to the sine wave. 
@@ -1145,19 +1145,19 @@ There is a single prominent loop in the persistence diagram which means that the
 ---
 # Empirical Testing of 23 Dynamical Systems
 
-![:img 80%, 10%, 75%](../figs/cgssn_testing/procedure_1.png)
+![:img 80%, 10%, 75%](../Figs/cgssn_testing/procedure_1.png)
 --
-![:img 80%, 10%, 75%](../figs/cgssn_testing/procedure_2.png)
+![:img 80%, 10%, 75%](../Figs/cgssn_testing/procedure_2.png)
 --
-![:img 80%, 10%, 75%](../figs/cgssn_testing/procedure_3.png)
+![:img 80%, 10%, 75%](../Figs/cgssn_testing/procedure_3.png)
 --
-![:img 80%, 10%, 75%](../figs/cgssn_testing/procedure_4.png)
+![:img 80%, 10%, 75%](../Figs/cgssn_testing/procedure_4.png)
 
 --
-![:img 54%, 23%, 20%](../figs/cgssn_testing/mds_1.png)
+![:img 54%, 23%, 20%](../Figs/cgssn_testing/mds_1.png)
 
 --
-![:img 54%, 23%, 20%](../figs/cgssn_testing/mds_2.png)
+![:img 54%, 23%, 20%](../Figs/cgssn_testing/mds_2.png)
 
 ???
 I tested this approach on 23 continuous dynamical systems using a machine learning pipeline. 
@@ -1177,15 +1177,15 @@ Using the diffusion distance on ordinal partition networks I get the classificat
 count: true
 # Experimental Results - Periodic
 
-![:img 25%, 10%, 20%](../figs/periodic_vid.gif)
+![:img 25%, 10%, 20%](../Figs/periodic_vid.gif)
 
 ???
 I also generated CGSSN results using experimental data from a magnetic pendulum. In the periodic case we see the resulting network gives a single loop and the persistence diagrams reflect the large loop. 
 
 --
-![:img 30%, 5%, 70%](../figs/periodic_ts.png)
+![:img 30%, 5%, 70%](../Figs/periodic_ts.png)
 --
-![:img 60%, 37%, 25%](../figs/magnetic_pendulum_periodic.png)
+![:img 60%, 37%, 25%](../Figs/magnetic_pendulum_periodic.png)
 
 .footnote[Myers, Audun, and Firas A. Khasawneh. "Dynamic State Analysis of a Driven Magnetic Pendulum Using Ordinal Partition Networks and Topological Data Analysis." ]
 
@@ -1195,22 +1195,22 @@ I also generated CGSSN results using experimental data from a magnetic pendulum.
 count: false
 # Experimental Results - Chaotic
 
-![:img 25%, 10%, 20%](../figs/chaotic_vid.gif)
+![:img 25%, 10%, 20%](../Figs/chaotic_vid.gif)
 
 ???
 For the chaotic dynamics, the network is much more tangled and the persistence diagrams contain many loops indicating that the signal is chaotic. 
 
 --
-![:img 30%, 5%, 70%](../figs/chaotic_ts.png)
+![:img 30%, 5%, 70%](../Figs/chaotic_ts.png)
 --
-![:img 60%, 37%, 25%](../figs/magnetic_pendulum_chaotic.png)
+![:img 60%, 37%, 25%](../Figs/magnetic_pendulum_chaotic.png)
 
 .footnote[Myers, Audun, and Firas A. Khasawneh. "Dynamic State Analysis of a Driven Magnetic Pendulum Using Ordinal Partition Networks and Topological Data Analysis." ]
 
 ---
 # Texture Analysis
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_9.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_9.png)
 
 ???
 Now I will breifly show some of my other work that I did not have time to present today. The first project is performing texture analysis using TDA. 
@@ -1233,7 +1233,7 @@ Here are my publications on this work.
 ---
 # Texture Analysis Overview
 
-![:img 70%, 15%, 20%](../figs/textures_overview.png)
+![:img 70%, 15%, 20%](../Figs/textures_overview.png)
 
 ???
 I was given data from a manufacturing process called piezo vibration striking treatment where a texture is intentionally produced on a surface to improve its mechanical properties. 
@@ -1244,7 +1244,7 @@ I analyzed the PVST scans using TDA to quantify three different features of the 
 ---
 # Metabolic Oscillations
 
-![:img 95%, 2.5%, 20%](../figs/roadmaps/roadmap_10.png)
+![:img 95%, 2.5%, 20%](../Figs/roadmaps/roadmap_10.png)
 
 ???
 The last project I will discuss is my work on a nonlinear delay model for metabolic oscillations in yeast cells.  
@@ -1264,7 +1264,7 @@ Here is my paper introducing the model.
 ---
 # Metabolic Oscillations
 
-![:img 80%, 10%, 20%](../figs/1ptn_outline.png)
+![:img 80%, 10%, 20%](../Figs/1ptn_outline.png)
 
 ???
 When cells are starved of resources, it has been observed experimentally that the protein production rates will oscillate in approximately 40 minute intervals. I developed a time delay framework for modeling metabolic oscillations in yeast cells and analyzed the model using three numerical approaches to find parameters that resulted in a limit cycle. 
@@ -1273,13 +1273,13 @@ I also extended the model to include three coupled proteins and used the same me
 
 
 --
-![:img 80%, 10%, 20%](../figs/3ptn_outline.png)
+![:img 80%, 10%, 20%](../Figs/3ptn_outline.png)
 
 ---
 count: false
 # Metabolic Oscillations
 
-![:img 95%, 2.5%, 20%](../figs/signals.gif)
+![:img 95%, 2.5%, 20%](../Figs/signals.gif)
 
 ???
 I do not have time to show more results from this project, but one of the most significant results came from the 3 protein model where if the cell is starved of resources the oscillation peaks did not occur at the same time which I believe could be a more efficient use of resources for the cell. 
@@ -1292,7 +1292,7 @@ I do not have time to show more results from this project, but one of the most s
 ---
 # Thank you! 
 
-![:img 55%, 35%, 6%](../figs/teaspoon.png)
+![:img 55%, 35%, 6%](../Figs/teaspoon.png)
 
 Max Chumley</br>chumleym@msu.edu
 
