@@ -25,4 +25,4 @@ tags:
 
 ### Posters
 - [DISC 2023 Poster](/assets/pdfs/Chumley_DISC2023_Poster.pdf){:target="_blank"}
-- [test](/xaringan_template/xaringan/slides/xaringan_template.html){:target="_blank"}
+- [test](/comprehensive_exam/xaringan/slides/oral_presentation.html){:target="_blank"}
