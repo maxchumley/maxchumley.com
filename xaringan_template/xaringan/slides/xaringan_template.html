@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Xaringan Template</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Max Chumley   —   Mechanical Engineering  —  Michigan State University   —" />
+    <meta name="date" content="2024-03-14" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url(https://upload.wikimedia.org/wikipedia/en/5/53/Michigan_State_University_seal.svg)
+background-position: 10% 95%
+background-size: 12%
+class: inverse left top
+
+# Title
+
+### **Name** &lt;br&gt; &amp;mdash; &lt;br&gt; Mechanical Engineering&lt;br&gt;&lt;br&gt;Computational Mathematics&lt;br&gt;Science and Engineering&lt;br&gt; &amp;mdash;&lt;br&gt; Michigan State University
+
+### Date: 2-16-24
+
+&lt;!-- ------------------------------------------------------- --&gt;
+&lt;!-- DO NOT REMOVE --&gt;
+
+&lt;!-- ------------------------------------------------------- --&gt;
+
+
+&lt;!-- SET TITLE IMAGES HERE -- NOTE: :img takes 3 arguments: (width, left, top) to position the graphic.--&gt;
+![:img 65%, 35%, 20%](../Figs/white_block.png)
+![:img 55%, 40%, 35%](../Figs/title_graphic.gif)
+
+???
+Title Script
+
+---
+# Acknowledgements 
+
+![:img 60%, 20%, 15%](../../people/people.png)
+
+???
+Script: 
+I would like to start by thanking the air force office of  scientific research for funding this project. I would also like to thank my collaborators ...
+
+---
+
+# Animation Example
+
+&lt;!-- ![:img 80%, 10%, 15%](../figs/no_signals.gif) --&gt;
+
+![:img 80%, 10%, 25%](../Figs/sl_animation.mp4)
+
+???
+Script: 
+An essential component in living cells is the ability to make proteins for the organism. This mainly occurs through protein synthesis in the cell where a pool of ribosomes utilize resources in the cell and traverse the messenger ribonucleic acid or mRNA strands. These strands contain the necessary code for synthesizing a protein and the ribosomes read this code to make the protein as the mRNA is traversed. 
+
+It has been observed in experimental settings that when the cell is starved of resources it will exhibit metabolic cycling where the protein production rates oscillate. 
+
+We aimed to model this process as a time delay system due to the metabolic cycling process taking approximately 40 minutes in experiments. 
+
+This animation demonstrates ribosomes traversing the mRNA for three proteins and when they reach the end the protein is produced.
+
+
+---
+# Clicky Example
+
+![:img 85%, 7.5%, 20%](../Figs/1ptn_outline.png)
+--
+    
+![:img 85%, 7.5%, 20%](../Figs/3ptn_outline.png)
+
+???
+Script: 
+Here is an outline for my talk today. I will show how we obtained a single protein model and show the three methods that we used for searching for limit cycles in this system.
+
+I will then show how we extended the model to include three coupled proteins with a shared resource pool and apply the same methods for analysis.
+
+---
+class: left
+# Bulleted List Example
+
+- Ribosome Initiation: `\(\mu(t)=f(p(t))R(t)\)`
+
+--
+
+![:img 30%, 60%, 15%](../figs/hill.png)
+
+- Hill Function: `\(f(x)=\frac{x^n}{\kappa^n+x^n}\)`
+
+--
+
+- `\(\dot{p}(t) = B\mu(t-\tau) - Dp(t)\)`
+
+--
+
+- `\(R(t) = R_T - A\int_{t-\tau}^t\mu(s)ds\)` `\(^1\)`
+
+.footnote[1.L. M. y Ter ́an-Romero, M. Silber, and V. Hatzimanikatis, “The origins of time-delay in template biopolymeriza-
+tion processes,” PLoS Computational Biology, vol. 6, p. e1000726, apr 2010]
+--
+
+- `\(\dot{R}(t) = A(f(p(t-\tau))R(t-\tau) - f(p(t))R(t))\)`
+
+--
+
+Single Protein System:
+`\begin{align}
+  \dot{p}(t) &amp;= Bf(p(t-\tau))R(t-\tau) - Dp(t),\\
+  \dot{R}(t) &amp;= A(f(p(t-\tau))R(t-\tau) - f(p(t))R(t))
+\end{align}`
+
+???
+Script: 
+We will now discuss how we obtained our model for this system. 
+The rate of ribosome initiation is the product of the activator the f(p(t)) term and the processing  molecule or resource R(t). The activator is a hill function where if the input is sufficiently large its value approaches one and it is close to zero if the input is close to zero. The hill function parameters change the rate of initiation for the activation.  
+
+The rate of protein production is then proportional to the initiation at some time tau seconds in the past where the delay is the required time for protein synthesis. The parameter B is the growth rate and we also include the decay term here with decay rate D.
+
+The total resource equation has been suggested as this equation where the resource at any time t is given by the total resource minus the integral of the initiation over the production time tau. 
+
+Differentiating this expression and using the initiation definition gives the second equation in our model and we write the single protein system as these two equations. 
+
+
+---
+# Thank you! Any questions?
+
+![:img 70%, 15%, 20%](../figs/3ptn_outline.png)
+
+&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
+**M. M. Chumley**, F. A. Khasawneh, A. Otto, and T. Gedeon, “A Nonlinear Delay Model for Metabolic Oscillations in Yeast Cells,” 2023.
+(arxiv.org/abs/2305.07643)
+
+???
+Script: 
+Thank you for your time, are there any questions?
+
+
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
