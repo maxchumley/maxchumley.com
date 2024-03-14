@@ -42,8 +42,8 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 
 <!-- SET TITLE IMAGES HERE -- NOTE: :img takes 3 arguments: (width, left, top) to position the graphic.-->
-![:img 65%, 35%, 20%](../Figs/white_block.png)
-![:img 55%, 40%, 35%](../Figs/title_graphic.gif)
+![:img 65%, 35%, 20%](../figs/white_block.png)
+![:img 55%, 40%, 35%](../figs/title_graphic.gif)
 
 ???
 Title Script
@@ -63,7 +63,7 @@ I would like to start by thanking the air force office of  scientific research f
 
 <!-- ![:img 80%, 10%, 15%](../figs/no_signals.gif) -->
 
-![:img 80%, 10%, 25%](../Figs/sl_animation.mp4)
+![:img 80%, 10%, 25%](../figs/sl_animation.mp4)
 
 ???
 Script: 
@@ -79,10 +79,10 @@ This animation demonstrates ribosomes traversing the mRNA for three proteins and
 ---
 # Clicky Example
 
-![:img 85%, 7.5%, 20%](../Figs/1ptn_outline.png)
+![:img 85%, 7.5%, 20%](../figs/1ptn_outline.png)
 --
     
-![:img 85%, 7.5%, 20%](../Figs/3ptn_outline.png)
+![:img 85%, 7.5%, 20%](../figs/3ptn_outline.png)
 
 ???
 Script: 
