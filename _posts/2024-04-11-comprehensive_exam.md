@@ -2,7 +2,7 @@
 title: Comprehensive Examination
 layout: post
 post-image: /assets/images/comps_roadmap.png
-description: I passed my comprehensive examination on 4/11/24 and officially I am a Ph.D. candidate!
+description: I passed my comprehensive examination on 4/11/24 and I am officially a Ph.D. candidate!
 tags:
 - Comprehensive examination
 - Candidacy examination
