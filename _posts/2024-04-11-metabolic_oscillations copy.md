@@ -1,7 +1,7 @@
 ---
 title: Comprehensive Examination
 layout: post
-post-image: /assets/html/comprehensive_examination/xaringan/Figs/morphing_trajectory.gif
+post-image: /assets/images/comps_roadmap.png
 description: I passed my comprehensive examination on 4/11/24 and officially I am a Ph.D. candidate!
 tags:
 - Comprehensive examination
@@ -10,7 +10,7 @@ tags:
 
 ## <u>Comprehensive Examination</u>
 
-**Max M. Chumley**
+### **Max M. Chumley**
 
 ### Committee: **Firas Khasawneh**, **Elizabeth Munch**, **Brian Feeny**, **Hamidreza Modares**, **Mengsen Zhang**
 
