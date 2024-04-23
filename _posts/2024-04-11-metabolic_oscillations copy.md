@@ -8,7 +8,7 @@ tags:
 - Candidacy examination
 ---
 
-## <u>Comprehensive Examination</u>
+## <u>Leveraging Differentiation of Persistence Diagrams for Parameter Space Optimization and Data Assimilation</u>
 
 ### **Max M. Chumley**
 
@@ -16,5 +16,5 @@ tags:
 
 ### Documents
 - [Slides (Chrome recommended)](/assets/html/comprehensive_examination/xaringan/slides/comprehensive_examination.html){:target="_blank"}
-- [Written](/assets/html/comprehensive_examination/chumley_comprehensive_exam.pdf){:target="_blank"}
+- [Written](/assets/pdfs/chumley_comprehensive_exam.pdf){:target="_blank"}
 
