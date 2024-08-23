@@ -71,3 +71,7 @@ build-iPhoneSimulator/
 
 # End of https://www.toptal.com/developers/gitignore/api/jekyll,ruby
 .DS_Store
+.DS_Store
+assets/.DS_Store
+assets/html/.DS_Store
+SIAM-GL_CGSSN_2023/.DS_Store
