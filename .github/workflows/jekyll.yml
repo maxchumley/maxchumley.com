@@ -52,51 +52,34 @@ jobs:
   #       uses: actions/upload-pages-artifact@v3
     # Build job
   build:
-    runs-on: ubuntu-latest  # Change if using a self-hosted runner
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
 
-      # Install dependencies needed for Ruby
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+        - name: Fix Ruby Permissions
+          run: sudo chown -R $USER:$USER /opt/hostedtoolcache/Ruby/3.1.4/x64 || true
 
-      # Install ruby-build and use it to install Ruby manually
-      - name: Install Ruby manually
-        run: |
-          sudo mkdir -p /opt/hostedtoolcache/Ruby/3.1.4/x64
-          git clone https://github.com/rbenv/ruby-build.git
-          cd ruby-build
-          sudo ./install.sh
-          sudo ruby-build 3.1.4 /opt/hostedtoolcache/Ruby/3.1.4/x64
-          sudo touch /opt/hostedtoolcache/Ruby/3.1.4/x64.complete
+        - name: Set Local Gem Path
+          run: |
+            mkdir -p ~/.gem
+            echo 'export GEM_HOME="$HOME/.gem"' >> ~/.bashrc
+            echo 'export PATH="$HOME/.gem/bin:$PATH"' >> ~/.bashrc
+            source ~/.bashrc
 
-      # Ensure the installed Ruby version is used
-      - name: Set Ruby Path
-        run: echo "/opt/hostedtoolcache/Ruby/3.1.4/x64/bin" >> $GITHUB_PATH
+        - name: Setup Ruby
+          uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: '3.1'
+            bundler-cache: true
 
-      # Verify Ruby installation
-      - name: Verify Ruby Installation
-        run: ruby -v
+        - name: Install Bundler Dependencies
+          run: bundle install --path ~/.gem
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@8575951200e472d5f2d95c625da0c7bec8217c42 # v1.161.0
-        with:
-          ruby-version: '3.1' # Not needed with a .ruby-version file
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          cache-version: 0 # Increment this number if you need to re-download cached gems
-
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-        env:
-          JEKYLL_ENV: production
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        - name: Build with Jekyll
+          run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+          env:
+            JEKYLL_ENV: production
 
   # Deployment job
   deploy:
