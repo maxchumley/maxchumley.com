@@ -2,10 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Paper coming soon</title>
+  <title>Redirecting…</title>
+
+  <script>
+    // 🔴 ONLY CHANGE THIS LINE when your paper is live
+    const target = "https://arxiv.org/abs/XXXX.XXXXX";
+
+    // If you’ve set a real URL, redirect
+    if (!target.includes("XXXX")) {
+      window.location.replace(target);
+    }
+  </script>
 </head>
 <body>
   <h1>Preprint coming soon</h1>
   <p>This QR code will redirect to the arXiv paper once it is posted.</p>
+
+  <p id="fallback"></p>
+
+  <script>
+    const target = "https://arxiv.org/abs/XXXX.XXXXX";
+    if (!target.includes("XXXX")) {
+      document.getElementById("fallback").innerHTML =
+        'If you are not redirected, <a href="' + target + '">click here</a>.';
+    }
+  </script>
 </body>
 </html>
