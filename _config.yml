@@ -22,7 +22,7 @@ favicon-url: /assets/images/favicon_initials.png
 
 # URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
 heroimage: /assets/images/basin_new.png
-heroimage-mobile: /assets/images/basin_new_mobile.png
+heroimage-mobile: /assets/images/basin_new.png
 
 # Social Media and Contact
 # If you don't want to use any icon, you can leave them blank.

@@ -65,12 +65,13 @@ a.navbar-item.is-active {
 }
 
 @media (max-width: 768px) {
+    #hero {
+        min-height: 100svh;
+    }
+
     #hero::before {
-        background-image: url({{site.heroimage-mobile}});
-        background-position: center center;
-        background-size: cover;
         background-attachment: scroll;
-        filter: none;
+        min-height: 100svh;
     }
 }
 
