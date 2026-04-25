@@ -64,9 +64,9 @@ a.navbar-item.is-active {
 
 @media (max-width: 768px) {
     #hero::before {
-        /* Show the full hero image on mobile instead of cropping into it. */
-        background-position: center top;
-        background-size: contain;
+        background-image: url({{site.heroimage-mobile}});
+        background-position: center center;
+        background-size: cover;
         background-attachment: scroll;
     }
 }
