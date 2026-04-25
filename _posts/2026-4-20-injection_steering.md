@@ -15,6 +15,11 @@ tags:
 ### Publications
 - [arXiv Version](https://arxiv.org/abs/2604.17678){:target="_blank"}
 
+### Python Library
+
+Object-oriented library for efficiently simulating and stability analysis of delay coupled VCSEL arrays.
+
+- [vcsel_lib](https://github.com/maxchumley/vcsel_lib){:target="_blank"}
 
 ### Documents
 - [Poster](/assets/pdfs/MURI_Review_Poster.pdf){:target="_blank"}
