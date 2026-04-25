@@ -61,6 +61,14 @@ a.navbar-item.is-active {
         content: "";
     }
 }
+
+@media (max-width: 768px) {
+    #hero::before {
+        /* Keep cover behavior, but shift focal point for narrower screens. */
+        background-position: center 30%;
+    }
+}
+
 .title {
     margin: auto 0.75rem!important;
 }
