@@ -18,4 +18,4 @@ tags:
 
 
 ### Documents
-- [SIAM DS 2025 Slides (Chrome recommended)](/assets/html/Chumley_SIAM_DS_2025/xaringan/slides/comprehensive_examination.html){:target="_blank"}
+- [SIAM DS 2025 Slides (Chrome recommended)](/assets/html/Chumley_SIAM_DS_2025/xaringan/slides/Chumley_SIAM_DS_2025.html){:target="_blank"}
