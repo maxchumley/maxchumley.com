@@ -70,8 +70,11 @@ a.navbar-item.is-active {
     }
 
     #hero::before {
-        background-attachment: fixed;
+        background-attachment: scroll;
+        bottom: auto;
         min-height: 100svh;
+        transform: translate3d(0, var(--hero-parallax-y, 0px), 0);
+        will-change: transform;
     }
 }
 

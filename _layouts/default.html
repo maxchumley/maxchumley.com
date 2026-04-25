@@ -17,7 +17,22 @@ layout: compress
 <script>
   var navItems = document.getElementsByClassName('navbar-item');
   var heroes = document.getElementsByClassName('hero');
+  var hero = document.getElementById('hero');
+  var mobileHero = window.matchMedia('(max-width: 768px)');
   const viewOffset = 200; 
+
+  function updateMobileHeroParallax() {
+    if (!hero || !mobileHero.matches) {
+      if (hero) {
+        hero.style.removeProperty('--hero-parallax-y');
+      }
+      return;
+    }
+
+    var heroScroll = Math.max(0, window.scrollY - hero.offsetTop);
+    var parallaxOffset = Math.min(heroScroll, hero.offsetHeight);
+    hero.style.setProperty('--hero-parallax-y', parallaxOffset + 'px');
+  }
 
   window.addEventListener("scroll", function (event) {
     var scroll = this.scrollY;
@@ -35,7 +50,12 @@ layout: compress
           navItems[i+1].classList.add('is-active');
       }
     }
+
+    updateMobileHeroParallax();
   });
+
+  window.addEventListener('resize', updateMobileHeroParallax);
+  updateMobileHeroParallax();
 </script>
 
 </html>
