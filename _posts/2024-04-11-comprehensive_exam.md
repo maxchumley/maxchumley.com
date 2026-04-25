@@ -18,3 +18,5 @@ tags:
 - [Slides (Chrome recommended)](/assets/html/comprehensive_examination/xaringan/slides/comprehensive_examination.html){:target="_blank"}
 - [Written](/assets/pdfs/chumley_comprehensive_exam.pdf){:target="_blank"}
 
+### Recording
+<iframe src="https://drive.google.com/file/d/1jYu8ho2aevbqo0h0bs-29j_pMIpZV9gQ/preview" style="width: 100%; max-width: 960px; aspect-ratio: 16 / 9; display: block; margin: 1rem auto; border: 0;" allowfullscreen></iframe>
