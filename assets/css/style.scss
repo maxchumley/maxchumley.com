@@ -70,7 +70,7 @@ a.navbar-item.is-active {
     }
 
     #hero::before {
-        background-attachment: scroll;
+        background-attachment: fixed;
         min-height: 100svh;
     }
 }
