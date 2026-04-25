@@ -19,4 +19,4 @@ tags:
 - [Written](/assets/pdfs/chumley_comprehensive_exam.pdf){:target="_blank"}
 
 ### Recording
-<iframe src="https://drive.google.com/file/d/1jYu8ho2aevbqo0h0bs-29j_pMIpZV9gQ/preview" style="width: 100%; max-width: 960px; aspect-ratio: 16 / 9; display: block; margin: 1rem auto; border: 0;" allowfullscreen></iframe>
+<iframe src="https://drive.google.com/file/d/1NtWdS4IV2mDCKDdmztv3GKYQTl8dcxr_/preview" width="640" height="480" allowfullscreen></iframe>
