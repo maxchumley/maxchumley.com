@@ -64,8 +64,10 @@ a.navbar-item.is-active {
 
 @media (max-width: 768px) {
     #hero::before {
-        /* Keep cover behavior, but shift focal point for narrower screens. */
-        background-position: center 30%;
+        /* Show the full hero image on mobile instead of cropping into it. */
+        background-position: center top;
+        background-size: contain;
+        background-attachment: scroll;
     }
 }
 
