@@ -1,0 +1,519 @@
+---
+title: "Parameter Path Optimization"
+# subtitle: "The best of both worlds"
+author: "**Max Chumley** <br> &mdash; <br> Mechanical Engineering<br> &mdash;<br> Michigan State University <br> &mdash;"
+date: "`r Sys.Date()`"
+#"`#r Sys.Date()`" (Delete both #)
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    seal: false
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      titleSlideClass: [top, left, inverse]
+    self_contained: false # true for embedding on website
+
+---
+background-image: url(https://upload.wikimedia.org/wikipedia/en/5/53/Michigan_State_University_seal.svg)
+background-position: 10% 95%
+background-size: 12%
+class: inverse left top
+
+# Leveraging Differentiation of Persistence Diagrams for Biological Parameter Space Optimization
+
+### **Max Chumley** <br> &mdash; <br> Mechanical Engineering<br><br>Computational Mathematics<br>Science and Engineering<br> &mdash;<br>Date: 5-13-25
+
+<!-- ------------------------------------------------------- -->
+<!-- DO NOT REMOVE -->
+```{r setup, include=FALSE}
+library(knitr)
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+<!-- ------------------------------------------------------- -->
+
+
+<!-- SET TITLE IMAGES HERE -- NOTE: :img takes 3 arguments: (width, left, top) to position the graphic.-->
+![:img 60%, 35%, 26%](../figs/white_block.png)
+![:img 45%, 43%, 29%](../figs/goodwin_path_anim.gif)
+
+
+---
+# Acknowledgements 
+
+![:img 70%, 15%, 30%](../../people/people_tada.png)
+
+???
+I would like to start by thanking the air force office of  scientific research and the national science foundation for funding this work. I would also like to thank my collaborators shown here. 
+
+
+---
+# Simplicial Complex and Homology
+
+![:img 90%, 5%, 30%](../figs/homology1.png)
+
+???
+Topological data analysis is a field that is focused on extracting shape or global structure information from data. 
+
+Data can come in many forms and one common representation is a point cloud in R^n. The goal is to analyze the shape of this point cloud to draw conclusions about the underlying system that generated the data. To analyze shape we can look at a simplicial complex induced on the point cloud by fixing a connectivity parameter r and adding edges or 1-simplices when the euclidean distance between any two points is less than 2r and adding faces or 2-simplices when this is true for any set of three points. This concept can also be generalized to higher dimensional simplices. Here I have illustrated a simplicial complex called the Vietoris Rips complex but other simplicial complexes also exist that can be used for other applications. 
+
+Once we have a simplicial complex induced on the data, we can say something about its shape by computing its homology. Homology gives a measure of structure in different dimensions. For example, in the figure here there is a 0D homology class as a connected component and a 1D homology class as a loop that has not closed in the simplicial complex. We can also have higher dimensional homology such as 2D which quantifies voids and so on. 
+
+It is difficult to choose the connectivity parameter that will result in optimally extracting topological information from the data. To avoid this choice, we instead study a changing simplicial complex or filtration where each successive complex includes the previous. Quantifying how the homology changes with respect to the connectivity parameter is called persistent homology. 
+
+--
+![:img 90%, 5%, 30%](../figs/homology2.png)
+--
+![:img 90%, 5%, 30%](../figs/homology3.png)
+
+---
+# Persistent Homology - Point Cloud
+
+![:img 80%, 10%, 25%](../figs/persistence_anim0.png)
+
+
+???
+Topological data analysis focuses on quantifying shape in data and the specific tool I am interested in is persistent homology which studies a changing simplicial complex called a filtration and tracks the birth and death of homology classes such as connected components or loops in the persistence diagram.
+
+This variation of persistent homology is called point cloud persistence where the simplicial filtration is constructed using the vietoris rips complex. This complex uses the euclidean distance between points to determine when edges or faces are added in the filtration. In other words, we center a ball at each point and grow the radius of the balls or more generally the connectivity parameter of the filtration. When any two balls intersect we add an edge to the complex and when any three intersect we add a face or triangle.  
+
+
+In this example I constructed the point cloud using two concentric circles with additive noise. All of the connected components are born at an epsilon value of 0 and we will see that the center circle forms a prominent loop in the data that will be reflected in the persistence diagram. 
+
+We see that as the connectivity parameter increases a loop forms in the center and the persistence diagram shows a 1D persistence pair is born at the same epsilon. As epsilon increases the loop eventually fills in and the persistence pair stops moving away from the diagonal indicating that the loop has died or filled in. 
+
+Typically persistence pairs near the diagonal are from features due to noise and pairs far from the diagonal indicate prominent structures in the data.
+
+--
+![:img 80%, 10%, 25%](../figs/persistence_anim.gif)
+
+--
+![:img 80%, 10%, 25%](../figs/persistence_anim299.png)
+
+
+
+---
+# Persistence as a Map
+
+![:img 95%, 2.5%, 20%](../figs/pd_map1.png)
+
+???
+To study the idea of differentiability in the space of persistence diagrams it is useful to think of persistence as a map. If I start with a point cloud theta, I can map this point cloud to the persistence diagram using the relevant filter function. For this example I am using the Vietoris Rips filtration.
+
+In this case there is one loop that is born at r=b and dies at r=sqrt(2)b.
+
+The persistence diagram can then be mapped to a real valued feature with the map V. Here I am showing the total persistence feature which quantifies how far points are from the diagonal. 
+
+Together, the maps B and V can be composed to form a map composition from point cloud to persistence feature. 
+
+--
+![:img 95%, 2.5%, 20%](../figs/pd_map2.png)
+
+.footnote[Leygonie, Jacob, Steve Oudot, and Ulrike Tillmann. "A framework for differential calculus on persistence barcodes." Foundations of Computational Mathematics (2021): 1-63.]
+
+--
+![:img 95%, 2.5%, 20%](../figs/pd_map3.png)
+--
+![:img 95%, 2.5%, 20%](../figs/pd_map4.png)
+
+---
+# Functions of Persistence
+
+![:img 95%, 2.5%, 18%](../figs/pd_funcs2.png)
+
+.footnote[Carriere, Mathieu, et al. "Optimizing persistent homology based functions." International conference on machine learning. PMLR, 2021.]
+
+???
+There are many different functions of persistence that can be used to quantify and optimize various topological properties of a point cloud. In order to have differentiability in this pipeline, two criteria need to be satisfied. The function needs to be locally lipschitz and it needs to be definable in an o-minimal structure or in other words definable using finitely many unions of points and intervals. Most normal functions meet this criteria so we wont have to worry about it too much but it's something to consider when defining new functions of persistence. 
+
+IF SOMEONE ASKS: An example of a set that fails this criteria is the cantor set because it requires infinitely many  operations to determine if a point is in the set. 
+
+If both of these conditions are satisfied, the derivative of the map composition V of B is definable. I will now show a few useful examples of persistence functions. 
+
+First we have the total persistence or the sum of the lifetimes of all persistence features. Maximizing this function would result in a point cloud with large distances between points in 0D persistence or large loops in 1D persistence. 
+
+The second function of persistence is the maximum persistence which allows for controlling the largest distance between any two points in 0D persistence or the size of the largest loop in the data for 1D persistence. 
+
+There are also methods for quantifying dissimilarity between two persistence diagrams. The wasserstein distance uses an optimal matching between persistence diagrams to to give a notion of distance between them. This can be used to reach a point cloud that gives a target persistence diagram by minimizing the wasserstein distance. 
+
+Lastly, persistent entropy gives a measure of order in the persistence diagram and can be used to control the simplicity of a point cloud and when used in combination with other persistence functions can give a simpler solution to the optimization problem. 
+
+--
+![:img 95%, 2.5%, 18%](../figs/pd_funcs3.png)
+--
+![:img 95%, 2.5%, 18%](../figs/pd_funcs4.png)
+--
+![:img 95%, 2.5%, 18%](../figs/pd_funcs5.png)
+--
+![:img 95%, 2.5%, 18%](../figs/pd_funcs6.png)
+
+
+
+
+
+---
+# Differentiability of Persistence Diagrams
+
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_1.png)
+
+???
+Here I will go through the process of how a persistence diagram can be differentiated using the Vietoris Rips filtration. I'll start with a simple point cloud of 4 points called theta. We see that this point cloud has a single loop structure if we only consider 1D persistence for now. When the connectivity parameter reaches the value where the loop is born, we call this simplicial complex sigma. At this point, I label the edge that results in the birth of the loop and its vertices as shown. Likewise, we consider the simplicial complex where the loop dies and label those vertices and corresponding edge. 
+
+Using the map B, we can map theta to a persistence diagram in terms of b and d. This process has been shown previously without labeling the attaching edges in the simplicial complexes. To differentiate this persistence diagram, we consider a perturbation of the point cloud theta called theta prime. In this case I am only perturbing p2 to p2 prime but note that any points can be perturbed. In this case p2 prime is moved along the u hat vector. 
+
+If we go through the same process of labeling the attaching edges of the corresponding loop in the point cloud we can obtain a persistence map B tilde. We see that the attaching edge b prime is now smaller than b and d prime remains equivalent to d. In the persistence diagram this corresponds to the persistence pair moving to the left. 
+
+So the derivative of the persistence map B with respect to the perturbation persistence map B tilde is the unit vector pointing to the left. 
+
+More generally, using the rips filtration the derivative of the persistence map is computed as a set of vectors (one for each persistence pair) with components consisting of inner products of the distances between vertices at the end points of attaching edges and the unit vector perturbations of the points. This can be further generalized to include infinite persistence pairs and for other filter functions, but I will only consider the rips filtration for now. 
+
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_2.png)
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_3.png)
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_4.png)
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_5.png)
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_6.png)
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_7.png)
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_8.png)
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_9.png)
+--
+![:img 95%, 2.5%, 25%](../figs/1d_pd_der/1d_pd_der_10.png)
+--
+![:img 70%, 15%, 78%](../figs/1d_pd_der/pd_deriv_eq.png)
+
+.footnote[Leygonie, Jacob, Steve Oudot, and Ulrike Tillmann. "A framework for differential calculus on persistence barcodes." Foundations of Computational Mathematics (2021): 1-63.]
+
+   
+
+---
+# Persistence Optimization
+
+![:img 60%, 20%, 16%](../figs/1d_pd_der/pd_opt_loss.png)
+
+???
+Now that I have defined what it means to differentiate a persistence diagram, I can define a cost function to promote desired topological properties of a point cloud by controlling features of the persistence diagram. The ability to differentiate functions of persistence enables gradient descent optimization to reach a point cloud that minimizes the cost function. Tensorflow and the gudhi python library can be used to perform this gradient descent operation on persistence diagrams. 
+
+For the first example I defined a cost function using two terms. The first term is the opposite of the total persistence so by minimizing L we are promoting larger loops in the point cloud and 1D persistence diagram. The second term is a regularization term to promote points remaining within a 2x2 square of space. 
+
+If I start with a circular point cloud with some additive noise, performing the optimization results in a point cloud consisting of a large loop and we see that the persistence pair moves in the vertical direction. Since there is only one persistence pair in this example the maximum persistence could have also been used to achieve the same outcome. 
+
+--
+![:img 50%, 1%, 47%](../figs/1d_pd_der/loss.png)
+--
+![:img 60%, 20%, 55%](../figs/1d_pd_der/pd_opt_1.png)
+--
+![:img 60%, 20%, 55%](../figs/1d_pd_der/pd_opt.gif)
+
+.footnote[Carriere, Mathieu, et al. "Optimizing persistent homology based functions." International conference on machine learning. PMLR, 2021.]
+
+
+---
+# Parameter Path Pipeline
+
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_1.png)
+
+???
+The goal with this work was to start at some point in a dynamical system parameter space. 
+
+Here I show 3 parameters a, b and c a point can be chosen in this space which corresponds to a specific point cloud in the state space from simulating the system. For this example the system is two dimensional but in general it can be m dimensional. 
+
+Computing 1D persistence on this point cloud leads to a single 1D persistence pair at b,d. The persistence diagram is then mapped to a loss function or function of persistence such as maximum persistence. In this case we will say we want to minimize this feature to reduce oscillation amplitude. 
+
+In order to compute the gradient of the loss function in this case, we need the gradient of the map that takes the parameter space to the point cloud. There are infinitely many directions that can be chosen in the parameter space but the goal is to move in a direction that minimizes the loss function. 
+
+Computing the derivative of B' allows for taking a step in the loss function space. This will lead to a new persistence diagram, a new point cloud, and consequently a new point in the parameter space. In general the parameter space can be n dimensional. 
+
+My goal was to study this map B' and compute its derivative numerically to perform this parameter space navigation using persistence based cost functions to promote specified dynamical system behaviors. 
+
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_2.png)
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_3.png)
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_4.png)
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_5.png)
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_6.png)
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_7.png)
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_8.png)
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_9.png)
+--
+![:img 95%, 2.5%, 25%](../figs/par_diff/par_diff_10.png)
+--
+![:img 30%, 35%, 83%](../figs/ds_diff_eq.png)
+
+
+---
+# Differentiability of B' (Adjoint Sensitivity Method)
+
+![:img 90%, 5%, 25%](../figs/par_diff/asm1.png)
+
+.footnote[Chen, Ricky TQ, et al. "Neural ordinary differential equations." Advances in neural information processing systems 31 (2018).]
+
+???
+The operator B' is essentially an ODE solver. ODE solvers have been differentiated for use with neural ODEs where instead of having a regular neural network with discrete layers, there is a continuum of layers that are described using an ODE. For this work I just needed to be able to differentiate the ODE solver which uses a method called the adjoint sensitivity method. This is built in to the pytorch neural ODE software torchdiffeq. 
+
+It works by starting with an ODE system that depends on parameters mu. An ODE solver is used to obtain the time evolution from an initial state.
+
+If I define some arbitrary loss function that depends on the state space data, we can compute the gradient of the loss with respect to the system states by defining an adjoint state a(t). In the paper at the bottom, the authors show that a(t) can be obtained by solving another ODE which is a continuous analogue of the chain rule. Solving for a(t) backward in time gives a discontinuous solution at each point and the change in the adjoint state gives the gradient vector for each state.  
+
+So taking a step in the loss function space would then update the state space of the system. In this example the loss function depended on the system states but it can also be differentiated with respect to system parameters mu by computing this integral after solving for a(t) from the paper cited at the bottom. 
+
+Using this method, the derivative of B' can be computed giving an optimal direction to vary the system parameters to minimize the loss function that depends on system states. 
+
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm2.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm3.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm4.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm5.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm6.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm7.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm8.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm9.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm10.png)
+--
+![:img 90%, 5%, 25%](../figs/par_diff/asm11.png)
+--
+![:img 95%, 2.5%, 20%](../figs/par_diff/asm12.png)
+
+![:img 30%, 55%, 73%](../figs/ds_diff_eq.png)
+
+
+---
+# Gradient Challenges
+
+![:img 80%, 10%, 25%](../figs/par_diff/grad_issue1.png)
+
+???
+I ran into a number of significant challenges with this method. We can see from the equations, if the system states change drastically with changes in the loss function, it will result in very large adjoint states or exploding gradients. This occurs when the system response is chaotic.
+
+To overcome exploding gradient issues the standard practice is to use gradient clipping so I clip the gradient norms to be 1 in my results. 
+
+The second issue I ran into is that when using multiple loss terms the scaling was unbalanced so to balance the loss functions I divided each term by its current value. 
+
+The last thing I did was apply learning rate decay to ensure that the path converges eventually. However, if no decay is applied this can be used to optimally explore the parameter space. 
+
+
+--
+![:img 80%, 10%, 25%](../figs/par_diff/grad_issue2.png)
+--
+![:img 80%, 10%, 25%](../figs/par_diff/grad_issue3.png)
+--
+![:img 80%, 10%, 25%](../figs/par_diff/grad_issue4.png)
+
+.footnote[B. Xiao, “Strategies for balancing multiple loss functions in deep learning.” Medium, 2024.]
+
+--
+![:img 80%, 10%, 25%](../figs/par_diff/grad_issue5.png)
+
+
+
+
+---
+# Cost Function library
+
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib1.png)
+
+???
+To perform this optimization, I needed to define a cost function library using persistence functions to map the terms to dynamical system behaviors. 
+
+The first term was designed to promote or deter large loops or oscillations in the system. If the goal is to move 1D persistence pairs away from the diagonal this corresponds to increasing the loop sizes in the state space. Mathematically, the maximum persistence can be used here and maximizing this function results in the largest possible loops.
+
+The next term was defined to promote fixed points in the system by pushing all persistence pairs toward the diagonal. In the state space this corresponds to constricting the points to a small region or single point. The total persistence is minimized in this case.   
+
+I designed the third term to deter chaos in the system which corresponds to persistence diagrams with high entropy. In this state space this corresponds to constricting points to a uniform loop and mathematically the persistent entropy is used. In general it is difficult to distinguish between chaos and noise in the persistence diagram so this term should be used with caution. 
+
+The last term I defined was based on avoiding regions of the parameter space due to physical limitations. This can also be used to forbid certain persistence behaviors too which I show examples of in my thesis. 
+
+--
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib2.png)
+--
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib3.png)
+--
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib4.png)
+--
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib5.png)
+--
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib6.png)
+--
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib7.png)
+--
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib8.png)
+--
+![:img 60%, 10%, 20%](../figs/par_diff/cost_lib9.png)
+--
+![:img 20%, 70%, 20%](../figs/par_diff/cost_lib10.png)
+--
+![:img 20%, 70%, 20%](../figs/par_diff/cost_lib11.png)
+
+
+
+
+---
+# Numerical Examples
+
+![:img 85%, 7.5%, 16%](../figs/other_examples1.png)
+
+???
+In my thesis I show many examples of different scenarios where I promote specified behaviors using persistence cost functions on different dynamical systems. I give examples using the Rossler system, the magnetic based excited pendulum system and the lorenz system. 
+
+For this talk however I focus on the Rossler system due to time constraints and because it gives the most insight to the usage of this method.  
+
+
+--
+![:img 85%, 7.5%, 16%](../figs/other_examples2.png)
+![:img 15%, 42%, 28%](../figs/par_diff/chaotic_vid.gif)
+
+.footnote[Myers, A., & Khasawneh, F. A. (2020, August). Dynamic State Analysis of a Driven Magnetic Pendulum Using Ordinal Partition Networks and Topological Data Analysis. In International Design Engineering Technical Conferences and Computers and Information in Engineering Conference (Vol. 83969, p. V007T07A021). American Society of Mechanical Engineers.]
+
+--
+![:img 85%, 7.5%, 16%](../figs/other_examples3.png)
+
+
+
+---
+# Goodwin System 
+
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin1.png)
+
+.footnote[Goodwin, B. C. (1965). Oscillatory behavior in enzymatic control processes. Advances in enzyme regulation, 3, 425-437.]
+
+--
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin2.png)
+--
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin3.png)
+
+
+---
+# Goodwin Example 1 (Fixed Point $\to$ Limit Cycle)
+
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin_path_decay_initial.png)
+--
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin_path_decay.gif)
+--
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin_path_decay_final.png)
+
+
+---
+# Goodwin Example 2 (Avoid Regions)
+
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin_avoid_decay_initial.png)
+--
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin_avoid_decay.gif)
+--
+![:img 90%, 5%, 30%](../figs/par_diff/goodwin_avoid_decay_final.png)
+
+
+---
+# Potential future applications
+
+![:img 90%, 5%, 30%](../figs/other_apps1.png)
+
+.footnote[1. Novák, B., & Tyson, J. J. (2008). Design principles of biochemical oscillators. Nature reviews Molecular cell biology, 9(12), 981-991.
+
+2. **Chumley, M. M.**, Khasawneh, F. A., Otto, A., & Gedeon, T. (2023). A Nonlinear Delay Model for Metabolic Oscillations in Yeast Cells. Bulletin of mathematical biology, 85(12), 122.]
+
+--
+![:img 90%, 5%, 30%](../figs/other_apps2.png)
+
+![:img 20%, 40%, 45%](../figs/proteins.gif)
+
+--
+![:img 90%, 5%, 30%](../figs/other_apps3.png)
+
+![:img 20%, 40%, 45%](../figs/proteins.gif)
+
+
+
+---
+background-image: url(../figs/end_anim.gif)
+background-position: 50% 50%
+background-size: 100%
+
+# Thank you! 
+
+![:img 80%, 10%, 30%](../figs/contact_info.png)
+
+.footnote[**Chumley, Max M.**, and Firas A. Khasawneh. "Dynamical System Parameter Path Optimization using Persistent Homology." arXiv preprint arXiv:2505.00782 (2025).]
+
+???
+Script: 
+Thank you for your attention. More details about my research can be found on my website and my code is available in our python library teaspoon for topoligcal signal processing. TADA is already available in this library and the parameter path optimization is coming soon. 
+
+Are there any questions?
+
+
+---
+count: false
+# Advantages of Persistence
+
+![:img 70%, 15%, 20%](../figs/pd_advantages1.png)
+
+???
+Computing persistent homology has many advantages. It provides a compressive summary of shape for the data by allowing for representing complex structures as a list of few points. 
+
+It has also been proven that persistence is stable under small perturbations, and is robust to noise where structures due to noise show up near the diagonal. Finally, it is conducive to machine learning allowing for topological features of the data to be integrated into an ML pipeline. 
+
+--
+![:img 70%, 15%, 20%](../figs/pd_advantages2.png)
+
+![:img 28%, 54%, 28%](../figs/persistence_stability.gif)
+
+.footnote[
+     <p style="font-size: 13px;">Cohen-Steiner, et al. "Stability of persistence diagrams." Proceedings of the twenty-first annual symposium on computational geometry. 2005.<br></p>
+     ]
+
+--
+![:img 70%, 15%, 20%](../figs/pd_advantages3.png)
+--
+![:img 70%, 15%, 20%](../figs/pd_advantages4.png)
+
+
+---
+count: false
+# General Position Criteria 
+
+- $\forall i\neq j\in\{1,...,n\},~p_i\neq p_j$
+
+![:img 25%, 20%, 45%](../figs/equal_points.png)
+
+.footnote[Leygonie, Jacob, Steve Oudot, and Ulrike Tillmann. "A framework for differential calculus on persistence barcodes." Foundations of Computational Mathematics (2021): 1-63.]
+
+???
+In order for a unique perturbation to exist, we need to define conditions on the positions of points in the point cloud that guarantee uniqueness. For the rips filter function, it has been shown that the point cloud must be in a so called general position. 
+
+This means that no two points are in the same position.
+and no two pairs of points are equidistant. 
+
+At first this can seem like a very limiting constraint on the method, however all this means is that the perturbation may not be unique for a given derivative. In a computational setting it is unlikely that either of these constraints will be violated due to floating point precision and if they are violated the optimization scheme will choose a perturbation and continue the process. Artificial noise can also be introduced if two points are in the same location to avoid a division by zero but again this is highly unlikely for real data. 
+
+--
+
+- $\forall \{i,j\}\neq\{k,l\},~i,j,k,l\in\{1,...,n\},~||p_i-p_j||_2\neq||p_k-p_l||_2$
+
+![:img 25%, 50%, 45%](../figs/equidistant.png)
