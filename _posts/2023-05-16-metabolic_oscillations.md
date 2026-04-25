@@ -20,7 +20,7 @@ tags:
 - [arXiv](https://doi.org/10.48550/arXiv.2305.07643){:target="_blank"}
 
 ### Presentations
-- [DISC 2023 Slides](/DISC_2023/xaringan/slides/disc_2023_lightning_talk.html){:target="_blank"}
+- [DISC 2023 Slides](/assets/html/DISC_2023/xaringan/slides/disc_2023_lightning_talk.html){:target="_blank"}
 - [SIAM-DS 2023 Slides](/assets/html/siam-ds_2023_metabolic_oscillations.html){:target="_blank"}
 
 ### Posters
