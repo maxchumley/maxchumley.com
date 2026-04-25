@@ -70,8 +70,9 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 
 # End of https://www.toptal.com/developers/gitignore/api/jekyll,ruby
+
+# macOS Finder metadata
 .DS_Store
-.DS_Store
-assets/.DS_Store
-assets/html/.DS_Store
-SIAM-GL_CGSSN_2023/.DS_Store
+.DS_store
+**/.DS_Store
+**/.DS_store
