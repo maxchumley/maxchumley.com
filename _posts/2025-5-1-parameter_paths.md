@@ -1,7 +1,7 @@
 ---
 title: Parameter Path Optimization
 layout: post
-post-image: /assets/images/goodwin_path_anim.gif
+post-image: /assets/images/goodwin_path.png
 description: We perform path optimization using persistent homology to promote desired dynamics using topologically defined cost functions. 
 tags:
 - TDA
