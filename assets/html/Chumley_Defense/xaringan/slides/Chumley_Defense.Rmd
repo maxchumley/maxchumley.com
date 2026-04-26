@@ -127,7 +127,7 @@ Typically persistence pairs near the diagonal are from features due to noise and
 ---
 # Advantages of Persistence
 
-![:img 70%, 15%, 20%](../Figs/pd_advantages1.png)
+![:img 70%, 15%, 20%](../figs/pd_advantages1.png)
 
 ???
 Computing persistent homology has many advantages. It provides a compressive summary of shape for the data by allowing for representing complex structures as a list of few points. 
@@ -135,18 +135,18 @@ Computing persistent homology has many advantages. It provides a compressive sum
 It has also been proven that persistence is stable under small perturbations, and is robust to noise where structures due to noise show up near the diagonal. Finally, it is conducive to machine learning allowing for topological features of the data to be integrated into an ML pipeline. 
 
 --
-![:img 70%, 15%, 20%](../Figs/pd_advantages2.png)
+![:img 70%, 15%, 20%](../figs/pd_advantages2.png)
 
-![:img 28%, 54%, 28%](../Figs/persistence_stability.gif)
+![:img 28%, 54%, 28%](../figs/persistence_stability.gif)
 
 .footnote[
      <p style="font-size: 13px;">Cohen-Steiner, et al. "Stability of persistence diagrams." Proceedings of the twenty-first annual symposium on computational geometry. 2005.<br></p>
      ]
 
 --
-![:img 70%, 15%, 20%](../Figs/pd_advantages3.png)
+![:img 70%, 15%, 20%](../figs/pd_advantages3.png)
 --
-![:img 70%, 15%, 20%](../Figs/pd_advantages4.png)
+![:img 70%, 15%, 20%](../figs/pd_advantages4.png)
 
 ---
 # Some Applications of Persistence

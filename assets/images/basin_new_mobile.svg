@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title>Mobile hero placeholder</title>
-  <desc>Replace this placeholder with a cropped mobile version of the hero image.</desc>
-  <rect width="1600" height="900" fill="#111111"/>
-  <rect x="80" y="80" width="1440" height="740" rx="36" fill="#1f1f1f" stroke="#5c5c5c" stroke-dasharray="18 14" stroke-width="8"/>
-  <text x="800" y="400" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700" text-anchor="middle">Mobile Hero Placeholder</text>
-  <text x="800" y="485" fill="#d0d0d0" font-family="Arial, Helvetica, sans-serif" font-size="34" text-anchor="middle">Replace with a cropped mobile image</text>
-</svg>

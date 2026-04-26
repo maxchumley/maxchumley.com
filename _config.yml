@@ -101,6 +101,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules/
+  - unused_files/
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
