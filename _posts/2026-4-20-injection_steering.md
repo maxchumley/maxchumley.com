@@ -2,7 +2,7 @@
 title: Optical Injection Steering
 layout: post
 post-image: /assets/images/vcsel_schematic.png
-description: We perform an extensive study on pulsed optical injection steering in VCSEL arrays to steer the system to desired equilibrium points.  
+description: An extensive study was conducted on pulsed optical injection steering in VCSEL arrays to guide the system toward desired equilibrium points.  
 tags:
 - Injection steering
 - VCSEL

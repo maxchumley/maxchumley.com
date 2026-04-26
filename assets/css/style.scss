@@ -340,11 +340,24 @@ a.navbar-item.is-active {
         hr{
             background-color: grey;
         }
-        img, iframe {
+        img {
             max-width: calc(100% - 25vw);
             margin: 0.25rem auto;
             @media (max-width: 768px) {
                 max-width: calc(100% - 5vw);
+            }
+        }
+        iframe {
+            aspect-ratio: 16 / 9;
+            border: 0;
+            display: block;
+            height: auto;
+            margin: 0.25rem auto;
+            max-width: 100%;
+            width: min(640px, calc(100% - 25vw));
+
+            @media (max-width: 768px) {
+                width: calc(100% - 5vw);
             }
         }
         ul, ol {
