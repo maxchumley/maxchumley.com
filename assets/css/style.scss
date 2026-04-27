@@ -87,11 +87,17 @@ a.navbar-item.is-active {
 
 #about {
     .image {
-        max-width: 20vmax;
+        aspect-ratio: 1;
         margin: auto;
+        max-width: 20vmax;
+        overflow: hidden;
 
         img {
             border: 0.25rem solid black;
+            border-radius: 50%;
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
         }
     }
 
@@ -261,9 +267,16 @@ a.navbar-item.is-active {
                 border-radius: 50rem;
                 justify-content: center;
                 margin: auto;
+                overflow: hidden;
                 transition: all 0.25s ease;
                 &:hover{
                     transform: scale(1.15);
+                }
+
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                    width: 100%;
                 }
             }
         }
@@ -389,6 +402,7 @@ a.navbar-item.is-active {
             margin: 0 auto;
             max-width: 900px;
             overflow-x: hidden;
+            padding-top: 1rem;
             width: 100%;
         }
 
