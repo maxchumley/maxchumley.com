@@ -8,13 +8,16 @@ body {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth !important;
     transition: all 0.25s ease;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 
 
 /* width */
 ::-webkit-scrollbar {
-    width: 0.5vmax !important;
+    display: none;
+    width: 0 !important;
 }
 
 /* Track */

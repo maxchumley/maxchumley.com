@@ -216,14 +216,21 @@ a.navbar-item.is-active {
 
 
 #footer {
+    #backtotop-wrap {
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+    }
+
     #backtotop {
         transition: all 0.25s ease;
         width: 10rem;
         padding: 0.25rem;
-        margin: auto auto 1rem auto;
+        border-radius: 0.25rem;
+        margin: auto;
+        transform: translateY(-0.5rem);
 
         &:hover {
-            transform: scale(1.05);
+            transform: translateY(-0.5rem) scale(1.05);
         }
     }
 
@@ -378,6 +385,22 @@ a.navbar-item.is-active {
 
 #page-section {
     .content {
+        .cv-document-wrap {
+            margin: 0 auto;
+            max-width: 900px;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .cv-document {
+            border: 0;
+            display: block;
+            margin-left: 50%;
+            max-width: none;
+            transform: translateX(-50%);
+            width: 110%;
+        }
+
         ul, ol, blockquote {
             display: inline-block;
         }

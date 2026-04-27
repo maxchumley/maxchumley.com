@@ -1,7 +1,9 @@
 <footer id="footer">
     <!--Footer Button-->
-    <div class="container has-text-centered has-background-grey-darker" id="backtotop">
-        <a class="has-text-white" onclick="window.scroll(0,0)">BACK TO TOP</a>
+    <div class="{{ include.backtotop_background | default: 'has-background-white' }}" id="backtotop-wrap">
+        <div class="container has-text-centered has-background-grey-darker" id="backtotop">
+            <a class="has-text-white" onclick="window.scroll(0,0)">BACK TO TOP</a>
+        </div>
     </div>
     <!--Footer Main Section-->
     <div class="has-background-grey-darker">
