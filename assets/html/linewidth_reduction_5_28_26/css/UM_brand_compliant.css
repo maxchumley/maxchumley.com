@@ -1,0 +1,223 @@
+
+/* University of Michigan xaringan CSS Theme */
+/* Author: Adapted from Joseph V. Casillas for U-M Brand Compliance */
+/* Updated: July 2025 */
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=IBM+Plex+Sans&display=swap');
+
+/* Base Styles */
+body, .remark-slide-content {
+  font-family: 'Atkinson Hyperlegible', 'IBM Plex Sans', sans-serif;
+  font-size: 25px;
+  line-height: 1.4;
+  color: #00274C;
+}
+
+/* Links */
+a, a > code {
+  color: #00274C;
+  text-decoration: underline;
+}
+
+.inverse a:link, .inverse a:visited {
+  color: #FFCB05;
+}
+
+.inverse a:hover, .inverse a:active {
+  background-color: #FFCB05;
+  color: #00274C;
+}
+
+/* Inverse Slides */
+.inverse {
+  background-color: #00274C;
+  color: #FFCB05;
+  text-shadow: none;
+}
+
+.inverse h1, .inverse h2, .inverse h3 {
+  color: #FFCB05;
+  line-height: 1.0em;
+}
+
+.inverse code {
+  color: #FFFFFF;
+}
+
+/* Title Slide */
+.title-slide {
+  background-color: #00274C;
+  color: white;
+}
+
+.title-slide h1, .title-slide h2, .title-slide h3 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #FFCB05;
+}
+
+/* Section Dividers */
+.title-slide-section-blue {
+  background-color: #00274C;
+  color: #FFCB05;
+}
+
+.title-slide-section-grey {
+  background-color: #989c97;
+  color: #00274C;
+}
+
+/* Final Slide */
+.title-slide-final {
+  background-color: #FFCB05;
+  color: #00274C;
+  text-align: center;
+}
+
+.title-slide-final h1, .title-slide-final h2 {
+  color: #00274C;
+}
+
+.title-slide-final h3 {
+  color: #00274C;
+}
+
+/* Columns */
+.left-column, .right-column {
+  height: 92%;
+}
+
+.left-column {
+  width: 50%;
+  float: left;
+  color: #00274C;
+}
+
+.right-column {
+  width: 50%;
+  float: right;
+  padding-top: 1em;
+}
+
+/* Tables */
+table {
+  margin: auto;
+  border-collapse: collapse;
+  border: 1px solid #00274C;
+  color: #131516;
+  background-color: #ffffff;
+}
+
+th, td {
+  border: 1px solid #00274C;
+  padding: 0.5em 1em;
+}
+
+thead, tfoot, tr:nth-child(even) {
+  background: #f5f5f5;
+}
+
+/* Utility Classes */
+.maize {
+  color: #FFCB05;
+}
+
+.blue {
+  color: #00274C;
+}
+
+.white {
+  color: #FFFFFF;
+}
+
+.black {
+  color: #131516;
+}
+
+/* Footnotes */
+.footnote {
+  font-size: 70%;
+  line-height: 1.0;
+  color: #00274C;
+  border-top: 1px solid #00274C;
+  position: absolute;
+  bottom: 1em;
+  padding-right: 10em;
+}
+
+/* Blockquote */
+blockquote {
+  border-left: solid 5px #00274C;
+  padding-left: 1em;
+  color: #00274C;
+}
+
+/* Misc */
+img, video, iframe {
+  max-width: 100%;
+}
+
+.pull-left {
+  float: left;
+  width: 45%;
+}
+
+.pull-right {
+  float: right;
+  width: 45%;
+}
+
+.pull-right ~ * {
+  clear: both;
+}
+
+
+@page { margin: 0; }
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+
+/* Seal Box Overlay */
+.seal-box {
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
+  width: 150px;
+  height: 150px;
+  background-image: url('https://brand.umich.edu/assets/brand/downloads/um-logos/primary_logo_kit/color-logo/u-m_logo-hex.png');
+  background-repeat: no-repeat;
+  background-size: 102%;
+  background-position: center;
+  border-radius: 0%;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Dynamic Date Display */
+#current-date {
+  font-family: 'Atkinson Hyperlegible', 'IBM Plex Sans', sans-serif;
+  font-size: 0.9em;
+  color: #FFCB05;
+  margin-top: 1em;
+}
+
+/* color tweak */
+.guide {
+  background-image: url("../xaringan/Figs/position_guide.png");
+  background-position: top left;
+  background-size: 100%;
+}
+
+.allow-scroll .remark-slide-content {
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  max-height: 100vh;
+  padding-right: 1rem;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
+}
+
+

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Research Update 5-28-26</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Max Chumley" />
+    <meta name="date" content="2026-05-28" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link rel="stylesheet" href="../../css/UM_brand_compliant.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: inverse left top
+
+# Linewidth Reduction Update
+
+### **Max M. Chumley Ph.D.** &lt;br&gt; &amp;mdash; &lt;br&gt; Postdoctoral Research Fellow&lt;br&gt;&lt;br&gt;Optics and Photonics&lt;br&gt; &amp;mdash;&lt;br&gt; University of Michigan
+
+&lt;span style="font-family: 'IBM Plex Sans', sans-serif; font-size: 1.2em; color: #FFCB05;"&gt; &lt;span id="current-date"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;script&gt;
+  var d = new Date();
+  var dateStr = (d.getMonth()+1) + "/" + d.getDate() + "/25";
+  document.getElementById('current-date').textContent = dateStr;
+&lt;/script&gt;
+
+&lt;!-- ------------------------------------------------------- --&gt;
+&lt;!-- DO NOT REMOVE --&gt;
+
+&lt;!-- ------------------------------------------------------- --&gt;
+
+
+
+
+
+
+
+
+&lt;!-- SET TITLE IMAGES HERE -- NOTE: :img takes 3 arguments: (width, left, top) to position the graphic.--&gt;
+![:img 65%, 35%, 20%](../figs/white_block.png)
+![:img 60%, 39%, 22%](../figs/inj_steering_schematic.png)
+
+&lt;div class="seal-box"&gt;&lt;/div&gt;
+
+???
+Title Script
+
+&lt;!-- ---
+# Acknowledgements 
+
+![:img 80%, 10%, 35%](../../people/people.png)
+
+???
+Script:  --&gt;
+
+&lt;!-- ---
+# Vertical Cavity Surface Emitting Lasers (VCSELs)
+
+![:img 80%, 10%, 30%](../figs/vcsel_dgm.png) --&gt;
+
+---
+# Updates
+
+
+- Linewidth results
+
+--
+
+  - `\(\phi_p\)` Dependence
+
+--
+
+  - 2 Lasers
+
+--
+
+  - 3 Lasers
+
+--
+
+  - `\(T_{max}\)` Convergence
+
+--
+
+- Estimating `\(\kappa_{th}\)` 
+
+  - Fitting GMD to `\(\kappa\)`
+
+
+
+
+
+---
+# Linewidth Results (MURI Review)
+
+
+![:img 50%, 0%, 25%](../figs/linewidth_old.png)
+
+--
+
+![:img 50%, 50%, 25%](../figs/experimental_linewidth_results.png)
+
+---
+count: false
+# Linewidth Results (MURI Review)
+
+- Results seem to match fairly well
+
+- Issue
+
+  - Previous linewidth estimates were based on the intensity/RF spectrum,
+    `\(|\mathcal{F}(|E(t)|^2)|\)`.
+
+  - For the optical linewidth of the full field, we should instead use the
+    field spectrum, `\(|\mathcal{F}(E(t))|^2\)`.
+
+  - The intensity spectrum removes the optical phase information
+
+
+
+---
+# Coupling Matrix Definition (`\(M\)` lasers)
+
+
+
+- `\(\boldsymbol{\kappa}_c = \kappa_cA\)`
+
+  - `\(\kappa_c\)` is the overall coupling budget
+
+--
+
+- `\(A\in\mathbb{R}^{M\times M}\)` with `\(\sum A_{ij} = 1\)` and `\(A=A^T\)` 
+
+
+--
+
+- All-to-all coupling, no self-coupling `\(A=\frac{1}{M(M-1)}(\mathbf{1}_{M\times M}-\mathbf{I}_{M\times M})\)`
+
+  - For `\(M=2\)` lasers, `\(A=\frac{1}{2}\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}\)`
+
+  - For `\(M=3\)` lasers, `\(A=\frac{1}{6}\begin{bmatrix} 0 &amp; 1 &amp; 1 \\ 1 &amp; 0 &amp; 1 \\ 1 &amp; 1 &amp; 0 \end{bmatrix}\)`
+
+
+---
+# 2 Laser Linewidth Estimation
+
+![:video 80%, 10%, 20%](../figs/4GHz_spectra_animation.mp4)
+
+---
+# 2 Laser Linewidth Estimation (4 GHz)
+
+![:img 50%, 0%, 30%](../figs/3db_spectra_Etot.png)
+
+--
+
+![:img 50%, 50%, 30%](../figs/fwhm_linewidth_Etot_phi_avg_detuning4.00.png)
+
+--
+
+![:img 50%, 0%, 25%](../figs/linewidth_map_Etot_self0.00_detuning4.00_3db.png)
+
+---
+# 3 Laser Linewidth Estimation
+
+![:video 80%, 10%, 20%](../figs/4GHz_spectra_animation_3laser.mp4)
+
+---
+# 3 Laser Linewidth Estimation (4 GHz)
+
+![:img 50%, 0%, 30%](../figs/3db_spectra_Etot_3laser.png)
+
+--
+
+![:img 50%, 50%, 30%](../figs/fwhm_linewidth_Etot_phi_avg_detuning4.00_3laser.png)
+
+--
+
+![:img 50%, 0%, 25%](../figs/linewidth_map_Etot_self0.00_detuning4.00_3db_3laser.png)
+
+
+
+---
+# `\(T_{max}\)` Convergence
+
+
+- Linewidths computed with `\(T_{max}=1~\mu\mathrm{s}\)`
+
+--
+
+- FFT bin resolution: `\(\Delta f = 1/T_{max} = 1\)` MHz
+
+--
+
+- Compute linewidths for `\(T_{max}\in[0.2,5]~\mu\mathrm{s}\)`
+
+--
+
+- Maximum resolution: `\(\Delta f = 1/(5\mu\mathrm{s}) = 200\)` kHz
+
+--
+
+![:video 80%, 10%, 19%](../figs/linewidth_reduction_anim.mp4)
+
+---
+count: false
+# `\(T_{max}\)` Convergence
+
+
+
+![:img 50%, 0%, 30%](../figs/linewidth_curves_Etot_vs_kappa_Tmax_smooth1.0bins.png)
+
+--
+
+![:img 50%, 50%, 20%](../figs/linewidth_surface_3d_Etot_vs_kappa_Tmax_smooth1.0bins.png)
+
+
+---
+count: false
+# `\(T_{max}\)` Convergence
+
+![:img 50%, 50%, 20%](../figs/linewidth_surface_3d_Etot_vs_kappa_Tmax_smooth1.0bins.png)
+
+
+- Claims &lt;100 Hz linewidth (20,000 `\(\mu\mathrm{s}\)`!!)
+
+.footnote[Ma, W., Xiong, B., Sun, C., Ke, X., Wang, J., Hao, Z., ... &amp; Luo, Y. (2019). Linewidth narrowing of mutually injection locked semiconductor lasers with short and long delay. Applied Sciences, 9(7), 1436.]
+
+--
+
+- Intrinsic linewidth inferred
+
+  - White noise floor computed from PSD
+
+--
+
+- Noise floor `\(Hz^2/Hz\)` `\(\to\)` Linewidth `\(Hz\)`
+
+- Lorentzian linewidth `\(\Delta\nu = \pi S_{\nu}(f)\)`
+
+- &lt;b&gt;Not from optical spectrum&lt;/b&gt; 
+
+---
+# `\(\text{GMD}\to\kappa\)`
+
+
+
+- Previous estimate of `\(\kappa_{th}\)` was based on equilibrium points
+
+--
+
+- Noise changes the system
+
+--
+
+- Need to estimate `\(\kappa_{th}\)` using system with noise to compare to experiment (GMD)
+
+--
+
+- Goal: Compute `\(\kappa_{th}\)` as a function of detuning
+
+--
+
+- Use order parameter to determine `\(\kappa_{th}\)`
+
+---
+count: false
+# Estimating `\(\kappa_{th}\)` with Noise
+
+![:img 80%, 8%, 20%](../figs/threshold_summary.png)
+
+--
+
+![:img 80%, 8%, 20%](../figs/sinc_plot.png)
+
+
+---
+count: false
+# Estimating `\(\kappa_{th}\)` with Noise
+
+- Approach: Vary detuning `\(0\to 5\)` GHz, and for each detuning, vary `\(\kappa\)` to find the point where the order parameter goes above 0.7
+
+--
+
+- Threshold Coupling Fraction: `\(R_{th} = \mathrm{sinc}(d_{th}-1)^{q}\)`, `\(q\in[1.6,2]\)`
+
+--
+
+- `\(|\kappa_{th}| = \sqrt{R_{th}}|\kappa_{c}|\)`
+
+--
+
+![:img 40%, 60%, 45%](../figs/tcf_detuning.png)
+
+--
+
+- Maximum `\(\delta=10.68\)` GHz `\(~(d_{th}=1,~q=1.6)\)`
+
+
+---
+count: false
+# Estimating `\(\kappa_{th}\)` with Noise
+
+![:video 80%, 10%, 20%](../figs/spectra_varying_delta_animation.mp4)
+
+---
+count: false
+# Estimating `\(\kappa_{th}\)` with Noise
+
+- Approach: Vary detuning `\(0\to 5\)` GHz, and for each detuning, vary `\(\kappa\)` to find the point where the order parameter goes above 0.7
+
+- Plot order parameter map over `\(\kappa\)` and detuning
+
+--
+
+![:img 40%, 55%, 35%](../figs/order_parameter_map.png)
+
+
+--
+
+- Use maximum detuning (10.68 Ghz)
+- `\(\kappa_{max}=41.26\)` `\(ns^{-1}\)`
+
+
+--
+
+- Solve `\(\sqrt{R_{1.6}} = \frac{\kappa_c}{\kappa_{\max}}\)`
+
+- `\(R_{1.6} = \mathrm{sinc}(d_m-1)^{1.6}\)`
+
+- To get `\(\kappa_{c}=f(d_{m})\)`
+
+
+
+
+---
+# Comparing to Experiment
+
+- `\(\kappa_{th} = 3.8\delta + 0.68\)` (Simulation)
+
+![:img 35%, 60%, 2%](../figs/order_parameter_map.png)
+
+--
+
+![:img 35%, 60%, 50%](../figs/tcf_detuning.png)
+
+
+- `\(\sqrt{\mathrm{sinc}(d_{th}-1)^{1.6}} = 0.091\delta + 0.029\)` (Experiment)
+
+--
+
+`\(\implies\kappa_{th} =41.75\sqrt{\left(\mathrm{sinc}(d_{th}-1)^{1.6}\right)}-0.531\)`
+
+![:img 45%, 5%, 50%](../figs/critical_kappa_vs_grating_depth.png)
+
+---
+# Comparing to Experiment (0.5 GHz)
+
+- Experimentally: `\(d_{th} = 0.0355\)`
+
+![:img 35%, 58%, 2%](../figs/EXP_0.5GHz.png)
+
+--
+
+- `\(\kappa_{th} = 2.58\)` `\(ns^{-1}\)` (Simulation)
+
+![:img 35%, 58%, 53%](../figs/order_parameter_map.png)
+
+![:img 45%, 5%, 50%](../figs/critical_kappa_vs_grating_depth.png)
+
+--
+
+- `\(\kappa_{th} = 2.44\)` `\(ns^{-1}\)` (Predicted)
+
+---
+# Comparing to Experiment (2 GHz)
+
+- Experimentally: `\(d_{th} = 0.1355\)`
+
+![:img 35%, 58%, 2%](../figs/EXP_2GHz.png)
+
+
+
+- `\(\kappa_{th} = 8.28\)` `\(ns^{-1}\)` (Simulation)
+
+![:img 35%, 58%, 53%](../figs/order_parameter_map.png)
+
+![:img 45%, 5%, 50%](../figs/critical_kappa_vs_grating_depth.png)
+
+
+- `\(\kappa_{th} = 8.72\)` `\(ns^{-1}\)` (Predicted)
+
+---
+# Comparing to Experiment (4 GHz)
+
+- Experimentally: `\(d_{th} = 0.25\)`
+
+![:img 35%, 58%, 2%](../figs/EXP_4GHz.png)
+
+
+
+- `\(\kappa_{th} = 15.88\)` `\(ns^{-1}\)` (Simulation)
+
+![:img 35%, 58%, 53%](../figs/order_parameter_map.png)
+
+![:img 45%, 5%, 50%](../figs/critical_kappa_vs_grating_depth.png)
+
+
+
+- `\(\kappa_{th} = 15.41\)` `\(ns^{-1}\)` (Predicted)
+
+---
+# Comparing to Experiment (6 GHz)
+
+- Experimentally: `\(d_{th} = 0.4\)`
+
+![:img 35%, 58%, 2%](../figs/EXP_6GHz.png)
+
+
+
+- `\(\kappa_{th} = 23.48\)` `\(ns^{-1}\)` (Simulation `\(^*\)`)
+
+![:img 35%, 58%, 53%](../figs/order_parameter_map.png)
+
+![:img 45%, 5%, 50%](../figs/critical_kappa_vs_grating_depth.png)
+
+
+- `\(\kappa_{th} = 23.62\)` `\(ns^{-1}\)` (Predicted)
+
+
+
+
+---
+# Next Steps
+
+
+- `\(T_{max}\)` convergence with 3 lasers
+
+
+--
+
+-  Self feedback (`\(\tau\)`) and secondary self feedback (`\(2\tau\)`)
+
+
+--
+
+- Test `\(\kappa_{th}\)` predictions up to maximum detuning (10.68 GHz)
+
+
+--
+
+- Intrinsic linewidth estimation
+
+
+--
+
+- Coupling topology?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "navigation": {
+    "scroll": true
+  }
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
