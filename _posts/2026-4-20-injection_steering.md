@@ -12,7 +12,12 @@ tags:
 
 **Max M. Chumley**, Herbert G. Winful
 
+*Physical Review Research (2026)*
+
 ### Publications
+
+- [Published Version](https://doi.org/10.1103/pjln-px5d){:target="_blank"}
+
 - [arXiv Version](https://arxiv.org/abs/2604.17678){:target="_blank"}
 
 ### Python Library
